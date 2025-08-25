@@ -20,10 +20,21 @@ namespace InventorySystem
             Items = new List<ItemStack>();
         }
 
-        public void AddItem(ItemStack item)
+        public void AddItemAtPosition(ItemStack item)
         {
-            if (!CanAdd(item)) return;
-            Items.Add(item);
+            var itemAtPosition = GetItemAtPosition(item.position);
+            if (itemAtPosition == null)
+            {
+                if (!CanAddItemToSlot(item)) return;
+                Items.Add(item);
+            }
+            // else
+            // {
+            //     if (itemAtPosition.itemType == item.itemType)
+            //     {
+            //         
+            //     }
+            // }
         }
         
         public void AddAnywhere(ItemStack item)
@@ -34,14 +45,38 @@ namespace InventorySystem
                 {
                     item.position.x = i;
                     item.position.y = j;
-                    if (!CanAdd(item)) continue;
+                    if (!CanAddItemToSlot(item)) continue;
                     Items.Add(item);
                     return;
                 }
             }
         }
 
-        private bool CanAdd(ItemStack item)
+        public ItemStack RemoveItem(Vector2Int position)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Collide(Items[i].position, Items[i].itemType.Size, position, Vector2Int.one))
+                {
+                    var item = Items[i];
+                    Items.RemoveAt(i);
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
+        public ItemStack GetItemAtPosition(Vector2Int position)
+        {
+            return Items.FirstOrDefault(x => Collide(x.position, x.itemType.Size, position, Vector2Int.one));
+        }
+        
+        // private ItemStack TryAddToExistingStack(ItemStack item)
+        // {
+        // }
+
+        private bool CanAddItemToSlot(ItemStack item)
         {
             return Items.Any(x => Collide(x.position, x.itemType.Size, item.position, item.itemType.Size));
         }

@@ -1,3 +1,4 @@
+using Objects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -12,6 +13,8 @@ namespace Player
         
         [Header("Stats")]
         [SerializeField] private float radius;
+
+        private InteractableObject _wasShowing;
 
         private void Awake()
         {
@@ -33,9 +36,27 @@ namespace Player
             var mp = Mouse.current.position.ReadValue();
             var mpW = MainCamera.Current.ScreenToWorldPoint(mp);
             var amount = Physics2D.OverlapPoint(mpW, everythingElse, thingsInRadius);
-            if (amount <= 0) return;
+            if (amount <= 0)
+            {
+                if (_wasShowing != null)
+                {
+                    _wasShowing = null;
+                    ToolTipManager.Instance.Hide();
+                }
+
+                return;
+            }
             
+            if (!thingsInRadius[0].TryGetComponent(out InteractableObject obj)) return;
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                obj.Interact();
+            }
             
+            if (_wasShowing == obj) return;
+            
+            ToolTipManager.Instance.Show(obj.InteractableName, "");
+            _wasShowing = obj;
         }
     }
 }

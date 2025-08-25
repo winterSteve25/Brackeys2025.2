@@ -1,5 +1,6 @@
 using UnityEngine;
 using InventorySystem;
+using Utils;
 
 namespace Player
 {
@@ -13,7 +14,7 @@ namespace Player
         private void Awake()
         {
             hotbar = new ItemStack[3];
-            backpack = new TetrisInventory(10, 10);
+            backpack = CarryOverDataManager.Instance.backpack;
         }
 
         public ItemStack GetItemHeld()
