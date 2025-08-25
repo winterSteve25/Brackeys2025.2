@@ -1,5 +1,6 @@
 using Objects;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Utils;
 
@@ -33,6 +34,8 @@ namespace Player
 
         public void Update()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            
             var mp = Mouse.current.position.ReadValue();
             var mpW = MainCamera.Current.ScreenToWorldPoint(mp);
             var amount = Physics2D.OverlapPoint(mpW, everythingElse, thingsInRadius);

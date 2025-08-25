@@ -1,5 +1,6 @@
 using KBCore.Refs;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Utils;
 using World;
@@ -19,6 +20,7 @@ namespace Player
 
         private void Update()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             if (!Mouse.current.leftButton.isPressed)
             {
                 if (wasMining)
@@ -42,8 +44,9 @@ namespace Player
                 
                 wasMining = true;
                 wasMiningPosition = position;
+                var multiplier = inventory.GetItemHeld() == null ? 0 : inventory.GetItemHeld().Tool.MiningSpeedMultiplier;
                 
-                if (breakManager.TickBreak(position, tile.Material.MiningDuration()))
+                if (breakManager.TickBreak(position, tile.Material.MiningDuration() / multiplier))
                 {
                     wasMining = false;
                     worldManager.RemoveTile(position);

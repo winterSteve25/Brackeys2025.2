@@ -8,7 +8,7 @@ namespace Utils
         public static CarryOverDataManager Instance { get; private set; }
 
         public int gold;
-        public TetrisInventory backpack;
+        public TetrisInventory inventory;
 
         private void Awake()
         {

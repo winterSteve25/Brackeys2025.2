@@ -15,9 +15,14 @@ namespace InventorySystem.UI
 
         [Header("References")]
         [SerializeField, Child] private GridLayoutGroup container;
+
+        [SerializeField] private TetrisInventoryGridUI[] grids;
         [SerializeField] private Transform itemContainer;
         [SerializeField] private TetrisSlot slotPrefab;
         [SerializeField] private InventoryItem itemPrefab;
+
+        [Header("Parameters")]
+        [SerializeField] private Vector2 cellSize;
 
         private void Awake()
         {
@@ -33,24 +38,10 @@ namespace InventorySystem.UI
             inventory.OnItemRemoved += InventoryOnOnItemRemoved;
             inventory.OnItemHeld += InventoryOnOnItemHeld;
             inventory.OnHeldItemReleased += InventoryOnOnHeldItemReleased;
-
-            var rect = (RectTransform)container.transform;
-            var widthAvailable = rect.sizeDelta.x - container.padding.left - container.padding.right -
-                                 (inventory.Width - 1) * container.spacing.x;
-            var heightAvailable = rect.sizeDelta.y - container.padding.top - container.padding.bottom -
-                                  (inventory.Height - 1) * container.spacing.y;
-
-            container.cellSize = new Vector2(widthAvailable / inventory.Width, heightAvailable / inventory.Height);
-
-            for (int j = 0; j < inventory.Height; j++)
+            
+            foreach (var grid in grids)
             {
-                for (int i = 0; i < inventory.Width; i++)
-                {
-                    var slot = Instantiate(slotPrefab, rect);
-                    var vector2Int = new Vector2Int(i, j);
-                    slot.Initialize(vector2Int, this);
-                    _slots[vector2Int] = slot;
-                }
+                grid.InitializeSlots(_slots, cellSize, inventory.Width, inventory.Height, slotPrefab, this);
             }
         }
 
@@ -61,13 +52,13 @@ namespace InventorySystem.UI
             {
                 if (heldItem == null) return;
                 heldItem.ItemStackStored.position = pos;
-                    
+
                 if (inventory.AddItemAtPosition(heldItem.ItemStackStored))
                 {
                     inventory.ClearHeldItem();
                     return;
                 }
-                    
+
                 heldItem.RefreshAmount();
                 return;
             }
@@ -89,7 +80,7 @@ namespace InventorySystem.UI
 
                 return;
             }
-            
+
             inventory.HoldItem(item.position);
         }
 
@@ -101,7 +92,7 @@ namespace InventorySystem.UI
             inventory.OnItemHeld -= InventoryOnOnItemHeld;
             inventory.OnHeldItemReleased -= InventoryOnOnHeldItemReleased;
         }
-        
+
         private void InventoryOnOnHeldItemReleased()
         {
             Destroy(heldItem.gameObject);
@@ -115,7 +106,7 @@ namespace InventorySystem.UI
             inventoryItem.FollowMouse();
             heldItem = inventoryItem;
         }
-        
+
         private void InventoryOnOnItemChanged(ItemStack obj)
         {
             _inventoryItems[obj.position].Set(obj, container.cellSize);

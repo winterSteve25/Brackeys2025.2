@@ -9,8 +9,9 @@ namespace InventorySystem
     public class TetrisInventory
     {
         [Header("Debug Info DO NOT EDIT")]
-        [field: SerializeField] public List<ItemStack> Items { get; private set; }
         [SerializeField] private ItemStack heldItem;
+        [SerializeField] private RectInt[] areas;
+        [field: SerializeField] public List<ItemStack> Items { get; private set; }
 
         [Header("Parameters")]
         [field: SerializeField] public int Width { get; private set; }
@@ -164,6 +165,7 @@ namespace InventorySystem
 
         public bool CanReplace(ItemStack item, Vector2Int ignore)
         {
+            if (FindAreaCodeOfItem(item) == -1) return false;
             return !Items.Any(x =>
             {
                 if (x.position == ignore) return false;
@@ -173,7 +175,35 @@ namespace InventorySystem
 
         private bool CanAddItemToSlot(ItemStack item)
         {
+            if (FindAreaCodeOfItem(item) == -1) return false;
             return !Items.Any(x => Collide(x.position, x.itemType.Size, item.position, item.itemType.Size));
+        }
+
+        // -1 if not valid
+        private int FindAreaCodeOfItem(ItemStack item)
+        {
+            var tl = FindAreaCodeOfPoint(item.position);
+            var br = FindAreaCodeOfPoint(item.position + item.itemType.Size - Vector2Int.one);
+
+            if (tl != br)
+            {
+                return -1;
+            }
+
+            return tl;
+        }
+
+        // -1 if not belong anywhere
+        // should not be possible
+        private int FindAreaCodeOfPoint(Vector2Int point)
+        {
+            for (var i = 0; i < areas.Length; i++)
+            {
+                var a = areas[i];
+                if (a.Contains(point)) return i;
+            }
+
+            return -1;
         }
 
         private static bool Collide(

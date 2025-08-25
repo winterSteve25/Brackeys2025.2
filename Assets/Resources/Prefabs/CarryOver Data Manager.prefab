@@ -45,7 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utils.CarryOverDataManager
   gold: 0
-  backpack:
+  inventory:
     <Items>k__BackingField: []
-    <Width>k__BackingField: 8
+    heldItem:
+      itemType: {fileID: 0}
+      amount: 0
+      position: {x: 0, y: 0}
+    areas:
+    - x: 0
+      y: 0
+      width: 6
+      height: 2
+    - x: 0
+      y: 2
+      width: 6
+      height: 6
+    <Width>k__BackingField: 6
     <Height>k__BackingField: 8
