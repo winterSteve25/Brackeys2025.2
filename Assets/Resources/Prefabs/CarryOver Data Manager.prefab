@@ -47,5 +47,5 @@ MonoBehaviour:
   gold: 0
   backpack:
     <Items>k__BackingField: []
-    width: 7
-    height: 7
+    <Width>k__BackingField: 8
+    <Height>k__BackingField: 8

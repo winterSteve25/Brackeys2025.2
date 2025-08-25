@@ -1,5 +1,6 @@
 using KBCore.Refs;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
@@ -52,6 +53,11 @@ namespace Player
             grounded = collisionCount > 0;
             direction = movement.action.ReadValue<Vector2>();
 
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             if (jump.action.WasPressedThisFrame())
             {
                 Jump(true);
@@ -74,6 +80,11 @@ namespace Player
 
         private void FixedUpdate()
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
             rb.linearVelocityX = direction.x * speed;
         }
 

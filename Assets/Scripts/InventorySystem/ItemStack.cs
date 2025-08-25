@@ -20,5 +20,10 @@ namespace InventorySystem
             this.amount = amount;
             this.position = position;
         }
+
+        public override string ToString()
+        {
+            return $"{itemType.name} x{amount} at {position}";
+        }
     }
 }

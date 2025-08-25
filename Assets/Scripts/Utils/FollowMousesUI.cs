@@ -16,10 +16,11 @@ namespace Utils
         private RectTransform _rectTransform;
         private Transform _transform;
 
-        private void Start()
+        private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
             _transform = transform;
+            parentCanvas = GetComponentInParent<Canvas>();
         }
 
         private void Update()

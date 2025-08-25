@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c679655d8c2be6743b6aecd432f357f9
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 236566
+  packageName: Smart Console
+  packageVersion: 2.4.0
+  assetPath: Assets/Plugins/EdgarDev/Smart Console/Scripts/Readme/SmartConsole.Readme.asmdef
+  uploadId: 702428
