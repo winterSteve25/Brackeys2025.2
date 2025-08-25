@@ -15,9 +15,11 @@ namespace Player
         [SerializeField] private ContactFilter2D everythingElseLayerMask;
         [SerializeField] private bool jumpBuffered;
         [SerializeField] private float jumpBufferedTimeAmount;
+        [SerializeField] private bool wasWalking;
 
         [Header("References")] 
         [SerializeField, Self] private Rigidbody2D rb;
+        [SerializeField, Self] private PlayerAnimation animations;
         [SerializeField] private Transform groundTest;
         [SerializeField] private float groundTestRadius;
 
@@ -53,6 +55,50 @@ namespace Player
             grounded = collisionCount > 0;
             direction = movement.action.ReadValue<Vector2>();
 
+            UpdateVisuals(wasGrounded);
+            HandleJump(wasGrounded);
+        }
+
+        private void FixedUpdate()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
+            rb.linearVelocityX = direction.x * speed;
+        }
+
+        private void UpdateVisuals(bool wasGrounded)
+        {
+            if (direction.sqrMagnitude > 0)
+            {
+                if (!wasWalking)
+                {
+                    animations.StartWalk();
+                }
+                
+                animations.ChangeDirection(direction.x);
+                wasWalking = true;
+            }
+            else
+            {
+                if (wasWalking)
+                {
+                    animations.EndWalk();
+                }
+                
+                wasWalking = false;
+            }
+
+            if (!wasGrounded && grounded)
+            {
+                animations.EndJump();
+            }
+        }
+        
+        private void HandleJump(bool wasGrounded)
+        {
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
@@ -78,20 +124,11 @@ namespace Player
             }
         }
 
-        private void FixedUpdate()
-        {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-            
-            rb.linearVelocityX = direction.x * speed;
-        }
-
         private void Jump(bool check)
         {
             if (grounded || !check)
             {
+                animations.StartJump();
                 rb.linearVelocityY = jumpForce;
                 return;
             }

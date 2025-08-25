@@ -24,14 +24,11 @@ namespace InventorySystem.UI
         [Header("Parameters")]
         [SerializeField] private Vector2 cellSize;
 
-        private void Awake()
+        public void Initialize(TetrisInventory inv)
         {
             _slots = new Dictionary<Vector2Int, TetrisSlot>();
             _inventoryItems = new Dictionary<Vector2Int, InventoryItem>();
-        }
-
-        public void Initialize(TetrisInventory inv)
-        {
+            
             inventory = inv;
             inventory.OnItemAdded += InventoryOnOnItemAdded;
             inventory.OnItemChanged += InventoryOnOnItemChanged;
