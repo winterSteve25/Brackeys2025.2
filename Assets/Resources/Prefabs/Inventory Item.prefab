@@ -139,6 +139,7 @@ MonoBehaviour:
     itemType: {fileID: 0}
     amount: 0
     position: {x: 0, y: 0}
+  anchor: {fileID: 0}
   icon: {fileID: 839418729178302874}
   count: {fileID: 7825516612218903986}
   followMouse: {fileID: 3833918194280194078}
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utils.FollowMouseUI
   parentCanvas: {fileID: 0}
-  offset: {x: 0, y: 0}
+  offset: {x: 10, y: -10}
   changePivot: 0
 --- !u!1 &5274967299108144365
 GameObject:

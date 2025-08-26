@@ -8,7 +8,6 @@ namespace InventorySystem.UI
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private TetrisInventory inventory;
-
         [SerializeField] private List<ItemStack> items;
         private Dictionary<ItemStack, HotbarSlot> _slots;
 
@@ -24,6 +23,7 @@ namespace InventorySystem.UI
             items = hotbarItems;
             inventory.OnItemAdded += InventoryOnOnItemAdded;
             inventory.OnItemHeld += InventoryOnOnItemRemoved;
+            inventory.OnItemReplaced += InventoryOnOnItemReplaced;
             inventory.OnItemRemoved += InventoryOnOnItemRemoved;
 
             foreach (var obj in hotbarItems)
@@ -50,7 +50,17 @@ namespace InventorySystem.UI
         {
             inventory.OnItemAdded -= InventoryOnOnItemAdded;
             inventory.OnItemHeld -= InventoryOnOnItemRemoved;
+            inventory.OnItemReplaced -= InventoryOnOnItemReplaced;
             inventory.OnItemRemoved -= InventoryOnOnItemRemoved;
+        }
+
+        private void InventoryOnOnItemReplaced(ItemStack from, ItemStack to)
+        {
+            if (from.position.y >= 2) return;
+            var slot = _slots[from];
+            _slots.Remove(from);
+            _slots.Add(to, slot);
+            slot.Initialize(to);
         }
 
         private void InventoryOnOnItemRemoved(ItemStack obj)

@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 
 namespace Utils
 {
-    public class FollowMouseUI : ValidatedMonoBehaviour
+    public class FollowMouseUI : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField, Parent] private Canvas parentCanvas;
+        [SerializeField] private Canvas parentCanvas;
 
         [Header("Parameters")]
         [SerializeField] private Vector2 offset;

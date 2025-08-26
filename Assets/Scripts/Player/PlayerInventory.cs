@@ -30,6 +30,7 @@ namespace Player
         {
             Inventory = CarryOverDataManager.Instance.inventory;
             Inventory.OnItemAdded += InventoryOnOnItemAdded;
+            Inventory.OnItemReplaced += InventoryOnOnItemReplaced;
             Inventory.OnItemHeld += InventoryOnOnItemRemoved;
             Inventory.OnItemRemoved += InventoryOnOnItemRemoved;
             
@@ -46,6 +47,7 @@ namespace Player
         private void OnDestroy()
         {
             Inventory.OnItemAdded -= InventoryOnOnItemAdded;
+            Inventory.OnItemReplaced -= InventoryOnOnItemReplaced;
             Inventory.OnItemHeld -= InventoryOnOnItemRemoved;
             Inventory.OnItemRemoved -= InventoryOnOnItemRemoved;
         }
@@ -72,8 +74,15 @@ namespace Player
         {
             return selectedItem == -1 ? null : hotbarItems[selectedItem];
         }
-
+        
         //  TODO: Hotbar hardcode
+        private void InventoryOnOnItemReplaced(ItemStack from, ItemStack to)
+        {
+            if (from.position.y >= 2) return;
+            int i = hotbarItems.IndexOf(from);
+            hotbarItems[i] = to;
+        }
+        
         private void InventoryOnOnItemRemoved(ItemStack obj)
         {
             if (obj.position.y >= 2) return;

@@ -17,6 +17,7 @@ namespace InventorySystem.UI
         [Header("References")]
         [SerializeField] private TetrisInventoryGridUI[] grids;
         [SerializeField] private Transform itemContainer;
+        [SerializeField] private Transform heldItemContainer;
         [SerializeField] private TetrisSlot slotPrefab;
         [SerializeField] private InventoryItem itemPrefab;
 
@@ -70,8 +71,14 @@ namespace InventorySystem.UI
             if (heldItem != null)
             {
                 var inPlaceItem = _inventoryItems[item.position];
-
                 heldItem.ItemStackStored.position = pos;
+                
+                if (inventory.AddItemAtPosition(heldItem.ItemStackStored))
+                {
+                    inventory.ClearHeldItem();
+                    return;
+                }
+                
                 if (inventory.CanReplace(heldItem.ItemStackStored, item.position))
                 {
                     inventory.ReplaceItemNoCheck(item.position, heldItem.ItemStackStored);
@@ -112,6 +119,7 @@ namespace InventorySystem.UI
         {
             var inventoryItem = _inventoryItems[obj.position];
             _inventoryItems.Remove(obj.position);
+            // inventoryItem.transform.SetParent(heldItemContainer, true);
             inventoryItem.FollowMouse();
             heldItem = inventoryItem;
         }

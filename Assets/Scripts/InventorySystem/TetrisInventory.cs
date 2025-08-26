@@ -22,6 +22,7 @@ namespace InventorySystem
         public event Action<ItemStack> OnItemChanged;
         public event Action<ItemStack> OnItemRemoved;
         public event Action<ItemStack> OnItemHeld;
+        public event Action<ItemStack, ItemStack> OnItemReplaced;
         public event Action OnHeldItemReleased;
 
         public TetrisInventory(int width, int height)
@@ -77,6 +78,17 @@ namespace InventorySystem
 
         public bool AddAnywhere(ItemStack item)
         {
+            var sameItem =
+                Items.FirstOrDefault(x => x.itemType == item.itemType && x.amount <= item.itemType.StackSize);
+            if (sameItem != null && sameItem.itemType != null)
+            {
+                item.position = sameItem.position;
+                if (AddItemAtPosition(item))
+                {
+                    return true;
+                }
+            }
+            
             for (var j = 0; j < Height; j++)
             {
                 for (var i = 0; i < Width; i++)
@@ -147,14 +159,15 @@ namespace InventorySystem
             OnHeldItemReleased?.Invoke();
         }
         
-        public void ReplaceItemNoCheck(Vector2Int position, ItemStack item)
+        public void ReplaceItemNoCheck(Vector2Int replaceItemFromThisPosition, ItemStack replaceWith)
         {
             for (int i = 0; i < Items.Count; i++)
             {
                 var original = Items[i];
-                if (original.position == position)
+                if (original.position == replaceItemFromThisPosition)
                 {
-                    Items[i] = item;
+                    OnItemReplaced?.Invoke(original, replaceWith);
+                    Items[i] = replaceWith;
                 }
             }
         }
