@@ -7,6 +7,8 @@ namespace Player
 {
     public class PlayerMovement : ValidatedMonoBehaviour
     {
+        public static PlayerMovement Current { get; private set; }
+        
         [Header("Debug Info DO NOT EDIT")] 
         [SerializeField] private Vector2 direction;
         [SerializeField] private bool grounded;
@@ -36,6 +38,8 @@ namespace Player
 
         private void Awake()
         {
+            Current = this;
+            
             var avoidMask = LayerMask.NameToLayer("Player");
             var mask = 1 << avoidMask;
             mask = ~mask;

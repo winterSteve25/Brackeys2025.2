@@ -7,6 +7,8 @@ namespace World
 {
     public class ItemEntityManager : MonoBehaviour
     {
+        public static ItemEntityManager Current { get; private set; }
+        
         [Header("References")]
         [SerializeField] private ItemEntity prefab;
 
@@ -14,6 +16,7 @@ namespace World
 
         private void Awake()
         {
+            Current = this;
             _pool = new ObjectPool<ItemEntity>(
                 () => Instantiate(prefab, transform),
                 ib => ib.gameObject.SetActive(true),

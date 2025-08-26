@@ -62,6 +62,7 @@ namespace InventorySystem.UI
         public void AnchorTo(RectTransform t)
         {
             followMouse.enabled = false;
+            transform.position = t.position;
             anchor = t;
         }
 

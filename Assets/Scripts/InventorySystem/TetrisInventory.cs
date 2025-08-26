@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using World;
 
 namespace InventorySystem
 {
@@ -121,9 +122,9 @@ namespace InventorySystem
             }
         }
 
-        public void ReturnHeldItem()
+        public void ReturnHeldItem(Vector2 position)
         {
-            if (heldItem == null) return;
+            if (heldItem == null || heldItem.itemType == null) return;
             OnHeldItemReleased?.Invoke();
             
             if (AddItemAtPosition(heldItem))
@@ -135,13 +136,13 @@ namespace InventorySystem
             {
                 return;
             }
-                
-            // TODO: Drop excess
+            
+            ItemEntityManager.Current.SpawnApproximatelyAt(position, heldItem);
         }
 
         public void ClearHeldItem()
         {
-            if (heldItem == null) return;
+            if (heldItem == null || heldItem.itemType == null) return;
             heldItem = null;
             OnHeldItemReleased?.Invoke();
         }

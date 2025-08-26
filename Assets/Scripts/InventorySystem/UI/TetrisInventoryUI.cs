@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using KBCore.Refs;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -85,6 +86,11 @@ namespace InventorySystem.UI
             }
 
             inventory.HoldItem(item.position);
+        }
+
+        public void ReturnHeldItem()
+        {
+            inventory.ReturnHeldItem(PlayerMovement.Current.transform.position);
         }
 
         private void OnDestroy()

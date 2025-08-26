@@ -419,9 +419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df062569eca743a58a771df32c9fd62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerOxygenMeter
+  timer: 0
+  oxygenText: {fileID: 0}
+  health: {fileID: 4631841600770837346}
   oxygen: 1
   oxygenDecreaseRate: 0.006666667
-  oxygenText: {fileID: 0}
+  damagePerTick: 1
+  tickRate: 1
 --- !u!1 &5900455969444253333
 GameObject:
   m_ObjectHideFlags: 0

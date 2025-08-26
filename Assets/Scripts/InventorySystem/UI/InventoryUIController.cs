@@ -13,6 +13,7 @@ namespace InventorySystem.UI
 
         [Header("References")]
         [SerializeField, Child] private CanvasGroup group;
+        [SerializeField, Child] private TetrisInventoryUI inventoryUI;
 
         [SerializeField] private InputActionReference openAction;
         [SerializeField] private InputActionReference exitAction;
@@ -29,6 +30,8 @@ namespace InventorySystem.UI
             if (isOpen && (exitAction.action.WasPressedThisFrame() || openAction.action.WasPressedThisFrame()))
             {
                 isOpen = false;
+                inventoryUI.ReturnHeldItem();
+                
                 Tween.Alpha(group, 0, 0.2f)
                     .OnComplete(() =>
                     {
