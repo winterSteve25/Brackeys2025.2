@@ -78,7 +78,7 @@ namespace Player
 
         private void UpdateVisuals(bool wasGrounded)
         {
-            if (direction.sqrMagnitude > 0)
+            if (Mathf.Abs(direction.x) > 0)
             {
                 if (!wasWalking)
                 {

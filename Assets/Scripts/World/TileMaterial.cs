@@ -14,8 +14,8 @@ namespace World
         {
             return material switch
             {
-                TileMaterial.Stone => 0.5f,
-                TileMaterial.Unknown => 5,
+                TileMaterial.Stone => 0.3f,
+                TileMaterial.Unknown => 0.5f,
                 _ => throw new ArgumentOutOfRangeException(nameof(material), material, null)
             };
         }
