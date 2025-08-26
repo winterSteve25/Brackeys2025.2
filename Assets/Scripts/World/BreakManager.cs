@@ -40,7 +40,7 @@ namespace World
             CancelBreak(pos);
             if (worldManager.TryGetTile(pos, out var tile))
             {
-                var loot = tile.Material.Loot();
+                var loot = tile.Material.Loot;
                 if (loot != null)
                 {
                     foreach (var l in loot)

@@ -46,7 +46,7 @@ namespace Player
                 wasMiningPosition = position;
                 var multiplier = inventory.GetItemHeld() == null ? 0 : inventory.GetItemHeld().Tool.MiningSpeedMultiplier;
                 
-                if (breakManager.TickBreak(position, tile.Material.MiningDuration() / multiplier))
+                if (breakManager.TickBreak(position, tile.Material.MiningDuration / multiplier))
                 {
                     wasMining = false;
                 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tile_SpawnOre
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.RuleTile
   m_DefaultSprite: {fileID: 21300000, guid: d9592e16d130a324cac4822d104544e1, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 113122105477761635, guid: db4e2de05da5a4048803a15822cc145d, type: 3}
   m_DefaultColliderType: 2
   m_TilingRules: []

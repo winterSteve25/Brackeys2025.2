@@ -160,6 +160,8 @@ GameObject:
   - component: {fileID: 6373808034156432393}
   - component: {fileID: 6923731857867572667}
   - component: {fileID: 1065984052051295116}
+  - component: {fileID: 4631841600770837346}
+  - component: {fileID: 4699938126396643210}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -391,6 +393,35 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   wasShowing: {fileID: 0}
+--- !u!114 &4631841600770837346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984830095127612333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a002fa5511f4a2ebf8c5e65e1aaac7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealth
+  health: 10
+  healthText: {fileID: 0}
+--- !u!114 &4699938126396643210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984830095127612333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df062569eca743a58a771df32c9fd62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerOxygenMeter
+  oxygen: 1
+  oxygenDecreaseRate: 0.006666667
+  oxygenText: {fileID: 0}
 --- !u!1 &5900455969444253333
 GameObject:
   m_ObjectHideFlags: 0

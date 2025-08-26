@@ -1,48 +1,65 @@
 using System;
 using InventorySystem;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace World
 {
-    public enum TileMaterial
+    public enum TileMaterialPreset
     {
         Stone,
-        Unknown
+        Unknown,
+    }
+
+    [Serializable]
+    public class TileMaterial
+    {
+        [field: SerializeField] public float MiningDuration { get; private set; }
+        [field: SerializeField] public ItemStack[] Loot { get; private set; }
+        private readonly TileMaterialPreset _preset;
+
+        public TileMaterial(float miningDuration, ItemStack[] loot)
+        {
+            MiningDuration = miningDuration;
+            Loot = loot;
+        }
+
+        public static implicit operator TileMaterial(TileMaterialPreset preset)
+        {
+            return new TileMaterial(preset.MiningDuration(), preset.Loot());
+        }
+
+        public static implicit operator TileMaterial(TileBase tileBase)
+        {
+            return Enum.TryParse<TileMaterialPreset>(tileBase.name[5..], true, out var result)
+                ? result
+                : TileMaterialPreset.Unknown;
+        }
     }
 
     public static class TileMaterialExtensions
     {
-        public static float MiningDuration(this TileMaterial material)
+        public static float MiningDuration(this TileMaterialPreset material)
         {
             return material switch
             {
-                TileMaterial.Stone => 0.3f,
-                TileMaterial.Unknown => 0.5f,
+                TileMaterialPreset.Stone => 0.3f,
+                TileMaterialPreset.Unknown => 0.5f,
                 _ => throw new ArgumentOutOfRangeException(nameof(material), material, null)
             };
         }
 
-        public static TileMaterial Parse(this string material)
-        {
-            if (Enum.TryParse<TileMaterial>(material.Substring(5), true, out var result))
-            {
-                return result;
-            }
-
-            return TileMaterial.Unknown;
-        }
-
         private static readonly Lazy<ItemType> StoneItemType = new(() => Resources.Load<ItemType>("Tiles/Item_Stone"));
 
-        public static ItemStack[] Loot(this TileMaterial material)
+        public static ItemStack[] Loot(this TileMaterialPreset material)
         {
             return material switch
             {
-                TileMaterial.Stone => new ItemStack[]
+                TileMaterialPreset.Stone => new ItemStack[]
                 {
                     new(StoneItemType.Value, 1, Vector2Int.zero)
                 },
-                TileMaterial.Unknown => null,
+                TileMaterialPreset.Unknown => null,
                 _ => throw new ArgumentOutOfRangeException(nameof(material), material, null)
             };
         }

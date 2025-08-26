@@ -185,6 +185,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6923731857867572667, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
+    - {fileID: 4631841600770837346, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
+    - {fileID: 4699938126396643210, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -522,7 +524,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1757009397
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1734,7 +1736,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1757009397
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1912,6 +1914,7 @@ MonoBehaviour:
   prefab: {fileID: 4123989030980154475, guid: 2b39f7ea27ca5bb4b9454e85f8380c4f, type: 3}
   parent: {fileID: 0}
   worldManager: {fileID: 1909135018}
+  itemEntityManager: {fileID: 0}
 --- !u!1 &1962508667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +1980,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1757009397
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
