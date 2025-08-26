@@ -37,6 +37,11 @@ namespace World
             return _tiles.TryGetValue(position, out tile);
         }
 
+        public bool TryGetTile(Vector2Int position, out Tile tile)
+        {
+            return _tiles.TryGetValue(position, out tile);
+        }
+
         public void RemoveTile(Vector2Int position)
         {
             _tiles.Remove(position);

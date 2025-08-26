@@ -12,9 +12,9 @@ namespace Player
     public class PlayerInventory : MonoBehaviour
     {
         [Header("Debug Info DO NOT EDIT")]
-        [SerializeField] private TetrisInventory inventory;
         [SerializeField] private int selectedItem;
         [SerializeField] private List<ItemStack> hotbarItems;
+        [field: SerializeField] public TetrisInventory Inventory { get; private set; }
 
         [Header("References")]
         [SerializeField, Anywhere] private TetrisInventoryUI inventoryUI;
@@ -28,26 +28,26 @@ namespace Player
         
         private void Start()
         {
-            inventory = CarryOverDataManager.Instance.inventory;
-            inventory.OnItemAdded += InventoryOnOnItemAdded;
-            inventory.OnItemHeld += InventoryOnOnItemRemoved;
-            inventory.OnItemRemoved += InventoryOnOnItemRemoved;
+            Inventory = CarryOverDataManager.Instance.inventory;
+            Inventory.OnItemAdded += InventoryOnOnItemAdded;
+            Inventory.OnItemHeld += InventoryOnOnItemRemoved;
+            Inventory.OnItemRemoved += InventoryOnOnItemRemoved;
             
-            foreach (var item in inventory.Items)
+            foreach (var item in Inventory.Items)
             {
                 InventoryOnOnItemAdded(item);
             }
             
-            inventoryUI.Initialize(inventory);
-            hotbarUI.Initialize(inventory, hotbarItems);
+            inventoryUI.Initialize(Inventory);
+            hotbarUI.Initialize(Inventory, hotbarItems);
         }
         
         
         private void OnDestroy()
         {
-            inventory.OnItemAdded -= InventoryOnOnItemAdded;
-            inventory.OnItemHeld -= InventoryOnOnItemRemoved;
-            inventory.OnItemRemoved -= InventoryOnOnItemRemoved;
+            Inventory.OnItemAdded -= InventoryOnOnItemAdded;
+            Inventory.OnItemHeld -= InventoryOnOnItemRemoved;
+            Inventory.OnItemRemoved -= InventoryOnOnItemRemoved;
         }
         
         private void Update()
@@ -104,7 +104,7 @@ namespace Player
         private void AddItem(string path, int amount = 1)
         {
             var it = Resources.Load<ItemType>(path);
-            inventory.AddAnywhere(new ItemStack(it, amount, Vector2Int.zero));
+            Inventory.AddAnywhere(new ItemStack(it, amount, Vector2Int.zero));
         }
     }
 }

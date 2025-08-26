@@ -303,7 +303,6 @@ MonoBehaviour:
     <Width>k__BackingField: 0
     <Height>k__BackingField: 0
   heldItem: {fileID: 0}
-  container: {fileID: 2301659754277150938}
   grids:
   - {fileID: 5392485181821458323}
   - {fileID: 8739053293319144353}
@@ -389,13 +388,13 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

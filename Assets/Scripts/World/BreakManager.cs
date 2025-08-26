@@ -12,6 +12,7 @@ namespace World
         [SerializeField] private TMP_Text prefab;
         [SerializeField, Anywhere] private Canvas parent;
         [SerializeField, Anywhere] private WorldManager worldManager;
+        [SerializeField, Anywhere] private ItemEntityManager itemEntityManager;
 
         private Dictionary<Vector2Int, BreakProgress> _breakingProgress;
 
@@ -34,13 +35,23 @@ namespace World
                 worldManager.CellToWorld(pos)
             );
 
-            if (breakProgress.Progress >= 1)
+            if (!(breakProgress.Progress >= 1)) return false;
+            
+            CancelBreak(pos);
+            if (worldManager.TryGetTile(pos, out var tile))
             {
-                CancelBreak(pos);
-                return true;
+                var loot = tile.Material.Loot();
+                if (loot != null)
+                {
+                    foreach (var l in loot)
+                    {
+                        itemEntityManager.SpawnApproximatelyAt(worldManager.CellToWorld(pos) + new Vector2(0.5f, 0.5f), l);
+                    }
+                }
             }
 
-            return false;
+            worldManager.RemoveTile(pos);
+            return true;
         }
 
         public void CancelBreak(Vector2Int pos)

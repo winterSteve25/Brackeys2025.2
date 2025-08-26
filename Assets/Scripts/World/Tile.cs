@@ -4,7 +4,7 @@ namespace World
 {
     public class Tile
     {
-        public TileMaterial Material;
+        public readonly TileMaterial Material;
 
         public Tile(TileMaterial material)
         {
@@ -13,7 +13,7 @@ namespace World
 
         public static implicit operator Tile(TileBase tile)
         {
-            return new Tile(tile.name == "Tile_Stone" ? TileMaterial.Stone : TileMaterial.Unknown);
+            return new Tile(tile.name.Parse());
         }
 
         public override string ToString()

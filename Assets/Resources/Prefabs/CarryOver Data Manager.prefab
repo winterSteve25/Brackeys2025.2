@@ -59,6 +59,9 @@ MonoBehaviour:
       y: 2
       width: 6
       height: 6
-    <Items>k__BackingField: []
+    <Items>k__BackingField:
+    - itemType: {fileID: 11400000, guid: 86ddeb058ed5051449318d5cc6b4e951, type: 2}
+      amount: 1
+      position: {x: 0, y: 0}
     <Width>k__BackingField: 6
     <Height>k__BackingField: 8

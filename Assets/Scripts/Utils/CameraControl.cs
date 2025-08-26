@@ -17,7 +17,10 @@ namespace Utils
         {
             var dir = movement.action.ReadValue<Vector2>();
             var percentage = (dir.y + 1) / 2;
-            composer.FollowOffset.y = Mathf.Lerp(composer.FollowOffset.y, Mathf.Lerp(maxTilt, minTilt, percentage), lerpParam);
+            var from = composer.FollowOffset.y;
+            var target = Mathf.Lerp(maxTilt, minTilt, percentage);
+            if (Mathf.Abs(from - target) < 0.05) return;
+            composer.FollowOffset.y = Mathf.Lerp(from, target, lerpParam);
         }
     }
 }

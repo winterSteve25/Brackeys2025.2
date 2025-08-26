@@ -49,7 +49,6 @@ namespace Player
                 if (breakManager.TickBreak(position, tile.Material.MiningDuration() / multiplier))
                 {
                     wasMining = false;
-                    worldManager.RemoveTile(position);
                 }
             }
         }
