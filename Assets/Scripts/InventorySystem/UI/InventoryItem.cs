@@ -1,3 +1,4 @@
+using System;
 using KBCore.Refs;
 using TMPro;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace InventorySystem.UI
         [Header("Debug Info DO NOT EDIT")]
         [field: SerializeField] public ItemStack ItemStackStored { get; private set; }
         [SerializeField] private Transform anchor;
-        
+
         [Header("References")]
         [SerializeField, Child(Flag.ExcludeSelf)] private Image icon;
         [SerializeField, Child(Flag.ExcludeSelf)] private TMP_Text count;
@@ -20,6 +21,12 @@ namespace InventorySystem.UI
         private void Awake()
         {
             followMouse.enabled = false;
+        }
+
+        private void Update()
+        {
+            if (anchor == null) return;
+            transform.position = anchor.position;
         }
 
         public void Set(ItemStack itemStack, Vector2 cellsize)
@@ -32,12 +39,12 @@ namespace InventorySystem.UI
                 count.text = string.Empty;
                 return;
             }
-            
+
             icon.color = Color.white;
             icon.sprite = itemStack.itemType.Icon;
             count.text = itemStack.amount.ToString();
 
-            var rect = (RectTransform) transform;
+            var rect = (RectTransform)transform;
             rect.sizeDelta = cellsize * new Vector2(itemStack.itemType.Size.x, itemStack.itemType.Size.y);
         }
 
@@ -48,14 +55,14 @@ namespace InventorySystem.UI
                 Debug.LogWarning("Tried to refresh amount but ItemStack stored was null");
                 return;
             }
-            
+
             count.text = ItemStackStored.amount.ToString();
         }
 
         public void AnchorTo(RectTransform t)
         {
             followMouse.enabled = false;
-            transform.position = t.position;
+            anchor = t;
         }
 
         public void FollowMouse()

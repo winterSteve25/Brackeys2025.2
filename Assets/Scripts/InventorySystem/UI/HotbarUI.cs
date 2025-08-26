@@ -8,11 +8,13 @@ namespace InventorySystem.UI
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private TetrisInventory inventory;
+
         [SerializeField] private List<ItemStack> items;
         private Dictionary<ItemStack, HotbarSlot> _slots;
 
         [Header("References")]
         [SerializeField] private HotbarSlot slotPrefab;
+
         [SerializeField] private RectTransform row;
 
         public void Initialize(TetrisInventory inv, List<ItemStack> hotbarItems)
@@ -23,6 +25,11 @@ namespace InventorySystem.UI
             inventory.OnItemAdded += InventoryOnOnItemAdded;
             inventory.OnItemHeld += InventoryOnOnItemRemoved;
             inventory.OnItemRemoved += InventoryOnOnItemRemoved;
+
+            foreach (var obj in hotbarItems)
+            {
+                InventoryOnOnItemAdded(obj);
+            }
         }
 
         public void ChangeSelected(int oldIndex, int newIndex)
@@ -61,6 +68,12 @@ namespace InventorySystem.UI
             var slot = Instantiate(slotPrefab, row);
             slot.Initialize(obj);
             _slots.Add(obj, slot);
+
+            if (_slots.Count == 1)
+            {
+                ChangeSelected(-1, 0);
+            }
+
             LayoutRebuilder.ForceRebuildLayoutImmediate(row);
         }
     }

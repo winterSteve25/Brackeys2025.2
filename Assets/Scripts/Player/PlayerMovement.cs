@@ -15,11 +15,13 @@ namespace Player
         [SerializeField] private bool jumpBuffered;
         [SerializeField] private float jumpBufferedTimeAmount;
         [SerializeField] private bool wasWalking;
+        [SerializeField] private float coyoteTimeCountDown;
 
         [Header("References")] 
         [SerializeField, Self] private Rigidbody2D rb;
         [SerializeField, Self] private PlayerAnimation animations;
         [SerializeField] private Transform groundTest;
+        [SerializeField] private Transform groundTest2;
         [SerializeField] private float groundTestRadius;
 
         [Header("Input")] 
@@ -30,6 +32,7 @@ namespace Player
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float jumpBufferTime;
+        [SerializeField] private float coyoteTime;
 
         private void Awake()
         {
@@ -52,8 +55,13 @@ namespace Player
             var wasGrounded = grounded;
 
             grounded = collisionCount > 0;
+            if (!grounded)
+            {
+                collisionCount = Physics2D.OverlapCircle(groundTest2.position, groundTestRadius, everythingElseLayerMask, groundCollision);
+                grounded = collisionCount > 0;
+            }
+            
             direction = movement.action.ReadValue<Vector2>();
-
             UpdateVisuals(wasGrounded);
             HandleJump(wasGrounded);
         }
@@ -103,6 +111,20 @@ namespace Player
                 return;
             }
 
+            if (wasGrounded && !grounded)
+            {
+                coyoteTimeCountDown = coyoteTime;
+            }
+
+            if (coyoteTimeCountDown > 0)
+            {
+                coyoteTimeCountDown -= Time.deltaTime;
+                if (coyoteTimeCountDown <= 0)
+                {
+                    coyoteTimeCountDown = 0;
+                }
+            }
+
             if (jump.action.WasPressedThisFrame())
             {
                 Jump(true);
@@ -125,7 +147,7 @@ namespace Player
 
         private void Jump(bool check)
         {
-            if (grounded || !check)
+            if (grounded || !check || coyoteTimeCountDown > 0)
             {
                 animations.StartJump();
                 rb.linearVelocityY = jumpForce;

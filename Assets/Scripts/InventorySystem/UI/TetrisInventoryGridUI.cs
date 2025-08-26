@@ -38,8 +38,6 @@ namespace InventorySystem.UI
                     slots[vector2Int] = slot;
                 }
             }
-
-            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)transform);
         }
     }
 }

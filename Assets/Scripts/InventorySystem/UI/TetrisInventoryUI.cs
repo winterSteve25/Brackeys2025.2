@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace InventorySystem.UI
 {
-    public class TetrisInventoryUI : ValidatedMonoBehaviour
+    public class TetrisInventoryUI : MonoBehaviour
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private TetrisInventory inventory;
@@ -14,8 +14,6 @@ namespace InventorySystem.UI
         private Dictionary<Vector2Int, InventoryItem> _inventoryItems;
 
         [Header("References")]
-        [SerializeField, Child] private GridLayoutGroup container;
-
         [SerializeField] private TetrisInventoryGridUI[] grids;
         [SerializeField] private Transform itemContainer;
         [SerializeField] private TetrisSlot slotPrefab;
@@ -28,17 +26,25 @@ namespace InventorySystem.UI
         {
             _slots = new Dictionary<Vector2Int, TetrisSlot>();
             _inventoryItems = new Dictionary<Vector2Int, InventoryItem>();
-            
+
             inventory = inv;
             inventory.OnItemAdded += InventoryOnOnItemAdded;
             inventory.OnItemChanged += InventoryOnOnItemChanged;
             inventory.OnItemRemoved += InventoryOnOnItemRemoved;
             inventory.OnItemHeld += InventoryOnOnItemHeld;
             inventory.OnHeldItemReleased += InventoryOnOnHeldItemReleased;
-            
+
             foreach (var grid in grids)
             {
                 grid.InitializeSlots(_slots, cellSize, inventory.Width, inventory.Height, slotPrefab, this);
+                LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)grid.transform);
+            }
+            
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform) transform);
+
+            foreach (var obj in inventory.Items)
+            {
+                InventoryOnOnItemAdded(obj);
             }
         }
 
@@ -68,11 +74,11 @@ namespace InventorySystem.UI
                 if (inventory.CanReplace(heldItem.ItemStackStored, item.position))
                 {
                     inventory.ReplaceItemNoCheck(item.position, heldItem.ItemStackStored);
-                    inPlaceItem.Set(heldItem.ItemStackStored, container.cellSize);
+                    inPlaceItem.Set(heldItem.ItemStackStored, cellSize);
                     inPlaceItem.AnchorTo((RectTransform)_slots[pos].transform);
                     _inventoryItems.Remove(item.position);
                     _inventoryItems.Add(pos, inPlaceItem);
-                    heldItem.Set(item, container.cellSize);
+                    heldItem.Set(item, cellSize);
                 }
 
                 return;
@@ -106,7 +112,7 @@ namespace InventorySystem.UI
 
         private void InventoryOnOnItemChanged(ItemStack obj)
         {
-            _inventoryItems[obj.position].Set(obj, container.cellSize);
+            _inventoryItems[obj.position].Set(obj, cellSize);
         }
 
         private void InventoryOnOnItemRemoved(ItemStack obj)
@@ -118,7 +124,7 @@ namespace InventorySystem.UI
         private void InventoryOnOnItemAdded(ItemStack obj)
         {
             var item = Instantiate(itemPrefab, itemContainer);
-            item.Set(obj, container.cellSize);
+            item.Set(obj, cellSize);
             item.AnchorTo((RectTransform)_slots[obj.position].transform);
             _inventoryItems.Add(obj.position, item);
         }

@@ -23,26 +23,33 @@ namespace Player
         
         private void Awake()
         {
+            selectedItem = -1;
+        }
+        
+        private void Start()
+        {
             inventory = CarryOverDataManager.Instance.inventory;
             inventory.OnItemAdded += InventoryOnOnItemAdded;
             inventory.OnItemHeld += InventoryOnOnItemRemoved;
             inventory.OnItemRemoved += InventoryOnOnItemRemoved;
-            selectedItem = -1;
+            
+            foreach (var item in inventory.Items)
+            {
+                InventoryOnOnItemAdded(item);
+            }
+            
+            inventoryUI.Initialize(inventory);
+            hotbarUI.Initialize(inventory, hotbarItems);
         }
-
+        
+        
         private void OnDestroy()
         {
             inventory.OnItemAdded -= InventoryOnOnItemAdded;
             inventory.OnItemHeld -= InventoryOnOnItemRemoved;
             inventory.OnItemRemoved -= InventoryOnOnItemRemoved;
         }
-
-        private void Start()
-        {
-            inventoryUI.Initialize(inventory);
-            hotbarUI.Initialize(inventory, hotbarItems);
-        }
-
+        
         private void Update()
         {
             var scroll = scrollInput.action.ReadValue<float>();

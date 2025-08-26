@@ -11,11 +11,7 @@ namespace Player
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private Collider2D[] thingsInRadius;
         [SerializeField] private ContactFilter2D everythingElse;
-        
-        [Header("Stats")]
-        [SerializeField] private float radius;
-
-        private InteractableObject _wasShowing;
+        [SerializeField] private InteractableObject wasShowing;
 
         private void Awake()
         {
@@ -27,11 +23,6 @@ namespace Player
             everythingElse.SetLayerMask(mask);
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.DrawWireSphere(transform.position, radius);
-        }
-
         public void Update()
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
@@ -41,9 +32,9 @@ namespace Player
             var amount = Physics2D.OverlapPoint(mpW, everythingElse, thingsInRadius);
             if (amount <= 0)
             {
-                if (_wasShowing != null)
+                if (wasShowing != null)
                 {
-                    _wasShowing = null;
+                    wasShowing = null;
                     ToolTipManager.Instance.Hide();
                 }
 
@@ -56,10 +47,10 @@ namespace Player
                 obj.Interact();
             }
             
-            if (_wasShowing == obj) return;
+            if (wasShowing == obj) return;
             
             ToolTipManager.Instance.Show(obj.InteractableName, "");
-            _wasShowing = obj;
+            wasShowing = obj;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace World
 
         public static implicit operator Tile(TileBase tile)
         {
-            return new Tile(tile.name == "Stone" ? TileMaterial.Stone : TileMaterial.Unknown);
+            return new Tile(tile.name == "Tile_Stone" ? TileMaterial.Stone : TileMaterial.Unknown);
         }
 
         public override string ToString()
