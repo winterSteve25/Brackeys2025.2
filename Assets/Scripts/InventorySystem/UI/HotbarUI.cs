@@ -51,6 +51,7 @@ namespace InventorySystem.UI
             if (obj.position.y >= 2) return;
             Destroy(_slots[obj].gameObject);
             _slots.Remove(obj);
+            ChangeSelected(-1, 0);
             LayoutRebuilder.ForceRebuildLayoutImmediate(row);
         }
 

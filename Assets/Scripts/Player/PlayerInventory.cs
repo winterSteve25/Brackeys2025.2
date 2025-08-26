@@ -13,7 +13,6 @@ namespace Player
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private TetrisInventory inventory;
-        [SerializeField] private int previousSelected;
         [SerializeField] private int selectedItem;
         [SerializeField] private List<ItemStack> hotbarItems;
 
@@ -49,16 +48,10 @@ namespace Player
             var scroll = scrollInput.action.ReadValue<float>();
             if (scroll != 0 && hotbarItems.Count > 0)
             {
-                previousSelected = selectedItem;
+                var previousSelected = selectedItem;
                 WrapSelection(selectedItem + (int)scroll);
                 if (previousSelected == selectedItem) return;
                 hotbarUI.ChangeSelected(previousSelected, selectedItem);
-            }
-
-            if (previousSelected != selectedItem)
-            {
-                hotbarUI.ChangeSelected(previousSelected, selectedItem);
-                previousSelected = selectedItem;
             }
         }
 
