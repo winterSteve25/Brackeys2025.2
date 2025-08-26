@@ -1,4 +1,3 @@
-using System;
 using KBCore.Refs;
 using PrimeTween;
 using TMPro;

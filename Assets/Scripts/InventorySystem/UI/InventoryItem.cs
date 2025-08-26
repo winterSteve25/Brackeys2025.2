@@ -1,4 +1,3 @@
-using System;
 using KBCore.Refs;
 using TMPro;
 using UnityEngine;
@@ -11,6 +10,7 @@ namespace InventorySystem.UI
     {
         [Header("Debug Info DO NOT EDIT")]
         [field: SerializeField] public ItemStack ItemStackStored { get; private set; }
+        [SerializeField] private Transform anchor;
         
         [Header("References")]
         [SerializeField, Child(Flag.ExcludeSelf)] private Image icon;

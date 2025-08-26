@@ -10,16 +10,18 @@ namespace InventorySystem.UI
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private bool isOpen;
-        
+
         [Header("References")]
         [SerializeField, Child] private CanvasGroup group;
+
         [SerializeField] private InputActionReference openAction;
         [SerializeField] private InputActionReference exitAction;
-        
+
         private void Awake()
         {
             group.alpha = 0;
-            group.gameObject.SetActive(false);
+            group.interactable = false;
+            group.blocksRaycasts = false;
         }
 
         public void Update()
@@ -28,14 +30,19 @@ namespace InventorySystem.UI
             {
                 isOpen = false;
                 Tween.Alpha(group, 0, 0.2f)
-                    .OnComplete(() => group.gameObject.SetActive(false));
+                    .OnComplete(() =>
+                    {
+                        group.interactable = false;
+                        group.blocksRaycasts = false;
+                    });
             }
-            
+
             if (EventSystem.current.IsPointerOverGameObject()) return;
             if (!isOpen && openAction.action.WasPressedThisFrame())
             {
                 isOpen = true;
-                group.gameObject.SetActive(true);
+                group.interactable = true;
+                group.blocksRaycasts = true;
                 Tween.Alpha(group, 1, 0.2f);
             }
         }
