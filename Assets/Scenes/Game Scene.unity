@@ -20491,7 +20491,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0
-  m_ApplyToSortingLayers: 0b2a4697000000009966f20f
+  m_ApplyToSortingLayers: 0b2a4697000000009966f20f05dc846d
   m_ShapePath:
   - {x: -25, y: -61, z: 0}
   - {x: -25, y: 0, z: 0}
@@ -20504,10 +20504,10 @@ MonoBehaviour:
     rid: 586050197764702514
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1144845383}
+    m_Mesh: {fileID: 1366399726}
     m_LocalBounds:
-      m_Center: {x: -10, y: -2.5, z: 0}
-      m_Extent: {x: 10.9900055, y: 0.4900055, z: 0}
+      m_Center: {x: -1, y: -2.5, z: 0}
+      m_Extent: {x: 2.9900055, y: 0.4900055, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0.01
     m_FlipX: 0
@@ -20583,8 +20583,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Hp: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 421c97ff40e1ffc4290eedce4c1e6113, type: 2}
+  m_sharedMaterial: {fileID: -8886668825090813499, guid: 421c97ff40e1ffc4290eedce4c1e6113, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20766,15 +20766,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00052083336
-    y: 0.0009259259
-    width: 1.0020834
-    height: 0.47407407
+    x: 0
+    y: 0.002514142
+    width: 1
+    height: 0.9956003
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 3.09375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -20922,7 +20922,7 @@ MonoBehaviour:
   m_Intensity: 0.01
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000000b2a46979966f20f
+  m_ApplyToSortingLayers: 000000000b2a46979966f20f05dc846d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -21038,7 +21038,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b078c25882fbb14b82fafdec9f46193, type: 3}
---- !u!43 &1144845383
+--- !u!43 &1366399726
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21070,9 +21070,9 @@ Mesh:
     m_Data: 
   m_MeshCompression: 0
   m_IsReadable: 1
-  m_KeepVertices: 0
-  m_KeepIndices: 0
-  m_IndexFormat: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_VertexData:
     serializedVersion: 3
@@ -21087,9 +21087,9 @@ Mesh:
       format: 0
       dimension: 0
     - stream: 0
-      offset: 12
+      offset: 0
       format: 0
-      dimension: 4
+      dimension: 0
     - stream: 0
       offset: 0
       format: 0
@@ -21444,7 +21444,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 90, y: -140}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 268.003, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1752810502
 MonoBehaviour:
@@ -21468,8 +21468,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Ox:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 421c97ff40e1ffc4290eedce4c1e6113, type: 2}
+  m_sharedMaterial: {fileID: -8886668825090813499, guid: 421c97ff40e1ffc4290eedce4c1e6113, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21579,7 +21579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2479162618079489231, guid: 015e4ef1e1e3b0b4190f40123cf796d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -128.60501
+      value: -60.005
       objectReference: {fileID: 0}
     - target: {fileID: 5009056519511772617, guid: 015e4ef1e1e3b0b4190f40123cf796d4, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

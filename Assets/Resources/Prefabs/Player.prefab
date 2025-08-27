@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8110177768785130762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1389615646686590867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8226445947819443370}
+  m_Layer: 6
+  m_Name: Hand Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8226445947819443370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389615646686590867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.154, y: -0.194, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8110177768785130762}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2752387266477245826
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +220,7 @@ Transform:
   - {fileID: 8551083369467990552}
   - {fileID: 6865319715404348276}
   - {fileID: 6981215769768993766}
+  - {fileID: 8226445947819443370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6739631666044764212
@@ -278,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerAnimation
   animator: {fileID: 4135547607706355753}
   spriteRenderer: {fileID: 4595650277325457083}
+  handAnchor: {fileID: 8226445947819443370}
 --- !u!114 &5014602561837472395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,11 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381fcac4d7e04ee9855f228f24fa55a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMining
-  wasMining: 0
-  wasMiningPosition: {x: 0, y: 0}
   inventory: {fileID: 6373808034156432393}
-  worldManager: {fileID: 0}
-  breakManager: {fileID: 0}
+  handAnchor: {fileID: 8226445947819443370}
 --- !u!114 &1065984052051295116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +449,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   wasShowing: {fileID: 0}
+  inventory: {fileID: 6373808034156432393}
 --- !u!114 &4631841600770837346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,7 +723,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 0
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0b2a46979966f20f00000000
+  m_ApplyToSortingLayers: 0b2a46979966f20f0000000005dc846d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

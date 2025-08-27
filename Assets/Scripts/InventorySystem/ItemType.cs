@@ -1,3 +1,4 @@
+using Items;
 using UnityEngine;
 
 namespace InventorySystem
@@ -9,5 +10,6 @@ namespace InventorySystem
         [field: SerializeField] public int StackSize { get; private set; }
         [field: SerializeField] public Vector2Int Size { get; private set; }
         [field: SerializeField] public Sprite Icon { get; private set; }
+        [field: SerializeField] public UpdatableItem Prefab { get; private set; }
     }
 }

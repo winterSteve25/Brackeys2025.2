@@ -12,6 +12,7 @@ namespace Player
         [Header("References")]
         [SerializeField, Child] private Animator animator;
         [SerializeField, Child] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Transform handAnchor;
         
         public void StartWalk()
         {
@@ -43,6 +44,14 @@ namespace Player
         public void ChangeDirection(float dirx)
         {
             spriteRenderer.flipX = dirx < 0;
+            var scale = handAnchor.localScale;
+            var pos = handAnchor.localPosition;
+            var sign = Mathf.Sign(dirx);
+            
+            scale.x = sign;
+            pos.x = Mathf.Abs(handAnchor.localPosition.x) * sign;
+            handAnchor.localPosition = pos;
+            handAnchor.localScale = scale;
         }
     }
 }

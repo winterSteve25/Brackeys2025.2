@@ -8,6 +8,8 @@ namespace World
 {
     public class BreakManager : MonoBehaviour
     {
+        public static BreakManager Current { get; private set; }
+        
         [Header("References")]
         [SerializeField] private TMP_Text prefab;
         [SerializeField, Anywhere] private Canvas parent;
@@ -19,6 +21,7 @@ namespace World
         private void Awake()
         {
             _breakingProgress = new Dictionary<Vector2Int, BreakProgress>();
+            Current = this;
         }
 
         public bool TickBreak(Vector2Int pos, float totalTime)

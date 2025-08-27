@@ -1,9 +1,10 @@
+using InventorySystem;
 using UnityEngine;
 
-namespace InventorySystem
+namespace Items
 {
-    [CreateAssetMenu(fileName = "New Tool Type", menuName = "Game/New Tool Type")]
-    public class ToolType : ItemType
+    [CreateAssetMenu(fileName = "New Mining Tool", menuName = "Game/New Mining Tool")]
+    public class MiningTool : ItemType
     {
         [field: SerializeField] public int Damage { get; private set; }
         [field: SerializeField] public float MiningSpeedMultiplier { get; private set; }

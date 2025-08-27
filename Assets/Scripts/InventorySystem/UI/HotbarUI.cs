@@ -13,7 +13,6 @@ namespace InventorySystem.UI
 
         [Header("References")]
         [SerializeField] private HotbarSlot slotPrefab;
-
         [SerializeField] private RectTransform row;
 
         public void Initialize(TetrisInventory inv, List<ItemStack> hotbarItems)

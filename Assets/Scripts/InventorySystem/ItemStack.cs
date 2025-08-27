@@ -1,4 +1,5 @@
 using System;
+using Items;
 using UnityEngine;
 
 namespace InventorySystem
@@ -10,8 +11,8 @@ namespace InventorySystem
         public int amount;
         public Vector2Int position;
         
-        public bool IsTool => itemType is ToolType;
-        public ToolType Tool => itemType as ToolType;
+        public bool IsTool => itemType is MiningTool;
+        public MiningTool MiningTool => itemType as MiningTool;
 
         public ItemStack(ItemType itemType, int amount, Vector2Int position)
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ED.SC;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace Player
         [SerializeField, Anywhere] private TetrisInventoryUI inventoryUI;
         [SerializeField, Anywhere] private HotbarUI hotbarUI;
         [SerializeField] private InputActionReference scrollInput;
+
+        public event Action<ItemStack> OnSelectedItemChanged; 
         
         private void Awake()
         {
@@ -68,6 +71,7 @@ namespace Player
         {
             var m = hotbarItems.Count;
             selectedItem = (n % m + m) % m;
+            OnSelectedItemChanged?.Invoke(hotbarItems[selectedItem]);
         }
 
         public ItemStack GetItemHeld()
@@ -91,6 +95,7 @@ namespace Player
             if (hotbarItems.Count == 0)
             {
                 selectedItem = -1;
+                OnSelectedItemChanged?.Invoke(null);
             }
             else
             {
@@ -106,6 +111,7 @@ namespace Player
             if (hotbarItems.Count == 1)
             {
                 selectedItem = 0;
+                OnSelectedItemChanged?.Invoke(hotbarItems[0]);
             }
         }
 
