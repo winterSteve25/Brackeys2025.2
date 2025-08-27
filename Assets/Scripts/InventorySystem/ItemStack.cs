@@ -11,9 +11,6 @@ namespace InventorySystem
         public int amount;
         public Vector2Int position;
         
-        public bool IsTool => itemType is MiningTool;
-        public MiningTool MiningTool => itemType as MiningTool;
-
         public ItemStack(ItemType itemType, int amount, Vector2Int position)
         {
             this.itemType = itemType;

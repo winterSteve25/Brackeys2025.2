@@ -44,6 +44,11 @@ namespace World
             return _tiles.TryGetValue(position, out tile);
         }
 
+        public bool HasTile(Vector2Int position)
+        {
+            return _tiles.ContainsKey(position);
+        }
+
         public void RemoveTile(Vector3 position)
         {
             RemoveTile((Vector2Int) tilemap.WorldToCell(position));
@@ -71,9 +76,19 @@ namespace World
             _tiles[position] = tile;
         }
 
+        public void SetTile(Vector2Int position, ITile tile)
+        {
+            SetTile(tilemap.CellToWorld((Vector3Int)position), tile);
+        }
+
         public Vector2 CellToWorld(Vector2Int position)
         {
             return tilemap.CellToWorld(new Vector3Int(position.x, position.y, 0));
+        }
+
+        public Vector2Int WorldToCell(Vector2 worldPosition)
+        {
+            return (Vector2Int)tilemap.WorldToCell(worldPosition);
         }
     }
 }

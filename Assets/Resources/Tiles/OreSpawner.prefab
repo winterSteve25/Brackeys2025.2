@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Objects.OreSpawner
   prefabs:
   - {fileID: 7977188637554308930, guid: 249a6af1103d3c14e809f61f75812f7e, type: 3}
-  chance: 0.2
+  chance: 0.25

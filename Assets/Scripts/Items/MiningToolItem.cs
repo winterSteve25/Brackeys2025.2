@@ -1,7 +1,6 @@
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utils;
 using World;
 
 namespace Items
@@ -11,11 +10,14 @@ namespace Items
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private bool wasMining;
         [SerializeField] private Vector2Int wasMiningPosition;
-        
+
+        [Header("Parameters")]
+        [SerializeField] private int damage;
+        [SerializeField] private float miningSpeed;
+
         public override void UseTick(PlayerInventory inventory)
         {
             var breakManager = BreakManager.Current;
-            
             if (!Mouse.current.leftButton.isPressed)
             {
                 if (wasMining)
@@ -27,10 +29,7 @@ namespace Items
                 return;
             }
 
-            var mp = Mouse.current.position.ReadValue();
-            var mpW = MainCamera.Current.ScreenToWorldPoint(mp);
-
-            if (WorldManager.Current.TryGetTile(mpW, out var tile, out var position))
+            if (TryGetTileAtMouse(out var tile, out var position))
             {
                 if (position != wasMiningPosition)
                 {
@@ -41,12 +40,21 @@ namespace Items
                 wasMiningPosition = position;
                 var multiplier = inventory.GetItemHeld() == null
                     ? 0
-                    : inventory.GetItemHeld().MiningTool.MiningSpeedMultiplier;
+                    : miningSpeed;
 
                 if (breakManager.TickBreak(position, tile.Material.MiningDuration / multiplier))
                 {
                     wasMining = false;
                 }
+            }
+            else
+            {
+                if (wasMining)
+                {
+                    breakManager.CancelBreak(wasMiningPosition);
+                }
+
+                wasMining = false;
             }
         }
     }

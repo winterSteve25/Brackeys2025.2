@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 5144441605565123482}
   - component: {fileID: 5684050167167893006}
   - component: {fileID: 1828387469019274205}
+  - component: {fileID: 8428804557298452165}
   m_Layer: 5
   m_Name: Hotbar
   m_TagString: Untagged
@@ -303,6 +304,18 @@ MonoBehaviour:
   items: []
   slotPrefab: {fileID: 8278605971334967582, guid: d02255b6e1a9c984a99f38365227cab3, type: 3}
   row: {fileID: 320826563212237502}
+--- !u!225 &8428804557298452165
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294141783201312287}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5545874549037938471
 GameObject:
   m_ObjectHideFlags: 0

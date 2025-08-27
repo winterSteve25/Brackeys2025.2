@@ -16,6 +16,9 @@ namespace Player
         [SerializeField, Self] private PlayerInventory inventory;
         [SerializeField] private Transform handAnchor;
 
+        [Header("Parameters")]
+        [SerializeField] private bool usableItems;
+
         private void Start()
         {
             inventory.OnSelectedItemChanged += InventoryOnOnSelectedItemChanged;
@@ -29,6 +32,7 @@ namespace Player
         private void Update()
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
+            if (!usableItems) return;
             if (_itemSelected == null) return;
             _itemSelected.UseTick(inventory);
         }
@@ -49,6 +53,7 @@ namespace Player
 
             var item = Instantiate(obj.itemType.Prefab, handAnchor);
             _itemSelected = item;
+            _itemSelected.item = obj;
         }
     }
 }

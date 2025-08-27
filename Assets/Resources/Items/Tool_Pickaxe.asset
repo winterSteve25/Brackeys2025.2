@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf47934ad203486c9944a4eb87950b3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cdf2485388c4ea4a3f1d850a3af8f3c, type: 3}
   m_Name: Tool_Pickaxe
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.ToolType
   <Name>k__BackingField: Pickaxe
   <StackSize>k__BackingField: 1
   <Size>k__BackingField: {x: 2, y: 2}
   <Icon>k__BackingField: {fileID: 21300000, guid: 0df77e856378a2743b5c6e55214bbd77, type: 3}
-  <Damage>k__BackingField: 1
-  <MiningSpeedMultiplier>k__BackingField: 1
   <Prefab>k__BackingField: {fileID: 570310049935321980, guid: 4cdf96cb63504964f9d6ad98614e3fd2, type: 3}

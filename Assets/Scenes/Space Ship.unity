@@ -349,6 +349,10 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 883786416}
+    - target: {fileID: 6923731857867572667, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
+      propertyPath: usableItems
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8110177768785130762, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.0470476
@@ -392,7 +396,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4699938126396643210, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
     - {fileID: 4631841600770837346, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
-    - {fileID: 6923731857867572667, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3911,7 +3914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2479162618079489231, guid: 015e4ef1e1e3b0b4190f40123cf796d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -128.60501
+      value: -60.005
       objectReference: {fileID: 0}
     - target: {fileID: 5009056519511772617, guid: 015e4ef1e1e3b0b4190f40123cf796d4, type: 3}
       propertyPath: m_Camera

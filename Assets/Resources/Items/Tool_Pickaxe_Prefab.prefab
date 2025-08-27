@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Items.MiningToolItem
   wasMining: 0
   wasMiningPosition: {x: 0, y: 0}
+  damage: 1
+  miningSpeed: 1

@@ -21,6 +21,7 @@ namespace InventorySystem.UI
             inventory = inv;
             items = hotbarItems;
             inventory.OnItemAdded += InventoryOnOnItemAdded;
+            inventory.OnItemChanged += InventoryOnOnItemChanged;
             inventory.OnItemHeld += InventoryOnOnItemRemoved;
             inventory.OnItemReplaced += InventoryOnOnItemReplaced;
             inventory.OnItemRemoved += InventoryOnOnItemRemoved;
@@ -48,9 +49,16 @@ namespace InventorySystem.UI
         private void OnDestroy()
         {
             inventory.OnItemAdded -= InventoryOnOnItemAdded;
+            inventory.OnItemChanged -= InventoryOnOnItemChanged;
             inventory.OnItemHeld -= InventoryOnOnItemRemoved;
             inventory.OnItemReplaced -= InventoryOnOnItemReplaced;
             inventory.OnItemRemoved -= InventoryOnOnItemRemoved;
+        }
+
+        private void InventoryOnOnItemChanged(ItemStack obj)
+        {
+            if (obj.position.y >= 2) return;
+            _slots[obj].Initialize(obj);
         }
 
         private void InventoryOnOnItemReplaced(ItemStack from, ItemStack to)

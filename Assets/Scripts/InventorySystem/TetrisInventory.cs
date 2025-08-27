@@ -11,11 +11,13 @@ namespace InventorySystem
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private ItemStack heldItem;
+
         [SerializeField] private RectInt[] areas;
         [field: SerializeField] public List<ItemStack> Items { get; private set; }
 
         [Header("Parameters")]
         [field: SerializeField] public int Width { get; private set; }
+
         [field: SerializeField] public int Height { get; private set; }
 
         public event Action<ItemStack> OnItemAdded;
@@ -88,7 +90,7 @@ namespace InventorySystem
                     return true;
                 }
             }
-            
+
             for (var j = 0; j < Height; j++)
             {
                 for (var i = 0; i < Width; i++)
@@ -102,13 +104,35 @@ namespace InventorySystem
             return false;
         }
 
+        public void RemoveAmountFromPosition(Vector2Int position, int amount)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i].position != position &&
+                    !Collide(Items[i].position, Items[i].itemType.Size, position, Vector2Int.one)) continue;
+
+                var item = Items[i];
+                item.amount -= amount;
+                
+                if (item.amount <= 0)
+                {
+                    Items.RemoveAt(i);
+                    OnItemRemoved?.Invoke(item);
+                    return;
+                }
+                
+                OnItemChanged?.Invoke(item);
+                return;
+            }
+        }
+
         public ItemStack RemoveItem(Vector2Int position)
         {
             for (int i = 0; i < Items.Count; i++)
             {
                 if (Items[i].position != position &&
                     !Collide(Items[i].position, Items[i].itemType.Size, position, Vector2Int.one)) continue;
-                
+
                 var item = Items[i];
                 Items.RemoveAt(i);
                 OnItemRemoved?.Invoke(item);
@@ -138,7 +162,7 @@ namespace InventorySystem
         {
             if (heldItem == null || heldItem.itemType == null) return;
             OnHeldItemReleased?.Invoke();
-            
+
             if (AddItemAtPosition(heldItem))
             {
                 return;
@@ -148,7 +172,7 @@ namespace InventorySystem
             {
                 return;
             }
-            
+
             ItemEntityManager.Current.SpawnApproximatelyAt(position, heldItem);
         }
 
@@ -158,7 +182,7 @@ namespace InventorySystem
             heldItem = null;
             OnHeldItemReleased?.Invoke();
         }
-        
+
         public void ReplaceItemNoCheck(Vector2Int replaceItemFromThisPosition, ItemStack replaceWith)
         {
             for (int i = 0; i < Items.Count; i++)
@@ -171,7 +195,7 @@ namespace InventorySystem
                 }
             }
         }
-        
+
         public ItemStack GetItemAtPosition(Vector2Int position)
         {
             return Items.FirstOrDefault(x => Collide(x.position, x.itemType.Size, position, Vector2Int.one));
