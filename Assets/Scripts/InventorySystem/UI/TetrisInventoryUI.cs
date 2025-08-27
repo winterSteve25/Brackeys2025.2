@@ -119,7 +119,7 @@ namespace InventorySystem.UI
         {
             var inventoryItem = _inventoryItems[obj.position];
             _inventoryItems.Remove(obj.position);
-            // inventoryItem.transform.SetParent(heldItemContainer, true);
+            inventoryItem.transform.SetParent(heldItemContainer, true);
             inventoryItem.FollowMouse();
             heldItem = inventoryItem;
         }

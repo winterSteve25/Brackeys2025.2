@@ -1,3 +1,4 @@
+using KBCore.Refs;
 using Objects;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,13 +7,16 @@ using Utils;
 
 namespace Player
 {
-    public class PlayerInteraction : MonoBehaviour
+    public class PlayerInteraction : ValidatedMonoBehaviour
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private Collider2D[] thingsInRadius;
         [SerializeField] private ContactFilter2D everythingElse;
         [SerializeField] private InteractableObject wasShowing;
 
+        [Header("References")]
+        [SerializeField, Self] private PlayerInventory inventory;
+        
         private void Awake()
         {
             thingsInRadius = new Collider2D[1];
@@ -21,12 +25,10 @@ namespace Player
 
         public void Update()
         {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-            
             var mp = Mouse.current.position.ReadValue();
             var mpW = MainCamera.Current.ScreenToWorldPoint(mp);
             var amount = Physics2D.OverlapPoint(mpW, everythingElse, thingsInRadius);
-            if (amount <= 0)
+            if (amount <= 0 || EventSystem.current.IsPointerOverGameObject())
             {
                 if (wasShowing != null)
                 {
@@ -40,7 +42,7 @@ namespace Player
             if (!thingsInRadius[0].TryGetComponent(out InteractableObject obj)) return;
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                obj.Interact();
+                obj.Interact(inventory);
             }
             
             if (wasShowing == obj) return;

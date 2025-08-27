@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0df77e856378a2743b5c6e55214bbd77
+guid: e17f5d42d44ec644686646c59c7365b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5217950091270272028
-    second: Tool_Pickaxe_0
+      213: 2034805454555147491
+    second: Item_Glowstick_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tool_Pickaxe_0
+      name: Item_Glowstick_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 7
-        width: 54
-        height: 52
+        x: 1
+        y: 2
+        width: 30
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c14b1ed46f1e96840800000000000000
-      internalID: 5217950091270272028
+      spriteID: 3ec69c1b7c41d3c10800000000000000
+      internalID: 2034805454555147491
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tool_Pickaxe_0: 5217950091270272028
+      Item_Glowstick_0: 2034805454555147491
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
