@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerHealth : ValidatedMonoBehaviour
+    public class PlayerHealth : ValidatedMonoBehaviour, IHealthComponent
     {
         [SerializeField] private float health;
         [SerializeField] private TMP_Text healthText;

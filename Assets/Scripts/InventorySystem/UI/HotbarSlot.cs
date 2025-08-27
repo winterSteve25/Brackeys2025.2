@@ -19,6 +19,7 @@ namespace InventorySystem.UI
         public void Initialize(ItemStack item)
         {
             image.sprite = item.itemType.Icon;
+            image.GetComponent<AspectRatioFitter>().aspectRatio = item.itemType.Size.x / (float) item.itemType.Size.y;
 
             if (item.itemType.StackSize > 1)
             {

@@ -43,13 +43,13 @@ namespace World
             CancelBreak(pos);
             CompleteBreak(pos);
 
-            worldManager.RemoveTile(pos);
             return true;
         }
 
         public void CompleteBreak(Vector2Int pos)
         {
             if (!worldManager.TryGetTile(pos, out var tile)) return;
+            worldManager.RemoveTile(pos);
             var loot = tile.Material.Loot;
             if (loot == null) return;
             

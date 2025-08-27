@@ -11,9 +11,16 @@ namespace Items
     {
         [Header("Debug Info DO NOT EDIT")]
         public ItemStack item;
+        public Transform handAnchor;
         
         public abstract void UseTick(PlayerInventory inventory);
 
+        protected Vector2 GetDirectionFromHandToMouse()
+        {
+            var dir = GetMousePosInWorld() - (Vector2) handAnchor.position;
+            return dir.normalized;
+        }
+        
         public static Vector2 GetMousePosInWorld()
         {
             var mp = Mouse.current.position.ReadValue();

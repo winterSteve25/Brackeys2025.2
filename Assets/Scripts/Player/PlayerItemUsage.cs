@@ -14,7 +14,6 @@ namespace Player
 
         [Header("References")]
         [SerializeField, Self] private PlayerInventory inventory;
-
         [SerializeField] private Transform handAnchor;
         [SerializeField] private GameObject defaultPrefab;
 
@@ -83,12 +82,14 @@ namespace Player
             {
                 _itemSelected = updatableItem;
                 updatableItem.item = obj;
+                updatableItem.handAnchor = handAnchor;
                 return;
             }
 
             if (obj.itemType.LogicPrefab == null) return;
             var logic = Instantiate(obj.itemType.LogicPrefab, _visualSelected.transform);
             logic.item = obj;
+            logic.handAnchor = handAnchor;
             _itemSelected = logic;
         }
     }
