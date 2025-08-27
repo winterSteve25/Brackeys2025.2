@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &119306786
+--- !u!1001 &170586596
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -131,25 +131,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5014602561837472395, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6373808034156432393, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
       propertyPath: hotbarUI
       value: 
-      objectReference: {fileID: 255845079}
+      objectReference: {fileID: 1661502415}
     - target: {fileID: 6373808034156432393, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
       propertyPath: inventoryUI
       value: 
-      objectReference: {fileID: 1728094687}
-    - target: {fileID: 6923731857867572667, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 433521349}
     - target: {fileID: 8110177768785130762, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.2734184
+      value: -7.0470476
       objectReference: {fileID: 0}
     - target: {fileID: 8110177768785130762, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.376
+      value: -3.482924
       objectReference: {fileID: 0}
     - target: {fileID: 8110177768785130762, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
       propertyPath: m_LocalPosition.z
@@ -184,9 +184,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6923731857867572667, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
-    - {fileID: 4631841600770837346, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
     - {fileID: 4699938126396643210, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
+    - {fileID: 4631841600770837346, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
+    - {fileID: 6923731857867572667, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -434,17 +434,6 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
---- !u!114 &255845079 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3093390443937900812, guid: 588f1301f3e29264c80e2aee23c9147d, type: 3}
-  m_PrefabInstance: {fileID: 2017226936}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a215969a427f445e871e37f1c8db784d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.UI.HotbarUI
 --- !u!1 &275920187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1393,17 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &433521349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6915754389743623952, guid: 588f1301f3e29264c80e2aee23c9147d, type: 3}
+  m_PrefabInstance: {fileID: 2017226936}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a775e07bab4449fbfea02d7f5e0e5d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.UI.TetrisInventoryUI
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,17 +1826,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1728094687 stripped
+--- !u!114 &1661502415 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6915754389743623952, guid: 588f1301f3e29264c80e2aee23c9147d, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3093390443937900812, guid: 588f1301f3e29264c80e2aee23c9147d, type: 3}
   m_PrefabInstance: {fileID: 2017226936}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a775e07bab4449fbfea02d7f5e0e5d2, type: 3}
+  m_Script: {fileID: 11500000, guid: a215969a427f445e871e37f1c8db784d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.UI.TetrisInventoryUI
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.UI.HotbarUI
 --- !u!1 &1909135015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,6 +2271,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5009056519511772617, guid: 015e4ef1e1e3b0b4190f40123cf796d4, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6339211389004440734, guid: 015e4ef1e1e3b0b4190f40123cf796d4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2447,7 +2451,7 @@ SceneRoots:
   - {fileID: 1711767966709799898}
   - {fileID: 249416677}
   - {fileID: 4518246902520012338}
-  - {fileID: 119306786}
   - {fileID: 1909135017}
+  - {fileID: 170586596}
   - {fileID: 2017226936}
   - {fileID: 254133509}

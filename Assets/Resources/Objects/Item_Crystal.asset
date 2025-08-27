@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.ItemType
   <Name>k__BackingField: Crystal
   <StackSize>k__BackingField: 4
-  <Size>k__BackingField: {x: 2, y: 2}
+  <Size>k__BackingField: {x: 1, y: 1}
   <Icon>k__BackingField: {fileID: -1781489244938723371, guid: 167b289856f93604eaf813a135092d88, type: 3}

@@ -1,13 +1,14 @@
-using System;
+using KBCore.Refs;
 using TMPro;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerHealth : MonoBehaviour
+    public class PlayerHealth : ValidatedMonoBehaviour
     {
         [SerializeField] private float health;
         [SerializeField] private TMP_Text healthText;
+        [SerializeField, Self] private PlayerAnimation animations;
 
         private void Awake()
         {
@@ -16,8 +17,11 @@ namespace Player
 
         public void TakeDamage(float damage)
         {
+            if (damage <= 0) return;
+            
             health -= damage;
             healthText.text = "Hp: " + health.ToString("F1");
+            animations.Hurt();
         }
 
         public void Heal(float damage)

@@ -38,20 +38,22 @@ namespace World
             if (!(breakProgress.Progress >= 1)) return false;
             
             CancelBreak(pos);
-            if (worldManager.TryGetTile(pos, out var tile))
-            {
-                var loot = tile.Material.Loot;
-                if (loot != null)
-                {
-                    foreach (var l in loot)
-                    {
-                        itemEntityManager.SpawnApproximatelyAt(worldManager.CellToWorld(pos) + new Vector2(0.5f, 0.5f), l);
-                    }
-                }
-            }
+            CompleteBreak(pos);
 
             worldManager.RemoveTile(pos);
             return true;
+        }
+
+        public void CompleteBreak(Vector2Int pos)
+        {
+            if (!worldManager.TryGetTile(pos, out var tile)) return;
+            var loot = tile.Material.Loot;
+            if (loot == null) return;
+            
+            foreach (var l in loot)
+            {
+                itemEntityManager.SpawnApproximatelyAt(worldManager.CellToWorld(pos) + new Vector2(0.5f, 0.5f), l);
+            }
         }
 
         public void CancelBreak(Vector2Int pos)

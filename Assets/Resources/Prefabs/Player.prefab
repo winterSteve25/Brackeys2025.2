@@ -311,8 +311,10 @@ MonoBehaviour:
   jumpBufferedTimeAmount: 0
   wasWalking: 0
   coyoteTimeCountDown: 0
+  startAirY: 0
   rb: {fileID: 5952521086622165087}
   animations: {fileID: 1485343977351787005}
+  health: {fileID: 4631841600770837346}
   groundTest: {fileID: 1572342853612194669}
   groundTest2: {fileID: 1823839048356796051}
   groundTestRadius: 0.05
@@ -322,6 +324,30 @@ MonoBehaviour:
   jumpForce: 22
   jumpBufferTime: 0.08
   coyoteTime: 0.1
+  fallDamageCurveOnDist:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 4
+      value: 0
+      inSlope: 0.8181818
+      outSlope: 0.8181818
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 15
+      value: 9
+      inSlope: 0.8181818
+      outSlope: 0.8181818
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6373808034156432393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealth
   health: 10
   healthText: {fileID: 0}
+  animations: {fileID: 1485343977351787005}
 --- !u!114 &4699938126396643210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,11 +688,11 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.6
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.44705886, g: 0.4156863, b: 0.32941177, a: 1}
+  m_Intensity: 2
   m_LightVolumeIntensity: 0
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 9966f20f00000000
+  m_ApplyToSortingLayers: 0b2a46979966f20f00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

@@ -32,6 +32,8 @@ namespace Player
         {
             animator.SetBool(Jump, false);
         }
+        
+        public bool IsJumping() => animator.GetBool(Jump);
 
         public void Hurt()
         {
