@@ -77,6 +77,19 @@ namespace InventorySystem
 
             return false;
         }
+        
+        public ItemStack GetItemOfType(ItemType type)
+        {
+            foreach (var item in Items)
+            {
+                if (item.itemType == type)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
 
         public bool AddAnywhere(ItemStack item)
         {

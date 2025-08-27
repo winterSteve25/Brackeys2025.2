@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7511395337329084247}
   - component: {fileID: 570310049935321980}
   m_Layer: 0
-  m_Name: Tool_Pickaxe_Prefab
+  m_Name: Pickaxe_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -421,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMining
   inventory: {fileID: 6373808034156432393}
   handAnchor: {fileID: 8226445947819443370}
+  defaultPrefab: {fileID: 5154804519011219936, guid: 63274014ab1a25948b14d619d3e554d7, type: 3}
   usableItems: 1
 --- !u!114 &1065984052051295116
 MonoBehaviour:

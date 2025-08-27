@@ -9,23 +9,24 @@ namespace Items
 {
     public abstract class UpdatableItem : MonoBehaviour
     {
+        [Header("Debug Info DO NOT EDIT")]
         public ItemStack item;
         
         public abstract void UseTick(PlayerInventory inventory);
 
-        protected Vector2 GetMousePosInWorld()
+        public static Vector2 GetMousePosInWorld()
         {
             var mp = Mouse.current.position.ReadValue();
             var mpW = MainCamera.Current.ScreenToWorldPoint(mp);
             return mpW;
         }
 
-        protected Vector2Int GetMousePosInCell()
+        protected static Vector2Int GetMousePosInCell()
         {
             return WorldManager.Current.WorldToCell(GetMousePosInWorld());
         }
 
-        protected bool TryGetTileAtMouse(out ITile tile, out Vector2Int position)
+        protected static bool TryGetTileAtMouse(out ITile tile, out Vector2Int position)
         {
             return WorldManager.Current.TryGetTile(GetMousePosInWorld(), out tile, out position);
         }

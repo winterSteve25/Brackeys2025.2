@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cdf2485388c4ea4a3f1d850a3af8f3c, type: 3}
-  m_Name: Item_Stone
+  m_Name: Shotgun
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.ItemType
-  <Name>k__BackingField: Stone
-  <StackSize>k__BackingField: 100
-  <Size>k__BackingField: {x: 1, y: 1}
-  <Icon>k__BackingField: {fileID: 1726345965144709759, guid: 4cf2d9ea0ae8bab44a69ce6c9344704e, type: 3}
-  <VisualPrefab>k__BackingField: {fileID: 0}
-  <LogicPrefab>k__BackingField: {fileID: 4904226433871666285, guid: e9d4241ac0705f546be4dbd16cf503b9, type: 3}
+  <Name>k__BackingField: Shotgun
+  <StackSize>k__BackingField: 1
+  <Size>k__BackingField: {x: 2, y: 2}
+  <Icon>k__BackingField: {fileID: 21300000, guid: ad502db4c0e45ba4cb9d0fc5f64b48c3, type: 3}
+  <VisualPrefab>k__BackingField: {fileID: 1329590193694807990, guid: 439b6d0472ad83943bd15b4fd2306101, type: 3}
+  <LogicPrefab>k__BackingField: {fileID: 0}
