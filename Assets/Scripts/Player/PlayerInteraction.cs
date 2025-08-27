@@ -15,12 +15,8 @@ namespace Player
 
         private void Awake()
         {
-            var avoidMask = LayerMask.NameToLayer("Player");
-            var mask = 1 << avoidMask;
-            mask = ~mask;
             thingsInRadius = new Collider2D[1];
-            everythingElse = ContactFilter2D.noFilter;
-            everythingElse.SetLayerMask(mask);
+            everythingElse = LayerMaskUtils.EverythingMask(true);
         }
 
         public void Update()

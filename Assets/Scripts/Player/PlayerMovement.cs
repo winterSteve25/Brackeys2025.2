@@ -2,6 +2,7 @@ using KBCore.Refs;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Utils;
 
 namespace Player
 {
@@ -42,13 +43,8 @@ namespace Player
         private void Awake()
         {
             Current = this;
-
-            var avoidMask = LayerMask.NameToLayer("Player");
-            var mask = 1 << avoidMask;
-            mask = ~mask;
             groundCollision = new Collider2D[1];
-            everythingElseLayerMask = ContactFilter2D.noFilter;
-            everythingElseLayerMask.SetLayerMask(mask);
+            everythingElseLayerMask = LayerMaskUtils.EverythingMask(false);
         }
 
         private void OnDrawGizmosSelected()
@@ -117,7 +113,7 @@ namespace Player
                 wasWalking = false;
             }
 
-            if ((!wasGrounded && grounded) || (animations.IsJumping() && wasGrounded && grounded))
+            if ((!wasGrounded && grounded) || (animations.IsJumping() && grounded && rb.linearVelocityY <= 0))
             {
                 animations.EndJump();
             }

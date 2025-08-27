@@ -323,7 +323,7 @@ MonoBehaviour:
   speed: 8
   jumpForce: 22
   jumpBufferTime: 0.08
-  coyoteTime: 0.1
+  coyoteTime: 0.08
   fallDamageCurveOnDist:
     serializedVersion: 2
     m_Curve:
