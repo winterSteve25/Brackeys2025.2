@@ -32,6 +32,9 @@ namespace Player
         private void Start()
         {
             Inventory = CarryOverDataManager.Instance.inventory;
+            inventoryUI.Initialize(Inventory);
+            hotbarUI.Initialize(Inventory, hotbarItems, this);
+            
             Inventory.OnItemAdded += InventoryOnOnItemAdded;
             Inventory.OnItemReplaced += InventoryOnOnItemReplaced;
             Inventory.OnItemHeld += InventoryOnOnItemRemoved;
@@ -41,9 +44,6 @@ namespace Player
             {
                 InventoryOnOnItemAdded(item);
             }
-            
-            inventoryUI.Initialize(Inventory);
-            hotbarUI.Initialize(Inventory, hotbarItems);
         }
         
         
@@ -60,10 +60,7 @@ namespace Player
             var scroll = scrollInput.action.ReadValue<float>();
             if (scroll != 0 && hotbarItems.Count > 0)
             {
-                var previousSelected = selectedItem;
                 WrapSelection(selectedItem + (int)scroll);
-                if (previousSelected == selectedItem) return;
-                hotbarUI.ChangeSelected(previousSelected, selectedItem);
             }
         }
 
@@ -78,19 +75,21 @@ namespace Player
         {
             return selectedItem == -1 ? null : hotbarItems[selectedItem];
         }
-        
+
         //  TODO: Hotbar hardcode
         private void InventoryOnOnItemReplaced(ItemStack from, ItemStack to)
         {
             if (from.position.y >= 2) return;
             int i = hotbarItems.IndexOf(from);
             hotbarItems[i] = to;
+            hotbarUI.InventoryOnOnItemReplaced(from, to);
         }
         
         private void InventoryOnOnItemRemoved(ItemStack obj)
         {
             if (obj.position.y >= 2) return;
             hotbarItems.Remove(obj);
+            hotbarUI.InventoryOnOnItemRemoved(obj);
 
             if (hotbarItems.Count == 0)
             {
@@ -107,6 +106,7 @@ namespace Player
         {
             if (obj.position.y >= 2) return;
             hotbarItems.Add(obj);
+            hotbarUI.InventoryOnOnItemAdded(obj);
             
             if (hotbarItems.Count == 1)
             {
