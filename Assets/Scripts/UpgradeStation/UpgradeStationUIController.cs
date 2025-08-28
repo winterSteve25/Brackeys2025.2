@@ -46,7 +46,7 @@ namespace UpgradeStation
             if (isOpen) return;
             isOpen = true;
             inventory.Initialize(inv, null);
-            buyInventory.Initialize(purchasableItems[CarryOverDataManager.Instance.Day], inv);
+            buyInventory.Initialize(purchasableItems[CarryOverDataManager.Day], inv);
             group.interactable = true;
             group.blocksRaycasts = true;
             Tween.Alpha(group, 1, 0.2f);

@@ -16,6 +16,10 @@ namespace UpgradeStation
         [SerializeField] private Color buyColor;
         [SerializeField] private TMP_Text sellOrBuyTxt;
         [SerializeField] private bool buy;
+        
+        [SerializeField] private Image background;
+        [SerializeField] private Sprite nonHoverSprite;
+        [SerializeField] private Sprite hoverSprite;
 
         private TetrisInventory _inventory;
         private TetrisInventory _buyInto;
@@ -64,12 +68,14 @@ namespace UpgradeStation
                 sellOrBuyTxt.text = $"+{_itemStack.Price}";
             }
 
+            background.sprite = hoverSprite;
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sellOrBuyTxt.transform.parent);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             sellOrBuyTxt.text = "";
+            background.sprite = nonHoverSprite;
         }
     }
 }

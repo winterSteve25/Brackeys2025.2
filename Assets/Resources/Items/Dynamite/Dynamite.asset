@@ -17,6 +17,6 @@ MonoBehaviour:
   <BasePrice>k__BackingField: 40
   <Size>k__BackingField: {x: 2, y: 1}
   <Icon>k__BackingField: {fileID: 21300000, guid: d70f543f7e077c04c88d9cd5819743f7, type: 3}
-  <HandIcon>k__BackingField: {fileID: 0}
+  <HandIcon>k__BackingField: {fileID: 21300000, guid: 397423ecd46697b468e22221cc1b4146, type: 3}
   <VisualPrefab>k__BackingField: {fileID: 0}
   <LogicPrefab>k__BackingField: {fileID: 7638112310744769250, guid: e1ab3c5a0dc944042ba4c470a7864063, type: 3}

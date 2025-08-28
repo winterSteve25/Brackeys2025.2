@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace InventorySystem.UI
 {
@@ -8,6 +9,11 @@ namespace InventorySystem.UI
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private Vector2Int position;
         [SerializeField] private TetrisInventoryUI inventory;
+
+        [Header("References")]
+        [SerializeField] private Image background;
+        [SerializeField] private Sprite nonHoverImage;
+        [SerializeField] private Sprite hoverImage;
         
         public void Initialize(Vector2Int pos, TetrisInventoryUI inv)
         {
@@ -17,10 +23,12 @@ namespace InventorySystem.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            background.sprite = hoverImage;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            background.sprite = nonHoverImage;
         }
 
         public void OnPointerClick(PointerEventData eventData)

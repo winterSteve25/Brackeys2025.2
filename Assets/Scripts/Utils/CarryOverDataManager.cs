@@ -24,8 +24,8 @@ namespace Utils
         [field: SerializeField, FormerlySerializedAs("inventory")]
         public TetrisInventory Inventory { get; private set; }
 
-        private int _day;
-        public int Day => _day / 2;
+        private static int _day;
+        public static int Day => _day / 2;
 
         private void Awake()
         {

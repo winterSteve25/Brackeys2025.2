@@ -40,6 +40,7 @@ namespace UpgradeStation
 
         private void OnDestroy()
         {
+            if (_inv == null) return;
             _inv.OnItemAdded -= InvOnOnItemAdded;
         }
 
