@@ -6,7 +6,7 @@ namespace World
     public class FragileTile : WorldTile
     {
         [SerializeField] protected Vector2Int[] requires;
-        [SerializeField] private bool dropItem;
+        [SerializeField] protected bool dropItem;
         
         public override void OnNeighborUpdated(Vector2Int cell, WorldManager world)
         {

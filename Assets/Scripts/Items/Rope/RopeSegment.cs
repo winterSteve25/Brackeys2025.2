@@ -23,7 +23,19 @@ namespace Items.Rope
 
         public override void OnNeighborUpdated(Vector2Int cell, WorldManager world)
         {
-            if (isMaster) return;
+            if (isMaster)
+            {
+                if (!WorldManager.Current.HasTile(cell + Vector2Int.left) &&
+                    !WorldManager.Current.HasTile(cell + Vector2Int.right) &&
+                    !WorldManager.Current.HasTile(cell + Vector2Int.up) &&
+                    !WorldManager.Current.HasTile(cell + Vector2Int.down))
+                {
+                    BreakManager.Current.CompleteBreak(cell, dropItem);
+                }
+                
+                return;
+            }
+
             base.OnNeighborUpdated(cell, world);
         }
     }

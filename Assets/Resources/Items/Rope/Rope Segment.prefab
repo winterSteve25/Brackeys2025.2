@@ -105,10 +105,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Items.Rope.RopeSegment
   spriteRenderer: {fileID: 7287084683597713964}
   material:
-    <MiningDuration>k__BackingField: 0
-    <Loot>k__BackingField: []
+    <MiningDuration>k__BackingField: 0.1
+    <Loot>k__BackingField:
+    - itemType: {fileID: 11400000, guid: cd94903570abb334f99d3a445c67d08e, type: 2}
+      amount: 1
+      position: {x: 0, y: 0}
   variations: []
-  requires: []
+  requires:
+  - {x: 0, y: 1}
   dropItem: 1
-  master: {fileID: 0}
   isMaster: 0
+  <Master>k__BackingField: {fileID: 0}
