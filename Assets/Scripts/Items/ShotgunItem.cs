@@ -11,16 +11,10 @@ namespace Items
     {
         [SerializeField] private ItemType shotgunAmmoType;
         [SerializeField] private Transform gunFront;
-        [SerializeField] private float range;
         [SerializeField] private float effectiveAngle;
         [SerializeField] private float damage;
-
-        private List<Collider2D> _collisions;
-
-        private void Awake()
-        {
-            _collisions = new List<Collider2D>();
-        }
+        [SerializeField] private int numOfBullets;
+        [SerializeField] private ShotgunBullet prefab;
 
         private void OnDrawGizmosSelected()
         {
@@ -30,8 +24,7 @@ namespace Items
 
             var rotation = Quaternion.AngleAxis(effectiveAngle, Vector3.forward);
             var negativeRotation = Quaternion.AngleAxis(-effectiveAngle, Vector3.forward);
-
-            var center = (gunFront.position - transform.position).normalized * range;
+            var center = (gunFront.position - transform.position).normalized * 10;
 
             var a = rotation * center;
             var b = negativeRotation * center;
@@ -55,21 +48,17 @@ namespace Items
 
             inventory.Inventory.RemoveAmountFromPosition(ammo.position, 1);
 
-            var numCol = Physics2D.OverlapCircle(transform.position, range, LayerMaskUtils.EverythingMask(true),
-                _collisions);
-            for (int i = 0; i < numCol; i++)
+            var delta = effectiveAngle * 2 / numOfBullets;
+            var center = (gunFront.position - transform.position).normalized;
+            
+            for (float theta = -effectiveAngle; theta <= effectiveAngle; theta += delta)
             {
-                var col = _collisions[i];
-
-                var toCol = col.transform.position - transform.position;
-                var toFront = gunFront.position - transform.position;
-                var angle = Vector2.Angle(toCol, toFront);
-                if (angle > effectiveAngle) continue;
-
-                if (_collisions[i].TryGetComponent(out IHealthComponent hp))
-                {
-                    hp.TakeDamage(damage);
-                }
+                var rotation = Quaternion.AngleAxis(theta, Vector3.forward);
+                var dir = rotation * center;
+                var bullet = Instantiate(prefab, 
+                    gunFront.position,
+                    Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
+                bullet.Init(dir);
             }
         }
     }
