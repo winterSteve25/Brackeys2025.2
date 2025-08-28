@@ -7,7 +7,8 @@ namespace World
     {
         public TileMaterial Material { get; protected set; }
 
-        public abstract void OnPlace(Vector2Int cell, Vector3 pos, Tilemap tilemap);
-        public abstract void OnRemove(Vector2Int cell, Vector3 pos, Tilemap tilemap);
+        public void OnPlace(Vector2Int cell, Vector3 pos, WorldManager world);
+        public void OnRemove(Vector2Int cell, Vector3 pos, WorldManager world);
+        public void OnNeighborUpdated(Vector2Int cell, WorldManager world);
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7095383551348664422}
   - component: {fileID: 931270021558845866}
   m_Layer: 0
-  m_Name: Dynamite_Prefab
+  m_Name: Dynamite Throwable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,4 +50,4 @@ MonoBehaviour:
     position: {x: 0, y: 0}
   handAnchor: {fileID: 0}
   prefab: {fileID: 4219366127344651510, guid: 32b39f0e9776c8446824b8ec822512e9, type: 3}
-  throwForce: 15
+  throwForce: 10

@@ -46,12 +46,12 @@ namespace World
             return true;
         }
 
-        public void CompleteBreak(Vector2Int pos)
+        public void CompleteBreak(Vector2Int pos, bool dropItems = true)
         {
             if (!worldManager.TryGetTile(pos, out var tile)) return;
             worldManager.RemoveTile(pos);
             var loot = tile.Material.Loot;
-            if (loot == null) return;
+            if (loot == null || !dropItems) return;
             
             foreach (var l in loot)
             {

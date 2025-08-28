@@ -73,7 +73,13 @@ namespace Player
             var visuals = Instantiate(visualPrefab, handAnchor);
             if (visuals.TryGetComponent(out DefaultItem defaultItem))
             {
-                defaultItem.Initialize(obj.itemType.Icon);
+                var icon = obj.itemType.HandIcon;
+                if (icon == null)
+                {
+                    icon = obj.itemType.Icon;
+                }
+
+                defaultItem.Initialize(icon);
             }
 
             _visualSelected = visuals;

@@ -229,8 +229,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 45, y: 35}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 45, y: 45}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1896835300269560932
 CanvasRenderer:
@@ -292,16 +292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a215969a427f445e871e37f1c8db784d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.UI.HotbarUI
-  inventory:
-    heldItem:
-      itemType: {fileID: 0}
-      amount: 0
-      position: {x: 0, y: 0}
-    areas: []
-    <Items>k__BackingField: []
-    <Width>k__BackingField: 0
-    <Height>k__BackingField: 0
-  items: []
   slotPrefab: {fileID: 8278605971334967582, guid: d02255b6e1a9c984a99f38365227cab3, type: 3}
   row: {fileID: 320826563212237502}
 --- !u!225 &8428804557298452165

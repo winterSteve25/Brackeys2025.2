@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
@@ -17,7 +16,7 @@ namespace InventorySystem.UI
         [SerializeField] private HotbarSlot slotPrefab;
         [SerializeField] private RectTransform row;
 
-        public void Initialize(TetrisInventory inventory, List<ItemStack> hotbarItems, PlayerInventory playerInv)
+        public void Initialize(TetrisInventory inventory, PlayerInventory playerInv)
         {
             _slots = new Dictionary<ItemStack, HotbarSlot>();
             _inventory = inventory;

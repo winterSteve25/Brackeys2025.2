@@ -1,4 +1,3 @@
-using System;
 using KBCore.Refs;
 using TMPro;
 using UnityEngine;
@@ -42,7 +41,7 @@ namespace InventorySystem.UI
 
             icon.color = Color.white;
             icon.sprite = itemStack.itemType.Icon;
-            count.text = itemStack.amount.ToString();
+            count.text = itemStack.itemType.StackSize > 1 ? itemStack.amount.ToString() : "";
 
             var rect = (RectTransform)transform;
             rect.sizeDelta = cellsize * new Vector2(itemStack.itemType.Size.x, itemStack.itemType.Size.y);
@@ -56,7 +55,7 @@ namespace InventorySystem.UI
                 return;
             }
 
-            count.text = ItemStackStored.amount.ToString();
+            count.text = ItemStackStored.itemType.StackSize > 1 ? ItemStackStored.amount.ToString() : "";
         }
 
         public void AnchorTo(RectTransform t)

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Items
 {
-    public class DynamiteItem : UpdatableItem
+    public class ThrowableItem : UpdatableItem
     {
         [Header("Parameters")]
         [SerializeField] private Rigidbody2D prefab;

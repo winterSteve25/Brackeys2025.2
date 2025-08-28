@@ -1,4 +1,3 @@
-using System;
 using InventorySystem;
 using PrimeTween;
 using UnityEngine;

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 835435937204695815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a36df1b88baa43b9babe78ee7b0c02c1, type: 3}
+  m_Script: {fileID: 11500000, guid: e31aaacd1bbf4081a4c3c37ce3e4c696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::World.WorldTile
   spriteRenderer: {fileID: 1437015561455870264}
@@ -114,3 +114,6 @@ MonoBehaviour:
   - {fileID: -359107653662164655, guid: 167b289856f93604eaf813a135092d88, type: 3}
   - {fileID: -1781489244938723371, guid: 167b289856f93604eaf813a135092d88, type: 3}
   - {fileID: -7311305095487263785, guid: 167b289856f93604eaf813a135092d88, type: 3}
+  requires:
+  - {x: 0, y: -1}
+  dropItem: 1

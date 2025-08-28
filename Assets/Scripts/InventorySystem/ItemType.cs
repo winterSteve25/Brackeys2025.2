@@ -10,6 +10,7 @@ namespace InventorySystem
         [field: SerializeField] public int StackSize { get; private set; }
         [field: SerializeField] public Vector2Int Size { get; private set; }
         [field: SerializeField] public Sprite Icon { get; private set; }
+        [field: SerializeField] public Sprite HandIcon { get; private set; }
         [field: SerializeField] public GameObject VisualPrefab { get; private set; }
         [field: SerializeField] public UpdatableItem LogicPrefab { get; private set; }
     }

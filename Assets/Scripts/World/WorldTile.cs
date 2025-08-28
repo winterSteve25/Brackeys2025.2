@@ -19,17 +19,22 @@ namespace World
 
         private void Awake()
         {
+            if (variations.Length <= 0) return;
             spriteRenderer.sprite = variations[Random.Range(0, variations.Length)];
         }
 
-        public void OnPlace(Vector2Int cell, Vector3 pos, Tilemap tilemap)
+        public virtual void OnPlace(Vector2Int cell, Vector3 pos, WorldManager world)
         {
             transform.position = pos;
         }
 
-        public void OnRemove(Vector2Int cell, Vector3 pos, Tilemap tilemap)
+        public virtual void OnRemove(Vector2Int cell, Vector3 pos, WorldManager world)
         {
             Destroy(gameObject);
+        }
+
+        public virtual void OnNeighborUpdated(Vector2Int cell, WorldManager world)
+        {
         }
     }
 }

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Dynamite
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.ItemType
   <Name>k__BackingField: Dynamite
-  <StackSize>k__BackingField: 1
+  <StackSize>k__BackingField: 2
   <Size>k__BackingField: {x: 2, y: 1}
   <Icon>k__BackingField: {fileID: 21300000, guid: d70f543f7e077c04c88d9cd5819743f7, type: 3}
+  <HandIcon>k__BackingField: {fileID: 0}
   <VisualPrefab>k__BackingField: {fileID: 0}
   <LogicPrefab>k__BackingField: {fileID: 931270021558845866, guid: 4cd4bf45e44c92740bcbdd1cd157e8d0, type: 3}

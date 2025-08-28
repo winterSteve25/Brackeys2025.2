@@ -1,18 +1,22 @@
 using KBCore.Refs;
+using PrimeTween;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Utils;
 
 namespace Player
 {
     public class PlayerHealth : ValidatedMonoBehaviour, IHealthComponent
     {
         [SerializeField] private float health;
-        [SerializeField] private TMP_Text healthText;
+        [SerializeField] private MakeshiftProgressBar healthBar;
         [SerializeField, Self] private PlayerAnimation animations;
 
-        private void Awake()
+        private void Start()
         {
-            healthText.text = "Hp: " + health.ToString("F1");
+            healthBar.UpdateValue(1);
+            healthBar.Initialize(health);
         }
 
         public void TakeDamage(float damage)
@@ -20,14 +24,14 @@ namespace Player
             if (damage <= 0) return;
             
             health -= damage;
-            healthText.text = "Hp: " + health.ToString("F1");
             animations.Hurt();
+            Tween.Custom(health + damage, health, 0.4f, x => healthBar.UpdateValue(x), Ease.OutCubic);
         }
 
         public void Heal(float damage)
         {
             health += damage;
-            healthText.text = "Hp: " + health.ToString("F1");
+            Tween.Custom(health - damage, health, 0.4f, x => healthBar.UpdateValue(x), Ease.OutCubic);
         }
     }
 }

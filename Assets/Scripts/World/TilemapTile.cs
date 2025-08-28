@@ -20,14 +20,18 @@ namespace World
             TileBase = tileBase;
         }
 
-        public void OnPlace(Vector2Int cell, Vector3 pos, Tilemap tilemap)
+        public void OnPlace(Vector2Int cell, Vector3 pos, WorldManager world)
         {
-            tilemap.SetTile((Vector3Int)cell, TileBase);
+            world.Tilemap.SetTile((Vector3Int)cell, TileBase);
         }
 
-        public void OnRemove(Vector2Int cell, Vector3 pos, Tilemap tilemap)
+        public void OnRemove(Vector2Int cell, Vector3 pos, WorldManager world)
         {
-            tilemap.SetTile((Vector3Int)cell, null);
+            world.Tilemap.SetTile((Vector3Int)cell, null);
+        }
+
+        public void OnNeighborUpdated(Vector2Int cell, WorldManager world)
+        {
         }
 
         public static TilemapTile FromTileBase(TileBase tileBase)

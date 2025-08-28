@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Ammo
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.ItemType
   <Name>k__BackingField: Shotgun Ammo
-  <StackSize>k__BackingField: 8
+  <StackSize>k__BackingField: 4
   <Size>k__BackingField: {x: 1, y: 1}
   <Icon>k__BackingField: {fileID: 21300000, guid: 5a557ebf9f819704b8fb921e20802852, type: 3}
+  <HandIcon>k__BackingField: {fileID: 0}
   <VisualPrefab>k__BackingField: {fileID: 0}
   <LogicPrefab>k__BackingField: {fileID: 0}

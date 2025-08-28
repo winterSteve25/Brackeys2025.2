@@ -1,6 +1,7 @@
 using KBCore.Refs;
 using TMPro;
 using UnityEngine;
+using Utils;
 
 namespace Player
 {
@@ -10,7 +11,7 @@ namespace Player
         [SerializeField] private float timer;
         
         [Header("References")]
-        [SerializeField] private TMP_Text oxygenText;
+        [SerializeField] private MakeshiftProgressBar oxygenBar;
         [SerializeField, Self] private PlayerHealth health;
         
         [Header("Parameters")]
@@ -35,7 +36,7 @@ namespace Player
                 }
             }
             
-            oxygenText.text = "Ox: " + oxygen.ToString("P1");
+            oxygenBar.UpdateValue(oxygen);
         }
     }
 }
