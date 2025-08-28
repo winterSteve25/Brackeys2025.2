@@ -11,13 +11,11 @@ namespace InventorySystem
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private ItemStack heldItem;
-
         [SerializeField] private RectInt[] areas;
         [field: SerializeField] public List<ItemStack> Items { get; private set; }
 
         [Header("Parameters")]
         [field: SerializeField] public int Width { get; private set; }
-
         [field: SerializeField] public int Height { get; private set; }
 
         public event Action<ItemStack> OnItemAdded;

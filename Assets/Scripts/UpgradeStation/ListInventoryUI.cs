@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using InventorySystem;
 using TMPro;
@@ -12,8 +13,15 @@ namespace UpgradeStation
         [SerializeField] private RectTransform container;
         [SerializeField] private TMP_Text sellOrBuyAmount;
 
-        public void Initialize(TetrisInventory inventory)
+        private TetrisInventory _inv;
+        private TetrisInventory _buyInto;
+
+        public void Initialize(TetrisInventory inventory, TetrisInventory buyInto)
         {
+            _inv = inventory;
+            _inv.OnItemAdded += InvOnOnItemAdded;
+            _buyInto = buyInto;
+
             var sorted = new List<ItemStack>(inventory.Items);
             sorted.Sort(new Vec2Comparer());
 
@@ -24,12 +32,22 @@ namespace UpgradeStation
 
             foreach (var item in sorted)
             {
-                var i = Instantiate(prefab, container);
-                i.Initialize(inventory, item, sellOrBuyAmount);
-                LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform) i.transform);
+                InvOnOnItemAdded(item);
             }
-            
-            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform) container.transform);
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)container.transform);
+        }
+
+        private void OnDestroy()
+        {
+            _inv.OnItemAdded -= InvOnOnItemAdded;
+        }
+
+        private void InvOnOnItemAdded(ItemStack obj)
+        {
+            var i = Instantiate(prefab, container);
+            i.Initialize(_inv, _buyInto, obj, sellOrBuyAmount);
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)i.transform);
         }
     }
 
@@ -46,13 +64,13 @@ namespace UpgradeStation
             {
                 return 1;
             }
-            
+
             var x = a.position;
             var y = b.position;
-            
+
             var yComparison = x.y.CompareTo(y.y);
             if (yComparison != 0) return yComparison;
-            
+
             var xComparison = x.x.CompareTo(y.x);
             if (xComparison != 0) return xComparison;
 

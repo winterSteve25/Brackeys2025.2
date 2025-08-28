@@ -13,32 +13,57 @@ namespace UpgradeStation
         [SerializeField] private TMP_Text itemName;
         [SerializeField] private TMP_Text itemCost;
         [SerializeField] private Color sellColor;
+        [SerializeField] private Color buyColor;
         [SerializeField] private TMP_Text sellOrBuyTxt;
+        [SerializeField] private bool buy;
 
         private TetrisInventory _inventory;
+        private TetrisInventory _buyInto;
         private ItemStack _itemStack;
 
-        public void Initialize(TetrisInventory inventory, ItemStack item, TMP_Text sellOrBuyAmount)
+        public void Initialize(TetrisInventory inventory, TetrisInventory buyInto, ItemStack item, TMP_Text sellOrBuyAmount)
         {
             icon.sprite = item.itemType.Icon;
+            icon.GetComponent<AspectRatioFitter>().aspectRatio = item.itemType.Size.x / (float) item.itemType.Size.y;
+            
             itemName.text = $"{item.itemType.Name} x{item.amount}";
             itemCost.text = item.Price.ToString();
             sellOrBuyTxt = sellOrBuyAmount;
             _inventory = inventory;
+            _buyInto = buyInto;
             _itemStack = item;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            CarryOverDataManager.Instance.Gold += _itemStack.Price;
             _inventory.RemoveItem(_itemStack.position);
+            
+            if (buy)
+            {
+                CarryOverDataManager.Instance.Gold -= _itemStack.Price;
+                _buyInto.AddAnywhere(_itemStack);
+            }
+            else
+            {
+                CarryOverDataManager.Instance.Gold += _itemStack.Price;
+            }
+
             Destroy(gameObject);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            sellOrBuyTxt.color = sellColor;
-            sellOrBuyTxt.text = $"+{_itemStack.Price}";
+            if (buy)
+            {
+                sellOrBuyTxt.color = buyColor;
+                sellOrBuyTxt.text = $"-{_itemStack.Price}";
+            }
+            else
+            {
+                sellOrBuyTxt.color = sellColor;
+                sellOrBuyTxt.text = $"+{_itemStack.Price}";
+            }
+
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sellOrBuyTxt.transform.parent);
         }
 
