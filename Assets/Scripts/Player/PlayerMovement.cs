@@ -12,6 +12,7 @@ namespace Player
 
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private Vector2 direction;
+
         [SerializeField] private bool grounded;
         [SerializeField] private Collider2D[] groundCollision;
         [SerializeField] private ContactFilter2D everythingElseLayerMask;
@@ -20,9 +21,11 @@ namespace Player
         [SerializeField] private bool wasWalking;
         [SerializeField] private float coyoteTimeCountDown;
         [SerializeField] private float startAirY;
+        public IPlayerMovementOverride MovementOverride;
 
         [Header("References")]
         [SerializeField, Self] private Rigidbody2D rb;
+
         [SerializeField, Self] private PlayerAnimation animations;
         [SerializeField] private PlayerHealth health;
         [SerializeField] private Transform groundTest;
@@ -40,6 +43,11 @@ namespace Player
         [SerializeField] private float coyoteTime;
         [SerializeField] private AnimationCurve fallDamageCurveOnDist;
 
+        public PlayerMovement(IPlayerMovementOverride movementOverride)
+        {
+            MovementOverride = movementOverride;
+        }
+
         private void Awake()
         {
             Current = this;
@@ -50,10 +58,13 @@ namespace Player
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawSphere(groundTest.position, groundTestRadius);
+            Gizmos.DrawSphere(groundTest2.position, groundTestRadius);
         }
 
         private void Update()
         {
+            direction = movement.action.ReadValue<Vector2>();
+
             var collisionCount = Physics2D.OverlapCircle(groundTest.position, groundTestRadius, everythingElseLayerMask,
                 groundCollision);
             var wasGrounded = grounded;
@@ -66,10 +77,13 @@ namespace Player
                 grounded = collisionCount > 0;
             }
 
-            direction = movement.action.ReadValue<Vector2>();
-
             if (health is not null)
             {
+                if (wasGrounded && !grounded)
+                {
+                    startAirY = transform.position.y;
+                }
+
                 if (!wasGrounded && grounded)
                 {
                     health.TakeDamage(fallDamageCurveOnDist.Evaluate(Mathf.Abs(transform.position.y - startAirY)));
@@ -77,14 +91,28 @@ namespace Player
                 }
             }
 
-            UpdateVisuals(wasGrounded);
-            HandleJump(wasGrounded);
+            if (MovementOverride != null)
+            {
+                MovementOverride.UpdateFrame(transform.position, ref direction, ref grounded);
+                UpdateVisuals(wasGrounded);
+            }
+            else
+            {
+                UpdateVisuals(wasGrounded);
+                HandleJump(wasGrounded);
+            }
         }
 
         private void FixedUpdate()
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
+                return;
+            }
+
+            if (MovementOverride != null)
+            {
+                MovementOverride.UpdatePhysics(rb, direction);
                 return;
             }
 
@@ -166,7 +194,6 @@ namespace Player
             {
                 animations.StartJump();
                 rb.linearVelocityY = jumpForce;
-                startAirY = transform.position.y;
                 return;
             }
 

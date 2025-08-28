@@ -8,6 +8,8 @@ namespace Objects
     {
         [field: SerializeField] public string InteractableName { get; private set; }
         [SerializeField] private UnityEvent<PlayerInventory> onInteract;
+
+        public bool interactable = true;
         
         public void Interact(PlayerInventory inventory)
         {

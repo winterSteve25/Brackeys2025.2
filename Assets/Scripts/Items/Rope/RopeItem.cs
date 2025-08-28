@@ -7,12 +7,16 @@ namespace Items.Rope
 {
     public class RopeItem : UpdatableItem
     {
+        [SerializeField] private RopeMaster ropePrefab;
+
         public override void UseTick(PlayerInventory inventory)
         {
-            if (!Mouse.current.leftButton.isPressed) return;
-            if (TryGetTileAtMouse(out _, out var pos) ||
-                WorldManager.Current.WorldToCell(inventory.transform.position) == pos)
+            if (!Mouse.current.leftButton.wasPressedThisFrame) return;
+            if (TryGetTileAtMouse(out var tile, out var pos))
             {
+                if (tile is not RopeSegment ropeSegment) return;
+                ropeSegment.Master.AddSegment();
+                inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
                 return;
             }
 
@@ -20,9 +24,11 @@ namespace Items.Rope
                 !WorldManager.Current.HasTile(pos + Vector2Int.right) &&
                 !WorldManager.Current.HasTile(pos + Vector2Int.up) &&
                 !WorldManager.Current.HasTile(pos + Vector2Int.down)) return;
-            
-            // WorldManager.Current.SetTile(pos, TilemapTile.FromTileBase(tile));
-            // inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
+
+            var rope = Instantiate(ropePrefab, WorldManager.Current.CellToWorld(pos) + new Vector2(0.5f, 0.5f), Quaternion.identity);
+            rope.AddSegment(true);
+
+            inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using KBCore.Refs;
 using Objects;
 using UnityEngine;
@@ -11,16 +12,27 @@ namespace Player
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private Collider2D[] thingsInRadius;
+
         [SerializeField] private ContactFilter2D everythingElse;
         [SerializeField] private InteractableObject wasShowing;
 
         [Header("References")]
         [SerializeField, Self] private PlayerInventory inventory;
-        
+
+        [SerializeField, Self] private Collider2D playerCollider;
+
+        [Header("Parameters")]
+        [SerializeField] private float interactionDistance;
+
         private void Awake()
         {
             thingsInRadius = new Collider2D[1];
             everythingElse = LayerMaskUtils.EverythingMask(true);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(transform.position, interactionDistance);
         }
 
         public void Update()
@@ -28,7 +40,10 @@ namespace Player
             var mp = Mouse.current.position.ReadValue();
             var mpW = MainCamera.Current.ScreenToWorldPoint(mp);
             var amount = Physics2D.OverlapPoint(mpW, everythingElse, thingsInRadius);
-            if (amount <= 0 || EventSystem.current.IsPointerOverGameObject())
+            if (amount <= 0 || EventSystem.current.IsPointerOverGameObject() ||
+                thingsInRadius[0].Distance(playerCollider).distance > interactionDistance ||
+                !thingsInRadius[0].TryGetComponent(out InteractableObject obj) ||
+                !obj.interactable)
             {
                 if (wasShowing != null)
                 {
@@ -38,15 +53,13 @@ namespace Player
 
                 return;
             }
-            
-            if (!thingsInRadius[0].TryGetComponent(out InteractableObject obj)) return;
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+
+            if (Mouse.current.rightButton.wasPressedThisFrame)
             {
                 obj.Interact(inventory);
             }
-            
+
             if (wasShowing == obj) return;
-            
             ToolTipManager.Instance.Show(obj.InteractableName, "");
             wasShowing = obj;
         }

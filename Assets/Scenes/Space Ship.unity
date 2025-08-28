@@ -463,6 +463,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1065984052051295116, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
+      propertyPath: interactionDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3984830095127612333, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2095,15 +2099,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.0006506181
+    y: 0.001257071
+    width: 1.283019
+    height: 0.6436204
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.75
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2128,7 +2132,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.047038, y: -2.7341998, z: -10}
+  m_LocalPosition: {x: -6.4399986, y: -2.7341998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2975,7 +2979,6 @@ MonoBehaviour:
       itemType: {fileID: 0}
       amount: 0
       position: {x: 0, y: 0}
-    areas: []
     <Items>k__BackingField:
     - itemType: {fileID: 11400000, guid: 86ddeb058ed5051449318d5cc6b4e951, type: 2}
       amount: 1
@@ -2989,6 +2992,7 @@ MonoBehaviour:
     - itemType: {fileID: 11400000, guid: d92d7b219ee009d4d9817a96a9276468, type: 2}
       amount: 1
       position: {x: 3, y: 0}
+    areas: []
     <Width>k__BackingField: 8
     <Height>k__BackingField: 8
 --- !u!1 &1008496195
