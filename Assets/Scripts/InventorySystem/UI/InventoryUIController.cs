@@ -27,7 +27,7 @@ namespace InventorySystem.UI
 
         public void Update()
         {
-            if (isOpen && (exitAction.action.WasPressedThisFrame() || openAction.action.WasPressedThisFrame()))
+            if (isOpen && exitAction.action.WasPressedThisFrame())
             {
                 isOpen = false;
                 inventoryUI.ReturnHeldItem();

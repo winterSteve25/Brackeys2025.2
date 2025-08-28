@@ -1,5 +1,7 @@
+using System;
 using InventorySystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Utils
 {
@@ -7,8 +9,21 @@ namespace Utils
     {
         public static CarryOverDataManager Instance { get; private set; }
 
-        public int gold;
-        public TetrisInventory inventory;
+        [SerializeField] private int gold;
+        public int Gold
+        {
+            get => gold;
+            set
+            {
+                gold = value;
+                OnGoldChanged?.Invoke(value);
+            }
+        }
+        
+        [field: SerializeField, FormerlySerializedAs("inventory")] 
+        public TetrisInventory Inventory { get; private set; }
+        
+        public event Action<int> OnGoldChanged;
 
         private void Awake()
         {

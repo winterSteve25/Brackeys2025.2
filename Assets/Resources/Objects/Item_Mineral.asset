@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.ItemType
   <Name>k__BackingField: Crystal
   <StackSize>k__BackingField: 4
+  <BasePrice>k__BackingField: 10
   <Size>k__BackingField: {x: 1, y: 1}
   <Icon>k__BackingField: {fileID: 21300000, guid: deb2ce33a970cde4296b57186d432b36, type: 3}
+  <HandIcon>k__BackingField: {fileID: 0}
+  <VisualPrefab>k__BackingField: {fileID: 0}
+  <LogicPrefab>k__BackingField: {fileID: 0}

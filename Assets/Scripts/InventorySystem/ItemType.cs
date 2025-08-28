@@ -8,6 +8,7 @@ namespace InventorySystem
     {
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public int StackSize { get; private set; }
+        [field: SerializeField] public int BasePrice { get; private set; }
         [field: SerializeField] public Vector2Int Size { get; private set; }
         [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public Sprite HandIcon { get; private set; }

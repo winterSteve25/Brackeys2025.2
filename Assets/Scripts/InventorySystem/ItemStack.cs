@@ -9,6 +9,7 @@ namespace InventorySystem
         public ItemType itemType;
         public int amount;
         public Vector2Int position;
+        public int Price => amount * itemType.BasePrice;
         
         public ItemStack(ItemType itemType, int amount, Vector2Int position)
         {

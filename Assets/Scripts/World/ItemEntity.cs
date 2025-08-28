@@ -2,7 +2,6 @@ using System;
 using InventorySystem;
 using KBCore.Refs;
 using Player;
-using PrimeTween;
 using UnityEngine;
 
 namespace World

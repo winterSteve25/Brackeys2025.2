@@ -1,8 +1,6 @@
 using KBCore.Refs;
 using PrimeTween;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils;
 
 namespace Player

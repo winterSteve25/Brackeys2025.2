@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using InventorySystem;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ namespace UpgradeStation
     {
         [SerializeField] private ListInventoryItem prefab;
         [SerializeField] private RectTransform container;
+        [SerializeField] private TMP_Text sellOrBuyAmount;
 
         public void Initialize(TetrisInventory inventory)
         {
@@ -23,7 +25,7 @@ namespace UpgradeStation
             foreach (var item in sorted)
             {
                 var i = Instantiate(prefab, container);
-                i.Initialize(item);
+                i.Initialize(inventory, item, sellOrBuyAmount);
                 LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform) i.transform);
             }
             

@@ -45,6 +45,7 @@ namespace InventorySystem.UI
 
         private void InventoryOnOnItemChanged(ItemStack obj)
         {
+            if (obj.position.y >= 2) return;
             _slots[obj].Initialize(obj);
         }
 

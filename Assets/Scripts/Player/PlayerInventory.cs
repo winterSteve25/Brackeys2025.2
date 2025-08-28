@@ -31,7 +31,7 @@ namespace Player
         
         private void Start()
         {
-            Inventory = CarryOverDataManager.Instance.inventory;
+            Inventory = CarryOverDataManager.Instance.Inventory;
             inventoryUI.Initialize(Inventory);
             hotbarUI.Initialize(Inventory, this);
             

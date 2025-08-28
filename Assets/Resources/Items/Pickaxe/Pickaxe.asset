@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.ToolType
   <Name>k__BackingField: Pickaxe
   <StackSize>k__BackingField: 1
+  <BasePrice>k__BackingField: 10
   <Size>k__BackingField: {x: 2, y: 2}
   <Icon>k__BackingField: {fileID: 21300000, guid: 0df77e856378a2743b5c6e55214bbd77, type: 3}
+  <HandIcon>k__BackingField: {fileID: 0}
   <VisualPrefab>k__BackingField: {fileID: 0}
   <LogicPrefab>k__BackingField: {fileID: 570310049935321980, guid: 4cdf96cb63504964f9d6ad98614e3fd2, type: 3}
