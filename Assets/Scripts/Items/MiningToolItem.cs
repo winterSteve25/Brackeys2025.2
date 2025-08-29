@@ -9,18 +9,16 @@ namespace Items
     public class MiningToolItem : UpdatableItem
     {
         [Header("Debug Info DO NOT EDIT")]
-        [SerializeField] private bool wasMining;
-
-        [SerializeField] private Vector2Int wasMiningPosition;
+        [SerializeField] protected bool isMining;
+        [SerializeField] protected Vector2Int wasMiningPosition;
         [SerializeField] private ContactFilter2D raycastFilter;
         private RaycastHit2D[] _collisions;
 
         [Header("Parameters")]
         [SerializeField] private int damage;
-
         [SerializeField] private float miningSpeed;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             raycastFilter = LayerMaskUtils.EverythingMask(false);
             _collisions = new RaycastHit2D[1];
@@ -31,12 +29,12 @@ namespace Items
             var breakManager = BreakManager.Current;
             if (!Mouse.current.leftButton.isPressed)
             {
-                if (wasMining)
+                if (isMining)
                 {
                     breakManager.CancelBreak(wasMiningPosition);
                 }
 
-                wasMining = false;
+                isMining = false;
                 return;
             }
 
@@ -58,7 +56,7 @@ namespace Items
                     breakManager.CancelBreak(wasMiningPosition);
                 }
 
-                wasMining = true;
+                isMining = true;
                 wasMiningPosition = position;
                 var multiplier = inventory.GetItemHeld() == null
                     ? 0
@@ -66,17 +64,17 @@ namespace Items
 
                 if (breakManager.TickBreak(position, tile.Material.MiningDuration / multiplier))
                 {
-                    wasMining = false;
+                    isMining = false;
                 }
             }
             else
             {
-                if (wasMining)
+                if (isMining)
                 {
                     breakManager.CancelBreak(wasMiningPosition);
                 }
 
-                wasMining = false;
+                isMining = false;
             }
         }
     }
