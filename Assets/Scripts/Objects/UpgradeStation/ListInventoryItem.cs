@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utils;
 
-namespace UpgradeStation
+namespace Objects.UpgradeStation
 {
     public class ListInventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
@@ -44,6 +44,11 @@ namespace UpgradeStation
             
             if (buy)
             {
+                if (CarryOverDataManager.Instance.Gold < _itemStack.Price)
+                {
+                    return;
+                }
+                
                 CarryOverDataManager.Instance.Gold -= _itemStack.Price;
                 _buyInto.AddAnywhere(_itemStack);
             }

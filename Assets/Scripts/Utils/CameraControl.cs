@@ -1,8 +1,6 @@
 using KBCore.Refs;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 namespace Utils
 {

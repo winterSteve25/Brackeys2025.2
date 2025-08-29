@@ -25,11 +25,12 @@ namespace InventorySystem
         public event Action<ItemStack, ItemStack> OnItemReplaced;
         public event Action OnHeldItemReleased;
 
-        public TetrisInventory(int width, int height)
+        public TetrisInventory(int width, int height, RectInt[] areas)
         {
             Width = width;
             Height = height;
             Items = new List<ItemStack>();
+            this.areas = areas;
         }
 
         /// <summary>

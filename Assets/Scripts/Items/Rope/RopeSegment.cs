@@ -5,38 +5,33 @@ namespace Items.Rope
 {
     public class RopeSegment : FragileTile
     {
-        [Header("Debug Info DO NOT EDIT")]
-        [SerializeField] private bool isMaster;
+        [field: Header("Debug Info DO NOT EDIT")]
         [field: SerializeField] public RopeMaster Master { get; private set; }
+        [SerializeField] private int index;
+        [SerializeField] private Sprite endSprite;
 
-        public void Init(RopeMaster m, bool isM)
+        public void Init(RopeMaster m, int i)
         {
             Master = m;
-            isMaster = isM;
+            index = i;
+        }
+
+        public void IsEnd(bool isEnd)
+        {
+            if (isEnd)
+            {
+                spriteRenderer.sprite = endSprite;
+            }
+            else
+            {
+                SetTexture();
+            }
         }
 
         public override void OnRemove(Vector2Int cell, Vector3 pos, WorldManager world)
         {
-            Master.RemoveSegment(this);
+            Master.RemoveSegment(index);
             base.OnRemove(cell, pos, world);
-        }
-
-        public override void OnNeighborUpdated(Vector2Int cell, WorldManager world)
-        {
-            if (isMaster)
-            {
-                if (!WorldManager.Current.HasTile(cell + Vector2Int.left) &&
-                    !WorldManager.Current.HasTile(cell + Vector2Int.right) &&
-                    !WorldManager.Current.HasTile(cell + Vector2Int.up) &&
-                    !WorldManager.Current.HasTile(cell + Vector2Int.down))
-                {
-                    BreakManager.Current.CompleteBreak(cell, dropItem);
-                }
-                
-                return;
-            }
-
-            base.OnNeighborUpdated(cell, world);
         }
     }
 }

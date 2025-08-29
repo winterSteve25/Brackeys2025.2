@@ -1,4 +1,5 @@
 using System;
+using ED.SC;
 using InventorySystem;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -38,6 +39,12 @@ namespace Utils
 
             _day++;
             Destroy(gameObject);
+        }
+
+        [Command]
+        private void AddGold(int amount)
+        {
+            Gold += amount;
         }
     }
 }

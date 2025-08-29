@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 6083167539283842744, guid: b2d97999dbdfd3b4894524c8e289915a, type: 3}
     - target: {fileID: 931270021558845866, guid: 4cd4bf45e44c92740bcbdd1cd157e8d0, type: 3}
       propertyPath: throwForce
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5567099540647862718, guid: 4cd4bf45e44c92740bcbdd1cd157e8d0, type: 3}
       propertyPath: m_Name

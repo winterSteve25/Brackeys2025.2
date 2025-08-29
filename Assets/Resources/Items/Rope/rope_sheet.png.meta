@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: 167b289856f93604eaf813a135092d88
+guid: 04d26283a69428e488b34f6d0af66edc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -359107653662164655
-    second: natural_props_atlas_0
+      213: 7083880568654770822
+    second: rope_sheet_0
   - first:
-      213: -1781489244938723371
-    second: natural_props_atlas_1
-  - first:
-      213: -7311305095487263785
-    second: natural_props_atlas_2
+      213: 3567261991688604712
+    second: rope_sheet_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,67 +103,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: natural_props_atlas_0
+      name: rope_sheet_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 449
-        width: 24
-        height: 28
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
+        x: 13
+        y: 32
+        width: 6
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 159b75bdd71340bf0800000000000000
-      internalID: -359107653662164655
+      spriteID: 682b5fd58dffe4260800000000000000
+      internalID: 7083880568654770822
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: natural_props_atlas_1
+      name: rope_sheet_1
       rect:
         serializedVersion: 2
-        x: 84
-        y: 449
-        width: 24
-        height: 28
-      alignment: 9
-      pivot: {x: 0.5, y: 0.58}
+        x: 45
+        y: 32
+        width: 6
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5df9f3078f0e647e0800000000000000
-      internalID: -1781489244938723371
+      spriteID: 82c0a5b91e5718130800000000000000
+      internalID: 3567261991688604712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: natural_props_atlas_2
+      name: rope_sheet_2
       rect:
         serializedVersion: 2
-        x: 147
-        y: 449
-        width: 24
-        height: 27
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+        x: 13
+        y: 0
+        width: 6
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7db6afaa0c6098a90800000000000000
-      internalID: -7311305095487263785
+      spriteID: 2a4fa5c3c38de0e459e59201979fb7a0
+      internalID: 1468251366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rope_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 8
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53865b220e4709144b90370113dd245f
+      internalID: -1082761180
       vertices: []
       indices: 
       edges: []
@@ -175,7 +194,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 95b1fb01611541f4d9c7f45636ac6d36
+    spriteID: 2bda0ba5845e3e54f941c8683c835fe6
     internalID: 0
     vertices: []
     indices: 
@@ -185,9 +204,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      natural_props_atlas_0: -359107653662164655
-      natural_props_atlas_1: -1781489244938723371
-      natural_props_atlas_2: -7311305095487263785
+      rope_sheet_0: 7083880568654770822
+      rope_sheet_1: 3567261991688604712
+      rope_sheet_2: 1468251366
+      rope_sheet_3: -1082761180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

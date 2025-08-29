@@ -37,7 +37,7 @@ namespace World
         public void SpawnApproximatelyAt(Vector2 pos, ItemStack item)
         {
             var i = Spawn(pos, item);
-            i.MoveTo(pos + Random.insideUnitCircle * 0.4f, true);
+            i.MoveTo(pos + Random.insideUnitCircle, true);
         }
 
         private void Despawn(ItemEntity groundItemBehaviour)

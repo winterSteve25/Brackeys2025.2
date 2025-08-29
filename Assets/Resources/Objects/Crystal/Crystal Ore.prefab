@@ -114,6 +114,7 @@ MonoBehaviour:
   - {fileID: -359107653662164655, guid: 167b289856f93604eaf813a135092d88, type: 3}
   - {fileID: -1781489244938723371, guid: 167b289856f93604eaf813a135092d88, type: 3}
   - {fileID: -7311305095487263785, guid: 167b289856f93604eaf813a135092d88, type: 3}
+  <Position>k__BackingField: {x: 0, y: 0}
   requires:
   - {x: 0, y: -1}
   dropItem: 1

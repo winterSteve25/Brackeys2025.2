@@ -49,22 +49,27 @@ namespace InventorySystem.UI
             }
         }
 
-        public void SlotClicked(Vector2Int pos)
+        public bool HasItem(Vector2Int position)
+        {
+            return inventory.GetItemAtPosition(position) != null;
+        }
+
+        public bool SlotClicked(Vector2Int pos)
         {
             var item = inventory.GetItemAtPosition(pos);
             if (item == null)
             {
-                if (heldItem == null) return;
+                if (heldItem == null) return false;
                 heldItem.ItemStackStored.position = pos;
 
                 if (inventory.AddItemAtPosition(heldItem.ItemStackStored))
                 {
                     inventory.ClearHeldItem();
-                    return;
+                    return false;
                 }
 
                 heldItem.RefreshAmount();
-                return;
+                return false;
             }
 
             if (heldItem != null)
@@ -75,23 +80,24 @@ namespace InventorySystem.UI
                 if (inventory.AddItemAtPosition(heldItem.ItemStackStored))
                 {
                     inventory.ClearHeldItem();
-                    return;
+                    return false;
                 }
                 
                 if (inventory.CanReplace(heldItem.ItemStackStored, item.position))
                 {
                     inventory.ReplaceItemNoCheck(item.position, heldItem.ItemStackStored);
-                    inPlaceItem.Set(heldItem.ItemStackStored, cellSize);
+                    inPlaceItem.Set(heldItem.ItemStackStored, cellSize, this);
                     inPlaceItem.AnchorTo((RectTransform)_slots[pos].transform);
                     _inventoryItems.Remove(item.position);
                     _inventoryItems.Add(pos, inPlaceItem);
-                    heldItem.Set(item, cellSize);
+                    heldItem.Set(item, cellSize, this);
                 }
 
-                return;
+                return false;
             }
 
             inventory.HoldItem(item.position);
+            return true;
         }
 
         public void ReturnHeldItem()
@@ -125,7 +131,7 @@ namespace InventorySystem.UI
 
         private void InventoryOnOnItemChanged(ItemStack obj)
         {
-            _inventoryItems[obj.position].Set(obj, cellSize);
+            _inventoryItems[obj.position].Set(obj, cellSize, this);
         }
 
         private void InventoryOnOnItemRemoved(ItemStack obj)
@@ -137,7 +143,7 @@ namespace InventorySystem.UI
         private void InventoryOnOnItemAdded(ItemStack obj)
         {
             var item = Instantiate(itemPrefab, itemContainer);
-            item.Set(obj, cellSize);
+            item.Set(obj, cellSize, this);
             item.AnchorTo((RectTransform)_slots[obj.position].transform);
             _inventoryItems.Add(obj.position, item);
         }

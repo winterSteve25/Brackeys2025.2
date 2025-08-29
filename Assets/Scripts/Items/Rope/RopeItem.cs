@@ -15,18 +15,15 @@ namespace Items.Rope
             if (TryGetTileAtMouse(out var tile, out var pos))
             {
                 if (tile is not RopeSegment ropeSegment) return;
-                ropeSegment.Master.AddSegment();
+                ropeSegment.Master.TryAddSegment();
                 inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
                 return;
             }
 
-            if (!WorldManager.Current.HasTile(pos + Vector2Int.left) &&
-                !WorldManager.Current.HasTile(pos + Vector2Int.right) &&
-                !WorldManager.Current.HasTile(pos + Vector2Int.up) &&
-                !WorldManager.Current.HasTile(pos + Vector2Int.down)) return;
+            if (!WorldManager.Current.HasTile(pos + Vector2Int.up)) return;
 
             var rope = Instantiate(ropePrefab, WorldManager.Current.CellToWorld(pos) + new Vector2(0.5f, 0.5f), Quaternion.identity);
-            rope.AddSegment(true);
+            rope.TryAddSegment();
 
             inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
         }

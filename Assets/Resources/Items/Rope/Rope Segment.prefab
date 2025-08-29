@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 356258f29e232994490749bb2e1d1109, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -110,9 +110,14 @@ MonoBehaviour:
     - itemType: {fileID: 11400000, guid: cd94903570abb334f99d3a445c67d08e, type: 2}
       amount: 1
       position: {x: 0, y: 0}
-  variations: []
+  variations:
+  - {fileID: 7083880568654770822, guid: 04d26283a69428e488b34f6d0af66edc, type: 3}
+  - {fileID: 3567261991688604712, guid: 04d26283a69428e488b34f6d0af66edc, type: 3}
+  - {fileID: 1468251366, guid: 04d26283a69428e488b34f6d0af66edc, type: 3}
+  <Position>k__BackingField: {x: 0, y: 0}
   requires:
   - {x: 0, y: 1}
   dropItem: 1
-  isMaster: 0
   <Master>k__BackingField: {fileID: 0}
+  index: 0
+  endSprite: {fileID: -1082761180, guid: 04d26283a69428e488b34f6d0af66edc, type: 3}

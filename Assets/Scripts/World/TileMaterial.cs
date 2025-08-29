@@ -39,6 +39,8 @@ namespace World
 
     public static class TileMaterialExtensions
     {
+        private static readonly Lazy<ItemType> StoneItemType = new(() => Resources.Load<ItemType>("Tiles/Item_Stone"));
+        
         public static float MiningDuration(this TileMaterialPreset material)
         {
             return material switch
@@ -48,8 +50,6 @@ namespace World
                 _ => throw new ArgumentOutOfRangeException(nameof(material), material, null)
             };
         }
-
-        private static readonly Lazy<ItemType> StoneItemType = new(() => Resources.Load<ItemType>("Tiles/Item_Stone"));
 
         public static ItemStack[] Loot(this TileMaterialPreset material)
         {

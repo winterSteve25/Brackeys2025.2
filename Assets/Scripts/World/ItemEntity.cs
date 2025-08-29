@@ -31,7 +31,7 @@ namespace World
         {
             if (animate)
             {
-                rb.MovePosition(position);
+                rb.linearVelocity = (position - rb.position).normalized * 2;
             }
             else
             {

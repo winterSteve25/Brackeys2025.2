@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
-namespace UpgradeStation
+namespace Objects.UpgradeStation
 {
     public class GoldCounter : MonoBehaviour
     {

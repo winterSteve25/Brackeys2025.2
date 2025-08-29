@@ -31,23 +31,49 @@ namespace Items.Rope
             _collisions = new RaycastHit2D[1];
         }
 
-        public void AddSegment(bool isMaster = false)
+        public void TryAddSegment()
         {
+            if (segments.Count > 0)
+            {
+                if (WorldManager.Current.HasTile(segments[^1].Position + new Vector2Int(0, -1)))
+                {
+                    return;
+                }
+            }
+            
             var segment = Instantiate(segmentPrefab, transform);
             WorldManager.Current.SetTile(transform.position - new Vector3(0, length, 0), segment);
             
-            segment.Init(this, isMaster);
+            segment.Init(this, length);
             segments.Add(segment);
+            segment.IsEnd(true);
+
+            if (length - 1 >= 0)
+            {
+                segments[length - 1].IsEnd(false);
+            }
+            
             length++;
             
             col.size = new Vector2(1, length);
             col.offset = new Vector2(0, -(length - 1) / 2f);
         }
 
-        public void RemoveSegment(RopeSegment segment)
+        public void RemoveSegment(int index)
         {
-            segments.Remove(segment);
-            length--;
+            if (index < 0 || index >= segments.Count)
+            {
+                return;
+            }
+
+            var removedAmount = segments.Count - index;
+            segments.RemoveRange(index, removedAmount);
+            length -= removedAmount;
+
+            if (segments.Count > 0)
+            {
+                segments[^1].IsEnd(true);
+            }
             
             col.size = new Vector2(1, length);
             col.offset = new Vector2(0, -(length - 1) / 2f);
@@ -55,23 +81,22 @@ namespace Items.Rope
 
         public void GrabOntoRope(PlayerInventory inventory)
         {
-            interactableObject.interactable = false;
-
             Vector2 playerPosition = inventory.transform.position;
             var closestPoint = col.ClosestPoint(playerPosition);
             Physics2D.Raycast(playerPosition, (closestPoint - playerPosition).normalized,
                 LayerMaskUtils.EverythingMask(true), _collisions);
 
-            if (_collisions[0] != col)
+            if (_collisions[0].collider != col)
             {
-                // todo: add cant grab feedback
                 return;
             }
 
+            interactableObject.interactable = false;
             player = inventory.GetComponent<PlayerMovement>();
             player.MovementOverride = this;
 
             var rb = player.GetComponent<Rigidbody2D>();
+            closestPoint.x = transform.position.x;
             rb.position = closestPoint;
             rb.linearVelocityX = 0;
 

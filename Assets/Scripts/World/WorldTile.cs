@@ -12,11 +12,18 @@ namespace World
             set => material = value;
         }
         
-        [SerializeField, Self] private SpriteRenderer spriteRenderer;
+        [SerializeField, Self] protected SpriteRenderer spriteRenderer;
         [SerializeField] private TileMaterial material;
         [SerializeField] private Sprite[] variations;
+        
+        [field: SerializeField] public Vector2Int Position { get; private set; }
 
         private void Awake()
+        {
+            SetTexture();
+        }
+
+        protected void SetTexture()
         {
             if (variations.Length <= 0) return;
             spriteRenderer.sprite = variations[Random.Range(0, variations.Length)];
@@ -25,6 +32,7 @@ namespace World
         public virtual void OnPlace(Vector2Int cell, Vector3 pos, WorldManager world)
         {
             transform.position = pos;
+            Position = cell;
         }
 
         public virtual void OnRemove(Vector2Int cell, Vector3 pos, WorldManager world)

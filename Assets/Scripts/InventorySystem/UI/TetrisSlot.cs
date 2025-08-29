@@ -14,7 +14,7 @@ namespace InventorySystem.UI
         [SerializeField] private Image background;
         [SerializeField] private Sprite nonHoverImage;
         [SerializeField] private Sprite hoverImage;
-        
+
         public void Initialize(Vector2Int pos, TetrisInventoryUI inv)
         {
             position = pos;
@@ -23,7 +23,9 @@ namespace InventorySystem.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            background.sprite = hoverImage;
+            if (!inventory.HasItem(position)) {
+                background.sprite = hoverImage;
+            }
         }
 
         public void OnPointerExit(PointerEventData eventData)

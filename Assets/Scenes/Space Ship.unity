@@ -2099,15 +2099,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0006506181
-    y: 0.001257071
-    width: 1.283019
-    height: 0.6436204
+    x: 0.00078125
+    y: 0.0015238095
+    width: 0.9984375
+    height: 0.9965714
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 3.40625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2132,7 +2132,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.4399986, y: -2.7341998, z: -10}
+  m_LocalPosition: {x: -7.047046, y: -2.7341998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2970,31 +2970,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeStation.UpgradeStationUIController
   isOpen: 0
+  computedPurchasableItems: []
   inventory: {fileID: 1759036953}
   buyInventory: {fileID: 1686524458}
   group: {fileID: 989737494}
   exitAction: {fileID: -8948862106049774934, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   purchasableItems:
-  - heldItem:
-      itemType: {fileID: 0}
-      amount: 0
-      position: {x: 0, y: 0}
-    <Items>k__BackingField:
+  - items:
     - itemType: {fileID: 11400000, guid: 86ddeb058ed5051449318d5cc6b4e951, type: 2}
       amount: 1
       position: {x: 0, y: 0}
-    - itemType: {fileID: 11400000, guid: 1ca7d17e6f20d874bbc83bf3d1e4d0c6, type: 2}
-      amount: 2
-      position: {x: 2, y: 0}
     - itemType: {fileID: 11400000, guid: cd94903570abb334f99d3a445c67d08e, type: 2}
       amount: 8
-      position: {x: 2, y: 1}
-    - itemType: {fileID: 11400000, guid: d92d7b219ee009d4d9817a96a9276468, type: 2}
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: 1ca7d17e6f20d874bbc83bf3d1e4d0c6, type: 2}
+      amount: 2
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: aefbfbb6b18c8e841bf69be9cdaf9239, type: 2}
       amount: 1
-      position: {x: 3, y: 0}
-    areas: []
-    <Width>k__BackingField: 8
-    <Height>k__BackingField: 8
+      position: {x: 0, y: 0}
+  - items:
+    - itemType: {fileID: 11400000, guid: 86ddeb058ed5051449318d5cc6b4e951, type: 2}
+      amount: 1
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: aefbfbb6b18c8e841bf69be9cdaf9239, type: 2}
+      amount: 1
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: cd94903570abb334f99d3a445c67d08e, type: 2}
+      amount: 8
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: cd94903570abb334f99d3a445c67d08e, type: 2}
+      amount: 8
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: 1ca7d17e6f20d874bbc83bf3d1e4d0c6, type: 2}
+      amount: 2
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: d92d7b219ee009d4d9817a96a9276468, type: 2}
+      amount: 2
+      position: {x: 0, y: 0}
+  - items:
+    - itemType: {fileID: 11400000, guid: 86ddeb058ed5051449318d5cc6b4e951, type: 2}
+      amount: 1
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: aefbfbb6b18c8e841bf69be9cdaf9239, type: 2}
+      amount: 1
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: cd94903570abb334f99d3a445c67d08e, type: 2}
+      amount: 8
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: cd94903570abb334f99d3a445c67d08e, type: 2}
+      amount: 8
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: 1ca7d17e6f20d874bbc83bf3d1e4d0c6, type: 2}
+      amount: 2
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: d92d7b219ee009d4d9817a96a9276468, type: 2}
+      amount: 2
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: d92d7b219ee009d4d9817a96a9276468, type: 2}
+      amount: 2
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: 4f6bc5d1dcaf857418a79d755f4f9870, type: 2}
+      amount: 1
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: f14fd052829be884bbe6668f3b2701d5, type: 2}
+      amount: 4
+      position: {x: 0, y: 0}
+    - itemType: {fileID: 11400000, guid: f14fd052829be884bbe6668f3b2701d5, type: 2}
+      amount: 4
+      position: {x: 0, y: 0}
 --- !u!1 &1008496195
 GameObject:
   m_ObjectHideFlags: 0
@@ -3235,8 +3279,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1324172045}
   - component: {fileID: 1324172044}
-  - component: {fileID: 1324172046}
   - component: {fileID: 1324172047}
+  - component: {fileID: 1324172046}
   - component: {fileID: 1324172048}
   m_Layer: 0
   m_Name: Buy Upgrades
@@ -3346,6 +3390,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  spriteRenderer: {fileID: 1324172044}
+  onSprite: {fileID: -4984350654097867239, guid: 77dd3945701af6343a94b8c6646b7c97, type: 3}
+  offSprite: {fileID: -1834653693705970930, guid: 77dd3945701af6343a94b8c6646b7c97, type: 3}
+  player: {fileID: 131912648}
+  onRange: 5
+  interactable: 1
 --- !u!61 &1324172047
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4262,10 +4312,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1962508669}
-  - component: {fileID: 1962508671}
   - component: {fileID: 1962508668}
   - component: {fileID: 1962508670}
   - component: {fileID: 1962508672}
+  - component: {fileID: 1962508673}
   m_Layer: 0
   m_Name: Start Game
   m_TagString: Untagged
@@ -4320,7 +4370,7 @@ SpriteRenderer:
   m_SortingLayerID: -1757009397
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 8893627027604703629, guid: 51eb5e44bb8f87a4289bd7a2ad2aa22a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4341,7 +4391,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.38, y: -2.33, z: 0}
-  m_LocalScale: {x: 2.3891, y: 3.1015, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1909135017}
@@ -4374,7 +4424,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!61 &1962508671
+  spriteRenderer: {fileID: 1962508668}
+  onSprite: {fileID: 7707295027277586861, guid: 51eb5e44bb8f87a4289bd7a2ad2aa22a, type: 3}
+  offSprite: {fileID: 8893627027604703629, guid: 51eb5e44bb8f87a4289bd7a2ad2aa22a, type: 3}
+  player: {fileID: 131912648}
+  onRange: 5
+  interactable: 1
+--- !u!114 &1962508672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962508667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39cbddccf83049f3a1a036d11cf3f8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Objects.StartNewGameObject
+  sceneName: Game Scene
+--- !u!61 &1962508673
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4412,27 +4481,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.28125, y: 3.40625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.28125, y: 3.40625}
   m_EdgeRadius: 0
---- !u!114 &1962508672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962508667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39cbddccf83049f3a1a036d11cf3f8d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Objects.StartNewGameObject
-  sceneName: Game Scene
 --- !u!1 &2050892369
 GameObject:
   m_ObjectHideFlags: 0

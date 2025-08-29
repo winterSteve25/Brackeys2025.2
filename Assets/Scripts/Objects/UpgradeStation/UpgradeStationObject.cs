@@ -1,7 +1,7 @@
 using Player;
 using UnityEngine;
 
-namespace UpgradeStation
+namespace Objects.UpgradeStation
 {
     public class UpgradeStationObject : MonoBehaviour
     {

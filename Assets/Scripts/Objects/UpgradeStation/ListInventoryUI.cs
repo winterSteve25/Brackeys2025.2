@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using InventorySystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UpgradeStation
+namespace Objects.UpgradeStation
 {
     public class ListInventoryUI : MonoBehaviour
     {
