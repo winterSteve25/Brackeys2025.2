@@ -18,7 +18,6 @@ namespace Player
 
         [Header("References")]
         [SerializeField, Self] private PlayerInventory inventory;
-
         [SerializeField, Self] private Collider2D playerCollider;
 
         [Header("Parameters")]

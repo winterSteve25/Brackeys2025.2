@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
+using Utils;
 using World;
 
 namespace Items
@@ -57,6 +59,10 @@ namespace Items
                     rb.AddForce((rb.position - (Vector2) transform.position).normalized * knockbackForce, ForceMode2D.Impulse);
                 }
             }
+            
+            var distToPlayer = (PlayerMovement.Current.transform.position - transform.position).magnitude;
+            var trauma = Mathf.SmoothStep(0.35f, 0, distToPlayer / (explosionRadius * 3.5f));
+            CameraEffects.Current.trauma += trauma;
             
             Destroy(gameObject);
         }

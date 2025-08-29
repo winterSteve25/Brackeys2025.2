@@ -453,7 +453,7 @@ MonoBehaviour:
   wasShowing: {fileID: 0}
   inventory: {fileID: 6373808034156432393}
   playerCollider: {fileID: 6739631666044764212}
-  interactionDistance: 4
+  interactionDistance: 5
 --- !u!114 &4631841600770837346
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,17 @@ MonoBehaviour:
   m_Name: SC.Cache
   m_EditorClassIdentifier: 
   CommandRegistry:
+  - Name: AddGold
+    Description: 
+    TargetType: 0
+    Group: Default
+    SerializableMethod:
+      Type:
+        Data: 00625574696c732e43617272794f766572446174614d616e616765722c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+      MethodName: AddGold
+      Parameters:
+      - Data: 005953797374656d2e496e7433322c206d73636f726c69622c2056657273696f6e3d342e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d62373761356335363139333465303839
+      Flags: 36
   - Name: AddItem
     Description: 
     TargetType: 1

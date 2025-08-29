@@ -23,6 +23,7 @@ namespace Player
             
             health -= damage;
             animations.Hurt();
+            CameraEffects.Current.trauma += 0.25f;
             Tween.Custom(health + damage, health, 0.4f, x => healthBar.UpdateValue(x), Ease.OutCubic);
         }
 

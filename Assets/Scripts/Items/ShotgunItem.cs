@@ -47,6 +47,7 @@ namespace Items
             if (ammo == null) return;
 
             inventory.Inventory.RemoveAmountFromPosition(ammo.position, 1);
+            CameraEffects.Current.trauma += 0.15f;
 
             var delta = effectiveAngle * 2 / numOfBullets;
             var center = (gunFront.position - transform.position).normalized;
