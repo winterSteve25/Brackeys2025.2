@@ -45,6 +45,7 @@ namespace Objects.UpgradeStation
 
         private void InvOnOnItemAdded(ItemStack obj)
         {
+            if (!obj.itemType.IsSellable) return;
             var i = Instantiate(prefab, container);
             i.Initialize(_inv, _buyInto, obj, sellOrBuyAmount);
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)i.transform);

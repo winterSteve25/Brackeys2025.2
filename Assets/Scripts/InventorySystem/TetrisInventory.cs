@@ -154,6 +154,20 @@ namespace InventorySystem
             return null;
         }
 
+        public ItemStack RemoveItemOfType(ItemType type)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i].itemType != type) continue;
+                var item = Items[i];
+                Items.RemoveAt(i);
+                OnItemRemoved?.Invoke(item);
+                return item;
+            }
+
+            return null;
+        }
+
         // Input position must be top left corner
         public void HoldItem(Vector2Int positionStrict)
         {

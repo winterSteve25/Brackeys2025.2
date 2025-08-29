@@ -21,7 +21,7 @@ namespace Player
 
         private void Update()
         {
-            oxygen -= oxygenDecreaseRate * Time.deltaTime;
+            oxygen -= oxygenDecreaseRate * Time.deltaTime * CarryOverDataManager.Instance.oxygenDepletionMultiplier;
 
             if (oxygen <= 0)
             {

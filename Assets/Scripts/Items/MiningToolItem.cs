@@ -1,6 +1,7 @@
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils;
 using World;
 
 namespace Items
@@ -9,11 +10,21 @@ namespace Items
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private bool wasMining;
+
         [SerializeField] private Vector2Int wasMiningPosition;
+        [SerializeField] private ContactFilter2D raycastFilter;
+        private RaycastHit2D[] _collisions;
 
         [Header("Parameters")]
         [SerializeField] private int damage;
+
         [SerializeField] private float miningSpeed;
+
+        private void Awake()
+        {
+            raycastFilter = LayerMaskUtils.EverythingMask(false);
+            _collisions = new RaycastHit2D[1];
+        }
 
         public override void UseTick(PlayerInventory inventory)
         {
@@ -29,7 +40,18 @@ namespace Items
                 return;
             }
 
-            if (TryGetTileAtMouse(out var tile, out var position))
+            Vector2 pickaxePosition = transform.position;
+            var mp = GetMousePosInWorld();
+            var dir = (mp - pickaxePosition).normalized;
+            var amountHit = Physics2D.Raycast(pickaxePosition, dir, raycastFilter,
+                _collisions);
+
+            if (amountHit > 0)
+            {
+                mp = _collisions[0].point + dir * 0.5f;
+            }
+            
+            if (WorldManager.Current.TryGetTile(mp, out var tile, out var position))
             {
                 if (position != wasMiningPosition)
                 {

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64a03992c944ab3b465303363fb2708, type: 3}
+  m_Name: Pickaxe Upgrade
+  m_EditorClassIdentifier: Assembly-CSharp::Objects.UpgradeStation.Upgrades.PickaxeUpgrade
+  <Icon>k__BackingField: {fileID: -5538243833550177018, guid: f4948df7eba0c554a99cfc44088f0ef2, type: 3}
+  <Name>k__BackingField: Pickaxe Upgrade
+  <CanOnlyAppearOnce>k__BackingField: 1
+  <AppearAfterDay>k__BackingField: 0
+  <Cost>k__BackingField: 60
+  laserType: {fileID: 11400000, guid: 10732788b147f8e44a19f94e3eece820, type: 2}
+  pickaxeType: {fileID: 11400000, guid: 86ddeb058ed5051449318d5cc6b4e951, type: 2}

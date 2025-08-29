@@ -31,7 +31,7 @@ namespace Objects.UpgradeStation
             icon.GetComponent<AspectRatioFitter>().aspectRatio = item.itemType.Size.x / (float) item.itemType.Size.y;
             
             itemName.text = $"{item.itemType.Name} x{item.amount}";
-            itemCost.text = item.Price.ToString();
+            itemCost.text = item.GetPrice(buy).ToString();
             sellOrBuyTxt = sellOrBuyAmount;
             _inventory = inventory;
             _buyInto = buyInto;
@@ -44,17 +44,17 @@ namespace Objects.UpgradeStation
             
             if (buy)
             {
-                if (CarryOverDataManager.Instance.Gold < _itemStack.Price)
+                if (CarryOverDataManager.Instance.Gold < _itemStack.GetPrice(buy))
                 {
                     return;
                 }
                 
-                CarryOverDataManager.Instance.Gold -= _itemStack.Price;
+                CarryOverDataManager.Instance.Gold -= _itemStack.GetPrice(buy);
                 _buyInto.AddAnywhere(_itemStack);
             }
             else
             {
-                CarryOverDataManager.Instance.Gold += _itemStack.Price;
+                CarryOverDataManager.Instance.Gold += _itemStack.GetPrice(buy);
             }
 
             Destroy(gameObject);
@@ -65,12 +65,12 @@ namespace Objects.UpgradeStation
             if (buy)
             {
                 sellOrBuyTxt.color = buyColor;
-                sellOrBuyTxt.text = $"-{_itemStack.Price}";
+                sellOrBuyTxt.text = $"-{_itemStack.GetPrice(buy)}";
             }
             else
             {
                 sellOrBuyTxt.color = sellColor;
-                sellOrBuyTxt.text = $"+{_itemStack.Price}";
+                sellOrBuyTxt.text = $"+{_itemStack.GetPrice(buy)}";
             }
 
             background.sprite = hoverSprite;

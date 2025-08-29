@@ -24,12 +24,19 @@ namespace Utils
 
         [field: SerializeField, FormerlySerializedAs("inventory")]
         public TetrisInventory Inventory { get; private set; }
+        public float oxygenDepletionMultiplier = 1;
+        public float fallDamageMultiplier = 1;
+        public float oreSpawnRateMultiplier = 1;
+        public float shopItemPriceMultiplier = 1;
+        public float targetShopItemPriceMultiplier = 1;
 
         private static int _day;
         public static int Day => _day / 2;
 
         private void Awake()
         {
+            shopItemPriceMultiplier = targetShopItemPriceMultiplier;
+            
             if (Instance == null)
             {
                 Instance = this;

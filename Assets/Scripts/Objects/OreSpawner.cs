@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 using World;
 
 namespace Objects
@@ -10,7 +11,7 @@ namespace Objects
 
         private void Start()
         {
-            if (Random.value < chance)
+            if (Random.value < Mathf.Clamp01(chance * CarryOverDataManager.Instance.oreSpawnRateMultiplier))
             {
                 WorldManager.Current.SetTile(transform.position,
                     Instantiate(prefabs[Random.Range(0, prefabs.Length)]));

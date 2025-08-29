@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utils;
 
 namespace InventorySystem
 {
@@ -9,7 +10,6 @@ namespace InventorySystem
         public ItemType itemType;
         public int amount;
         public Vector2Int position;
-        public int Price => amount * itemType.BasePrice;
         
         public ItemStack(ItemType itemType, int amount, Vector2Int position)
         {
@@ -21,6 +21,12 @@ namespace InventorySystem
         public override string ToString()
         {
             return $"{itemType.name} x{amount} at {position}";
+        }
+
+        public int GetPrice(bool isBuy)
+        {
+            var shopMultiplier = isBuy ? CarryOverDataManager.Instance.shopItemPriceMultiplier : 1;
+            return Mathf.FloorToInt(amount * shopMultiplier * itemType.BasePrice);
         }
     }
 }

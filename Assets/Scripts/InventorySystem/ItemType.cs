@@ -14,5 +14,6 @@ namespace InventorySystem
         [field: SerializeField] public Sprite HandIcon { get; private set; }
         [field: SerializeField] public GameObject VisualPrefab { get; private set; }
         [field: SerializeField] public UpdatableItem LogicPrefab { get; private set; }
+        [field: SerializeField] public bool IsSellable { get; private set; } = true;
     }
 }

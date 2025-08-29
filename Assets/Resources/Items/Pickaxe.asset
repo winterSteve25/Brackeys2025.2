@@ -20,3 +20,4 @@ MonoBehaviour:
   <HandIcon>k__BackingField: {fileID: 0}
   <VisualPrefab>k__BackingField: {fileID: 7631899753177553906, guid: 4cdf96cb63504964f9d6ad98614e3fd2, type: 3}
   <LogicPrefab>k__BackingField: {fileID: 0}
+  <IsSellable>k__BackingField: 0

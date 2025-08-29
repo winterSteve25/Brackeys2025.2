@@ -86,7 +86,8 @@ namespace Player
 
                 if (!wasGrounded && grounded)
                 {
-                    health.TakeDamage(fallDamageCurveOnDist.Evaluate(Mathf.Abs(transform.position.y - startAirY)));
+                    health.TakeDamage(CarryOverDataManager.Instance.fallDamageMultiplier
+                                      * fallDamageCurveOnDist.Evaluate(Mathf.Abs(transform.position.y - startAirY)));
                     startAirY = transform.position.y;
                 }
             }
