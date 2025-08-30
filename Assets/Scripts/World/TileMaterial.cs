@@ -1,4 +1,6 @@
 using System;
+using Audio;
+using FMODUnity;
 using InventorySystem;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,6 +10,7 @@ namespace World
     public enum TileMaterialPreset
     {
         Stone,
+        Bedrock,
         Unknown,
     }
 
@@ -16,17 +19,20 @@ namespace World
     {
         [field: SerializeField] public float MiningDuration { get; private set; }
         [field: SerializeField] public ItemStack[] Loot { get; private set; }
-        private readonly TileMaterialPreset _preset;
-
-        public TileMaterial(float miningDuration, ItemStack[] loot)
+        [field: SerializeField] public EventReference PlaceSound { get; private set; }
+        [field: SerializeField] public EventReference BreakSound { get; private set; }
+        
+        public TileMaterial(float miningDuration, ItemStack[] loot, EventReference placeSound, EventReference breakSound)
         {
             MiningDuration = miningDuration;
             Loot = loot;
+            PlaceSound = placeSound;
+            BreakSound = breakSound;
         }
 
         public static implicit operator TileMaterial(TileMaterialPreset preset)
         {
-            return new TileMaterial(preset.MiningDuration(), preset.Loot());
+            return new TileMaterial(preset.MiningDuration(), preset.Loot(), preset.PlaceSound(), preset.BreakSound());
         }
 
         public static implicit operator TileMaterial(TileBase tileBase)
@@ -47,7 +53,8 @@ namespace World
             {
                 TileMaterialPreset.Stone => 0.3f,
                 TileMaterialPreset.Unknown => 0.5f,
-                _ => throw new ArgumentOutOfRangeException(nameof(material), material, null)
+                TileMaterialPreset.Bedrock => -1,
+                _ => 0,
             };
         }
 
@@ -59,8 +66,29 @@ namespace World
                 {
                     new(StoneItemType.Value, 1, Vector2Int.zero)
                 },
-                TileMaterialPreset.Unknown => null,
-                _ => throw new ArgumentOutOfRangeException(nameof(material), material, null)
+                _ => null,
+            };
+        }
+
+        public static EventReference PlaceSound(this TileMaterialPreset material)
+        {
+            return material switch
+            {
+                TileMaterialPreset.Stone => FModEvents.Instance.StonePlace,
+                TileMaterialPreset.Unknown => default,
+                TileMaterialPreset.Bedrock => default,
+                _ => default
+            };
+        }
+
+        public static EventReference BreakSound(this TileMaterialPreset material)
+        {
+            return material switch
+            {
+                TileMaterialPreset.Stone => FModEvents.Instance.StoneBreak,
+                TileMaterialPreset.Unknown => default,
+                TileMaterialPreset.Bedrock => default,
+                _ => default,
             };
         }
     }

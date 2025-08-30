@@ -110,7 +110,7 @@ MonoBehaviour:
   exploded: 0
   collisions: []
   detonationTime: 2
-  explosionRadius: 3
+  explosionRadius: 4
   damage: 2
   randomRadius: 2
   knockbackForce: 30

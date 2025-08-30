@@ -1,3 +1,6 @@
+using System;
+using Audio;
+using FMOD.Studio;
 using KBCore.Refs;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,7 +15,6 @@ namespace Player
 
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private Vector2 direction;
-
         [SerializeField] private bool grounded;
         [SerializeField] private Collider2D[] groundCollision;
         [SerializeField] private ContactFilter2D everythingElseLayerMask;
@@ -22,10 +24,10 @@ namespace Player
         [SerializeField] private float coyoteTimeCountDown;
         [SerializeField] private float startAirY;
         public IPlayerMovementOverride MovementOverride;
+        private EventInstance _walkSound;
 
         [Header("References")]
         [SerializeField, Self] private Rigidbody2D rb;
-
         [SerializeField, Self] private PlayerAnimation animations;
         [SerializeField] private PlayerHealth health;
         [SerializeField] private Transform groundTest;
@@ -53,6 +55,17 @@ namespace Player
             Current = this;
             groundCollision = new Collider2D[1];
             everythingElseLayerMask = LayerMaskUtils.EverythingMask(false);
+        }
+
+        private void Start()
+        {
+            _walkSound = AudioManager.CreateInstance(FModEvents.Instance.PlayerWalk);
+        }
+
+        private void OnDestroy()
+        {
+            _walkSound.stop(STOP_MODE.IMMEDIATE);
+            _walkSound.release();
         }
 
         private void OnDrawGizmosSelected()
@@ -86,9 +99,15 @@ namespace Player
 
                 if (!wasGrounded && grounded)
                 {
-                    health.TakeDamage(CarryOverDataManager.Instance.fallDamageMultiplier
-                                      * fallDamageCurveOnDist.Evaluate(Mathf.Abs(transform.position.y - startAirY)));
+                    var fallDmg = CarryOverDataManager.Instance.fallDamageMultiplier
+                                  * fallDamageCurveOnDist.Evaluate(Mathf.Abs(transform.position.y - startAirY));
+                    health.TakeDamage(fallDmg);
                     startAirY = transform.position.y;
+
+                    if (fallDmg > 0)
+                    {
+                        AudioManager.PlayOnce(FModEvents.Instance.PlayerFall, transform.position);
+                    }
                 }
             }
 
@@ -101,6 +120,27 @@ namespace Player
             {
                 UpdateVisuals(wasGrounded);
                 HandleJump(wasGrounded);
+                UpdateSound();
+            }
+        }
+
+        private void UpdateSound()
+        {
+            if (Mathf.Abs(direction.x) > 0)
+            {
+                _walkSound.getPlaybackState(out var state);
+                if (state is not PLAYBACK_STATE.PLAYING or PLAYBACK_STATE.STARTING)
+                {
+                    _walkSound.start();
+                }
+            }
+            else
+            {
+                _walkSound.getPlaybackState(out var state);
+                if (state is not PLAYBACK_STATE.STOPPED or PLAYBACK_STATE.STOPPING)
+                {
+                    _walkSound.stop(STOP_MODE.ALLOWFADEOUT);
+                }
             }
         }
 

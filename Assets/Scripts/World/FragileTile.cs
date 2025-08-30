@@ -13,6 +13,7 @@ namespace World
             if (requires.Any(offset => !world.HasTile(cell + offset)))
             {
                 BreakManager.Current.CompleteBreak(cell, dropItem);
+                Debug.Log(cell);
             }
         }
     }

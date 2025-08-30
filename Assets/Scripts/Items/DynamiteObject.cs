@@ -1,8 +1,13 @@
+using System;
 using System.Collections.Generic;
+using Audio;
+using FMOD.Studio;
+using FMODUnity;
 using Player;
 using UnityEngine;
 using Utils;
 using World;
+using Random = UnityEngine.Random;
 
 namespace Items
 {
@@ -12,6 +17,7 @@ namespace Items
         [SerializeField] private float time;
         [SerializeField] private bool exploded;
         [SerializeField] private List<Collider2D> collisions;
+        private EventInstance _tickSound;
         
         [Header("Parameters")]
         [SerializeField] private float detonationTime;
@@ -19,6 +25,12 @@ namespace Items
         [SerializeField] private float damage;
         [SerializeField] private float randomRadius;
         [SerializeField] private float knockbackForce;
+
+        private void Start()
+        {
+            _tickSound = AudioManager.CreateInstance(FModEvents.Instance.DynamiteTick);
+            _tickSound.start();
+        }
 
         private void Update()
         {
@@ -28,6 +40,11 @@ namespace Items
             {
                 Explode();
             }
+        }
+
+        private void FixedUpdate()
+        {
+            _tickSound.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
         }
 
         private void Explode()
@@ -63,6 +80,11 @@ namespace Items
             var distToPlayer = (PlayerMovement.Current.transform.position - transform.position).magnitude;
             var trauma = Mathf.SmoothStep(0.35f, 0, distToPlayer / (explosionRadius * 3.5f));
             CameraEffects.Current.trauma += trauma;
+            
+            _tickSound.stop(STOP_MODE.IMMEDIATE);
+            _tickSound.release();
+            
+            AudioManager.PlayOnce(FModEvents.Instance.DynamiteExplode, transform.position);
             
             Destroy(gameObject);
         }

@@ -19,6 +19,7 @@ namespace Audio
                 DontDestroyOnLoad(gameObject);
                 
                 _instances = new List<EventInstance>();
+                PlayOnce(FModEvents.Instance.AmbienceMusic1, Vector2.zero);
                 
                 return;
             }

@@ -2018,13 +2018,13 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0.99929726
+    height: 0.999306
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.375
+  orthographic size: 3.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
   nonRigidbodyVelocity: 0
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 1614601385}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,6 +3621,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537867341}
   m_CullTransparentMesh: 1
+--- !u!1 &1614601385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3984830095127612333, guid: bb56e78e744d24045ba57d3f6f405778, type: 3}
+  m_PrefabInstance: {fileID: 170586596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1622391277
 GameObject:
   m_ObjectHideFlags: 0

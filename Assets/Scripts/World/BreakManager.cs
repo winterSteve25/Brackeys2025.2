@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Audio;
 using KBCore.Refs;
 using TMPro;
 using UnityEngine;
@@ -49,7 +50,13 @@ namespace World
         public void CompleteBreak(Vector2Int pos, bool dropItems = true)
         {
             if (!worldManager.TryGetTile(pos, out var tile)) return;
+            
             worldManager.RemoveTile(pos);
+            if (!tile.Material.BreakSound.IsNull)
+            {
+                AudioManager.PlayOnce(tile.Material.BreakSound, worldManager.CellToWorld(pos));
+            }
+            
             var loot = tile.Material.Loot;
             if (loot == null || !dropItems) return;
             

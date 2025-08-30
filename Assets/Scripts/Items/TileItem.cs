@@ -1,3 +1,4 @@
+using Audio;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,9 +24,15 @@ namespace Items
                 !WorldManager.Current.HasTile(pos + Vector2Int.right) &&
                 !WorldManager.Current.HasTile(pos + Vector2Int.up) &&
                 !WorldManager.Current.HasTile(pos + Vector2Int.down)) return;
-            
-            WorldManager.Current.SetTile(pos, TilemapTile.FromTileBase(tile));
+
+            ITile t = TilemapTile.FromTileBase(tile);
+            WorldManager.Current.SetTile(pos, t);
             inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
+
+            if (!t.Material.PlaceSound.IsNull)
+            {
+                AudioManager.PlayOnce(t.Material.PlaceSound, WorldManager.Current.CellToWorld(pos));
+            }
         }
     }
 }

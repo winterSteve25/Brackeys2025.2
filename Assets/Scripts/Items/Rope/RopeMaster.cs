@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using Audio;
+using FMOD.Studio;
 using KBCore.Refs;
 using Objects;
 using Player;
@@ -12,13 +15,16 @@ namespace Items.Rope
     {
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private List<RopeSegment> segments;
+
         [SerializeField] private int length;
         [SerializeField] private PlayerMovement player;
         [SerializeField] private float originalGravityScale;
         private RaycastHit2D[] _collisions;
+        private EventInstance _sound;
 
         [Header("References")]
         [SerializeField, Self] private BoxCollider2D col;
+
         [SerializeField, Self] private InteractableObject interactableObject;
         [SerializeField] private Transform upLimit;
         [SerializeField] private RopeSegment segmentPrefab;
@@ -31,6 +37,17 @@ namespace Items.Rope
             _collisions = new RaycastHit2D[1];
         }
 
+        private void Start()
+        {
+            _sound = AudioManager.CreateInstance(FModEvents.Instance.RopeClimb);
+        }
+
+        private void OnDestroy()
+        {
+            _sound.stop(STOP_MODE.IMMEDIATE);
+            _sound.release();
+        }
+
         public void TryAddSegment()
         {
             if (segments.Count > 0)
@@ -40,10 +57,10 @@ namespace Items.Rope
                     return;
                 }
             }
-            
+
             var segment = Instantiate(segmentPrefab, transform);
             WorldManager.Current.SetTile(transform.position - new Vector3(0, length, 0), segment);
-            
+
             segment.Init(this, length);
             segments.Add(segment);
             segment.IsEnd(true);
@@ -52,9 +69,9 @@ namespace Items.Rope
             {
                 segments[length - 1].IsEnd(false);
             }
-            
+
             length++;
-            
+
             col.size = new Vector2(1, length);
             col.offset = new Vector2(0, -(length - 1) / 2f);
         }
@@ -74,9 +91,14 @@ namespace Items.Rope
             {
                 segments[^1].IsEnd(true);
             }
-            
+
             col.size = new Vector2(1, length);
             col.offset = new Vector2(0, -(length - 1) / 2f);
+
+            if (length <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void GrabOntoRope(PlayerInventory inventory)
@@ -114,6 +136,7 @@ namespace Items.Rope
                 player.GetComponent<Rigidbody2D>().gravityScale = originalGravityScale;
                 interactableObject.interactable = true;
                 player = null;
+                AudioManager.PlayOnce(FModEvents.Instance.RopeClimbFinish, transform.position);
             }
         }
 
@@ -136,11 +159,28 @@ namespace Items.Rope
             {
                 var pos = rb.position;
                 pos.y = upLimit.position.y - col.size.y;
-                
+
                 rb.position = pos;
                 if (dir.y < 0)
-                { 
+                {
                     dir.y = 0;
+                }
+            }
+
+            if (Mathf.Abs(dir.y) > 0)
+            {
+                _sound.getPlaybackState(out var state);
+                if (state is not PLAYBACK_STATE.PLAYING or PLAYBACK_STATE.STARTING)
+                {
+                    _sound.start();
+                }
+            }
+            else
+            {
+                _sound.getPlaybackState(out var state);
+                if (state is not PLAYBACK_STATE.STOPPED or PLAYBACK_STATE.STOPPING)
+                {
+                    _sound.stop(STOP_MODE.ALLOWFADEOUT);
                 }
             }
 

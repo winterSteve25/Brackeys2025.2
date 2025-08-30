@@ -110,6 +110,20 @@ MonoBehaviour:
     - itemType: {fileID: 11400000, guid: 5c724e1778021b94c8e3d1cbfbb21b12, type: 2}
       amount: 1
       position: {x: 0, y: 0}
+    <PlaceSound>k__BackingField:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    <BreakSound>k__BackingField:
+      Guid:
+        Data1: -715073140
+        Data2: 1077563691
+        Data3: 1368105350
+        Data4: -911769561
+      Path: event:/Tile/Crystal/Break
   variations:
   - {fileID: -359107653662164655, guid: 167b289856f93604eaf813a135092d88, type: 3}
   - {fileID: -1781489244938723371, guid: 167b289856f93604eaf813a135092d88, type: 3}

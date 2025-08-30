@@ -44,6 +44,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d3615d3f264adcaa981b713cc6e1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio.FModEvents
+  <DynamiteExplode>k__BackingField:
+    Guid:
+      Data1: -943972790
+      Data2: 1242945153
+      Data3: 1515325351
+      Data4: 878041469
+    Path: event:/Items/Dynamite/Explode
+  <DynamiteTick>k__BackingField:
+    Guid:
+      Data1: -729591677
+      Data2: 1325391689
+      Data3: 873915039
+      Data4: 452501926
+    Path: event:/Items/Dynamite/Tick
+  <DynamiteThrow>k__BackingField:
+    Guid:
+      Data1: -1685984678
+      Data2: 1139069917
+      Data3: -746440786
+      Data4: 1522896579
+    Path: event:/Items/Dynamite/Throw
+  <RopeClimb>k__BackingField:
+    Guid:
+      Data1: 1312110363
+      Data2: 1207020717
+      Data3: -1452811373
+      Data4: -1871581496
+    Path: event:/Items/Rope/Climb
+  <RopeClimbFinish>k__BackingField:
+    Guid:
+      Data1: -666192793
+      Data2: 1287563814
+      Data3: 949419915
+      Data4: -1318769899
+    Path: event:/Items/Rope/Finish
+  <PlayerFall>k__BackingField:
+    Guid:
+      Data1: 929125372
+      Data2: 1252857798
+      Data3: 392902815
+      Data4: -1397450044
+    Path: event:/Player/Fall
+  <PlayerWalk>k__BackingField:
+    Guid:
+      Data1: 2072181587
+      Data2: 1312363337
+      Data3: -1501518197
+      Data4: -1609446275
+    Path: event:/Player/Walk
+  <StonePlace>k__BackingField:
+    Guid:
+      Data1: 991516376
+      Data2: 1320210426
+      Data3: -796477001
+      Data4: 268522487
+    Path: event:/Tile/Stone/Place
+  <StoneBreak>k__BackingField:
+    Guid:
+      Data1: -1441166744
+      Data2: 1185938293
+      Data3: -787580515
+      Data4: 1391229930
+    Path: event:/Tile/Stone/Break
   <TerminalInteract>k__BackingField:
     Guid:
       Data1: 1758681117
@@ -51,6 +114,20 @@ MonoBehaviour:
       Data3: -184262980
       Data4: -1459822277
     Path: event:/Tile/Terminal/Interact
+  <TerminalTeleport>k__BackingField:
+    Guid:
+      Data1: -2059234381
+      Data2: 1114660121
+      Data3: 1688572860
+      Data4: -1345106966
+    Path: event:/Tile/Terminal/Teleport
+  <AmbienceMusic1>k__BackingField:
+    Guid:
+      Data1: 1221129849
+      Data2: 1200207715
+      Data3: 1993908883
+      Data4: -1051502873
+    Path: event:/Ambience_1
 --- !u!1 &6277613051513838358
 GameObject:
   m_ObjectHideFlags: 0

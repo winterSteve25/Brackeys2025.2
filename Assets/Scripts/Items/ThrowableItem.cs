@@ -1,3 +1,4 @@
+using Audio;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,8 @@ namespace Items
             
             dynamite.position = handAnchor.position;
             dynamite.AddForce(dir * throwForce, ForceMode2D.Impulse);
+            
+            AudioManager.PlayOnce(FModEvents.Instance.DynamiteThrow, transform.position);
         }
     }
 }
