@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: 37ddc8936d5a80a42bf6606dacaa1e1f
+  - enabled: 1
     path: Assets/Scenes/Space Ship.unity
     guid: 0934569fa4f9dcc4a99e76b4be5ee429
   - enabled: 1

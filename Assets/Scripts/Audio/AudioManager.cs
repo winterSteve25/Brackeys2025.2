@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
@@ -17,14 +18,16 @@ namespace Audio
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
-                
                 _instances = new List<EventInstance>();
-                PlayOnce(FModEvents.Instance.AmbienceMusic1, Vector2.zero);
-                
                 return;
             }
-            
+
             Destroy(gameObject);
+        }
+
+        private void Start()
+        {
+            PlayOnce(FModEvents.Instance.AmbienceMusic1, Vector2.zero);
         }
 
         public static void PlayOnce(EventReference @event, Vector2 worldPos)
