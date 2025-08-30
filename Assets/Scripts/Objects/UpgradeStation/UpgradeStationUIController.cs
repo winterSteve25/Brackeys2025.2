@@ -32,7 +32,7 @@ namespace Objects.UpgradeStation
 
     public class UpgradeStationUIController : MonoBehaviour
     {
-        private static HashSet<Upgrade> _appearedBefore;
+        public static HashSet<Upgrade> appearedBefore;
 
         [Header("Debug Info DO NOT EDIT")]
         [SerializeField] private bool isOpen;
@@ -56,13 +56,13 @@ namespace Objects.UpgradeStation
             group.interactable = false;
             group.blocksRaycasts = false;
 
-            _appearedBefore ??= new HashSet<Upgrade>();
+            appearedBefore ??= new HashSet<Upgrade>();
 
             purchasableItemsForToday = purchasableItems[Mathf.Min(CarryOverDataManager.Day, purchasableItems.Count - 1)]
                 .Computed;
             upgradesForToday = possibleUpgrades.Where(x =>
             {
-                if (x.CanOnlyAppearOnce && _appearedBefore.Contains(x))
+                if (x.CanOnlyAppearOnce && appearedBefore.Contains(x))
                 {
                     return false;
                 }

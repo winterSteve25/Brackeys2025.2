@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Rope
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem.ItemType
   <Name>k__BackingField: Rope
-  <StackSize>k__BackingField: 8
-  <BasePrice>k__BackingField: 2
+  <StackSize>k__BackingField: 32
+  <BasePrice>k__BackingField: 1
   <Size>k__BackingField: {x: 1, y: 1}
   <Icon>k__BackingField: {fileID: 21300000, guid: 356258f29e232994490749bb2e1d1109, type: 3}
   <HandIcon>k__BackingField: {fileID: 0}
   <VisualPrefab>k__BackingField: {fileID: 0}
   <LogicPrefab>k__BackingField: {fileID: 4488589847670882138, guid: 36c5aa236f3146842b8cb9b2b6a40bde, type: 3}
+  <IsSellable>k__BackingField: 1

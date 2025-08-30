@@ -103,11 +103,6 @@ namespace Player
                                   * fallDamageCurveOnDist.Evaluate(Mathf.Abs(transform.position.y - startAirY));
                     health.TakeDamage(fallDmg);
                     startAirY = transform.position.y;
-
-                    if (fallDmg > 0)
-                    {
-                        AudioManager.PlayOnce(FModEvents.Instance.PlayerFall, transform.position);
-                    }
                 }
             }
 

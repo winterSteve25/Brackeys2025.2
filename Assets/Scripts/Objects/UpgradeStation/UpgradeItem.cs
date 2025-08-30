@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Audio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -37,7 +38,9 @@ namespace Objects.UpgradeStation
             CarryOverDataManager.Instance.Gold -= _upgrade.Cost;
             _upgrade.Apply();
             _upgradesForToday.Remove(_upgrade);
+            UpgradeStationUIController.appearedBefore.Add(_upgrade);
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform) transform.parent);
+            ToolTipManager.Instance.Hide();
             Destroy(gameObject);
         }
 
@@ -47,6 +50,7 @@ namespace Objects.UpgradeStation
             sellOrBuyTxt.text = $"-{_upgrade.Cost}";
             background.sprite = hoverSprite;
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sellOrBuyTxt.transform.parent);
+            AudioManager.PlayOnce(FModEvents.Instance.UIHover, Vector2.zero);
             
             ToolTipManager.Instance.Show(_upgrade.Name, _upgrade.Description);
         }

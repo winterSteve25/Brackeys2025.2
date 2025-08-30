@@ -121,6 +121,13 @@ MonoBehaviour:
       Data3: 1688572860
       Data4: -1345106966
     Path: event:/Tile/Terminal/Teleport
+  <UIHover>k__BackingField:
+    Guid:
+      Data1: 1073556298
+      Data2: 1196522662
+      Data3: -1168902991
+      Data4: 1681930965
+    Path: event:/UI/Hover
   <AmbienceMusic1>k__BackingField:
     Guid:
       Data1: 1221129849

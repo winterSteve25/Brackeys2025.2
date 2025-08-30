@@ -1,3 +1,4 @@
+using Audio;
 using InventorySystem;
 using TMPro;
 using UnityEngine;
@@ -72,6 +73,8 @@ namespace Objects.UpgradeStation
                 sellOrBuyTxt.color = sellColor;
                 sellOrBuyTxt.text = $"+{_itemStack.GetPrice(buy)}";
             }
+            
+            AudioManager.PlayOnce(FModEvents.Instance.UIHover, Vector2.zero);
 
             background.sprite = hoverSprite;
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sellOrBuyTxt.transform.parent);

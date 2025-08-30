@@ -22,6 +22,8 @@ namespace Audio
         [field: SerializeField] public EventReference TerminalInteract { get; private set; }
         [field: SerializeField] public EventReference TerminalTeleport { get; private set; }
         
+        [field: SerializeField] public EventReference UIHover { get; private set; }
+        
         [field: SerializeField] public EventReference AmbienceMusic1 { get; private set; }
 
         private void Awake()

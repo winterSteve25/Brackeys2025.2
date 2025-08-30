@@ -1,6 +1,7 @@
 using System;
 using ED.SC;
 using InventorySystem;
+using Objects.UpgradeStation;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -33,9 +34,19 @@ namespace Utils
         private static int _day;
         public static int Day => _day / 2;
 
+        public static bool justDied = false;
+        public static int goldAfterDeath;
+
         private void Awake()
         {
-            shopItemPriceMultiplier = targetShopItemPriceMultiplier;
+            if (justDied)
+            {
+                Gold = goldAfterDeath;
+                justDied = false;
+                _day = 0;
+                // todo this is scuffed
+                UpgradeStationUIController.appearedBefore.Clear();
+            }
             
             if (Instance == null)
             {
@@ -44,6 +55,7 @@ namespace Utils
                 return;
             }
 
+            Instance.shopItemPriceMultiplier = targetShopItemPriceMultiplier;
             _day++;
             Destroy(gameObject);
         }

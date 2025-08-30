@@ -1,3 +1,4 @@
+using Audio;
 using KBCore.Refs;
 using PrimeTween;
 using TMPro;
@@ -80,13 +81,15 @@ namespace InventorySystem.UI
         {
             selfCanvas.overrideSorting = true;
             selfCanvas.sortingOrder = 1000;
-
+            AudioManager.PlayOnce(FModEvents.Instance.UIHover, Vector2.zero);
+            ToolTipManager.Instance.Show(ItemStackStored.itemType.Name, "");
             Tween.Scale(icon.transform, 1.15f, 0.15f, Ease.OutQuad);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             selfCanvas.overrideSorting = false;
+            ToolTipManager.Instance.Hide();
             Tween.Scale(icon.transform, 1f, 0.15f, Ease.OutQuad);
         }
 
