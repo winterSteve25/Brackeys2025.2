@@ -17,6 +17,7 @@ namespace Items
         [Header("Parameters")]
         [SerializeField] private int damage;
         [SerializeField] private float miningSpeed;
+        [SerializeField] private float range;
 
         protected virtual void Awake()
         {
@@ -29,12 +30,7 @@ namespace Items
             var breakManager = BreakManager.Current;
             if (!Mouse.current.leftButton.isPressed)
             {
-                if (isMining)
-                {
-                    breakManager.CancelBreak(wasMiningPosition);
-                }
-
-                isMining = false;
+                Cancel(breakManager);
                 return;
             }
 
@@ -48,9 +44,21 @@ namespace Items
             {
                 mp = _collisions[0].point + dir * 0.5f;
             }
-            
+
+            if (range >= 0 && (mp - pickaxePosition).magnitude > range)
+            {
+                Cancel(breakManager);
+                return;
+            }
+
             if (WorldManager.Current.TryGetTile(mp, out var tile, out var position))
             {
+                if (tile.Material.MiningDuration < 0)
+                {
+                    Cancel(breakManager);
+                    return;
+                }
+
                 if (position != wasMiningPosition)
                 {
                     breakManager.CancelBreak(wasMiningPosition);
@@ -69,13 +77,18 @@ namespace Items
             }
             else
             {
-                if (isMining)
-                {
-                    breakManager.CancelBreak(wasMiningPosition);
-                }
-
-                isMining = false;
+                Cancel(breakManager);
             }
+        }
+
+        private void Cancel(BreakManager breakManager)
+        {
+            if (isMining)
+            {
+                breakManager.CancelBreak(wasMiningPosition);
+            }
+
+            isMining = false;
         }
     }
 }

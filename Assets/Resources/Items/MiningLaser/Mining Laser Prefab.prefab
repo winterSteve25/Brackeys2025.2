@@ -334,6 +334,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   damage: 2
   miningSpeed: 3
+  range: -1
   lineRenderer: {fileID: 1410213227003173603}
   head: {fileID: 3323206324375845712}
 --- !u!1 &7709500148037735442

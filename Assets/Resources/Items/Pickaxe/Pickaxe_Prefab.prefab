@@ -141,10 +141,25 @@ MonoBehaviour:
     amount: 0
     position: {x: 0, y: 0}
   handAnchor: {fileID: 0}
-  wasMining: 0
+  isMining: 0
   wasMiningPosition: {x: 0, y: 0}
+  raycastFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   damage: 1
   miningSpeed: 1
+  range: 6
 --- !u!1 &7709500148037735442
 GameObject:
   m_ObjectHideFlags: 0
