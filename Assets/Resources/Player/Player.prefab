@@ -353,7 +353,7 @@ MonoBehaviour:
   groundTestRadius: 0.05
   movement: {fileID: -4702912422646451500, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   jump: {fileID: 2297328087081087681, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  speed: 8
+  speed: 7
   jumpForce: 22
   jumpBufferTime: 0.08
   coyoteTime: 0.08
@@ -469,6 +469,7 @@ MonoBehaviour:
   health: 10
   healthBar: {fileID: 0}
   animations: {fileID: 1485343977351787005}
+  deathScreen: {fileID: 0}
 --- !u!114 &4699938126396643210
 MonoBehaviour:
   m_ObjectHideFlags: 0

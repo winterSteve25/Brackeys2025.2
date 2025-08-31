@@ -52,9 +52,9 @@ namespace Items
             exploded = true;
             var currentPos = WorldManager.Current.WorldToCell(transform.position);
 
-            for (int i = -Mathf.RoundToInt(explosionRadius); i < explosionRadius; i++)
+            for (int i = -Mathf.RoundToInt(explosionRadius); i <= explosionRadius; i++)
             {
-                for (int j = -Mathf.RoundToInt(explosionRadius); j < explosionRadius; j++)
+                for (int j = -Mathf.RoundToInt(explosionRadius); j <= explosionRadius; j++)
                 {
                     var offset = new Vector2Int(i, j);
                     if (!(offset.magnitude < explosionRadius + Random.Range(-randomRadius, randomRadius))) continue;

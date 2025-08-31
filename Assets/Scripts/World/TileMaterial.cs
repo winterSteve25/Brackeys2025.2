@@ -21,18 +21,20 @@ namespace World
         [field: SerializeField] public ItemStack[] Loot { get; private set; }
         [field: SerializeField] public EventReference PlaceSound { get; private set; }
         [field: SerializeField] public EventReference BreakSound { get; private set; }
+        [field: SerializeField] public string Name { get; private set; }
         
-        public TileMaterial(float miningDuration, ItemStack[] loot, EventReference placeSound, EventReference breakSound)
+        public TileMaterial(float miningDuration, ItemStack[] loot, EventReference placeSound, EventReference breakSound, string name)
         {
             MiningDuration = miningDuration;
             Loot = loot;
             PlaceSound = placeSound;
             BreakSound = breakSound;
+            Name = name;
         }
 
         public static implicit operator TileMaterial(TileMaterialPreset preset)
         {
-            return new TileMaterial(preset.MiningDuration(), preset.Loot(), preset.PlaceSound(), preset.BreakSound());
+            return new TileMaterial(preset.MiningDuration(), preset.Loot(), preset.PlaceSound(), preset.BreakSound(), preset.ToString());
         }
 
         public static implicit operator TileMaterial(TileBase tileBase)

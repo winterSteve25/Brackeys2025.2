@@ -50,11 +50,13 @@ namespace Objects.UpgradeStation
                     return;
                 }
                 
+                AudioManager.PlayOnce(FModEvents.Instance.UIBuy, Vector2.zero);
                 CarryOverDataManager.Instance.Gold -= _itemStack.GetPrice(buy);
                 _buyInto.AddAnywhere(_itemStack);
             }
             else
             {
+                AudioManager.PlayOnce(FModEvents.Instance.UISell, Vector2.zero);
                 CarryOverDataManager.Instance.Gold += _itemStack.GetPrice(buy);
             }
 

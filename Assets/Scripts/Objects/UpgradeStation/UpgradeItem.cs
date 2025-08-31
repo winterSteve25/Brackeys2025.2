@@ -40,6 +40,7 @@ namespace Objects.UpgradeStation
             _upgradesForToday.Remove(_upgrade);
             UpgradeStationUIController.appearedBefore.Add(_upgrade);
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform) transform.parent);
+            AudioManager.PlayOnce(FModEvents.Instance.UIBuy, Vector2.zero);
             ToolTipManager.Instance.Hide();
             Destroy(gameObject);
         }

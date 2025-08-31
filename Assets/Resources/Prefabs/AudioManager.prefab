@@ -79,6 +79,27 @@ MonoBehaviour:
       Data3: 949419915
       Data4: -1318769899
     Path: event:/Items/Rope/Finish
+  <RopePlace>k__BackingField:
+    Guid:
+      Data1: -1545156865
+      Data2: 1295839947
+      Data3: -1985568325
+      Data4: -2089605390
+    Path: event:/Items/Rope/Place
+  <LaserUse>k__BackingField:
+    Guid:
+      Data1: 264241236
+      Data2: 1073937823
+      Data3: 2108209817
+      Data4: 1291668814
+    Path: event:/Items/Laser/Use
+  <DectectorPing>k__BackingField:
+    Guid:
+      Data1: 692659265
+      Data2: 1315299867
+      Data3: 360557735
+      Data4: 1785525942
+    Path: event:/Items/Detector/Ping
   <PlayerFall>k__BackingField:
     Guid:
       Data1: 929125372
@@ -128,6 +149,20 @@ MonoBehaviour:
       Data3: -1168902991
       Data4: 1681930965
     Path: event:/UI/Hover
+  <UIBuy>k__BackingField:
+    Guid:
+      Data1: -764164742
+      Data2: 1214952011
+      Data3: 1646437822
+      Data4: -1492560874
+    Path: event:/UI/Buy
+  <UISell>k__BackingField:
+    Guid:
+      Data1: -1545877510
+      Data2: 1121248592
+      Data3: 1409383615
+      Data4: -939960500
+    Path: event:/UI/Sell
   <AmbienceMusic1>k__BackingField:
     Guid:
       Data1: 1221129849

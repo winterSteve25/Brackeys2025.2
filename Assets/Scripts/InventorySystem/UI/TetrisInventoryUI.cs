@@ -102,7 +102,7 @@ namespace InventorySystem.UI
 
         public void ReturnHeldItem()
         {
-            inventory.ReturnHeldItem(PlayerMovement.Current.transform.position);
+            inventory.ReturnHeldItem();
         }
 
         private void OnDestroy()

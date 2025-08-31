@@ -44,17 +44,25 @@ namespace Items.Rope
 
         private void OnDestroy()
         {
+            if (player != null)
+            {
+                player.MovementOverride = null;
+                player.GetComponent<Rigidbody2D>().gravityScale = originalGravityScale;
+                interactableObject.interactable = true;
+                player = null;
+            }
+            
             _sound.stop(STOP_MODE.IMMEDIATE);
             _sound.release();
         }
 
-        public void TryAddSegment()
+        public bool TryAddSegment()
         {
             if (segments.Count > 0)
             {
                 if (WorldManager.Current.HasTile(segments[^1].Position + new Vector2Int(0, -1)))
                 {
-                    return;
+                    return false;
                 }
             }
 
@@ -74,6 +82,8 @@ namespace Items.Rope
 
             col.size = new Vector2(1, length);
             col.offset = new Vector2(0, -(length - 1) / 2f);
+
+            return true;
         }
 
         public void RemoveSegment(int index)

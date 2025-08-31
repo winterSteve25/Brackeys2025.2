@@ -71,6 +71,11 @@ namespace Player
             OnSelectedItemChanged?.Invoke(hotbarItems[selectedItem]);
         }
 
+        public void SetSelectedItem(int value)
+        {
+            WrapSelection(value);
+        }
+
         public ItemStack GetItemHeld()
         {
             return selectedItem == -1 ? null : hotbarItems[selectedItem];
@@ -106,7 +111,7 @@ namespace Player
         {
             if (obj.position.y >= 2) return;
             hotbarItems.Add(obj);
-            hotbarUI.InventoryOnOnItemAdded(obj);
+            hotbarUI.InventoryOnOnItemAdded(obj, hotbarItems.Count - 1);
             
             if (hotbarItems.Count == 1)
             {

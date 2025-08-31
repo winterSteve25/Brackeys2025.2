@@ -12,6 +12,9 @@ namespace Audio
         [field: SerializeField] public EventReference DynamiteThrow { get; private set; }
         [field: SerializeField] public EventReference RopeClimb { get; private set; }
         [field: SerializeField] public EventReference RopeClimbFinish { get; private set; }
+        [field: SerializeField] public EventReference RopePlace { get; private set; }
+        [field: SerializeField] public EventReference LaserUse { get; private set; }
+        [field: SerializeField] public EventReference DectectorPing { get; private set; }
         
         [field: SerializeField] public EventReference PlayerFall { get; private set; }
         [field: SerializeField] public EventReference PlayerWalk { get; private set; }
@@ -23,6 +26,8 @@ namespace Audio
         [field: SerializeField] public EventReference TerminalTeleport { get; private set; }
         
         [field: SerializeField] public EventReference UIHover { get; private set; }
+        [field: SerializeField] public EventReference UIBuy { get; private set; }
+        [field: SerializeField] public EventReference UISell { get; private set; }
         
         [field: SerializeField] public EventReference AmbienceMusic1 { get; private set; }
 

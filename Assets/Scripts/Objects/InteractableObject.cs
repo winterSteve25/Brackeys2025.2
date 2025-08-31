@@ -7,6 +7,9 @@ namespace Objects
     public class InteractableObject : MonoBehaviour
     {
         [field: SerializeField] public string InteractableName { get; private set; }
+        [field: SerializeField] public string Description { get; private set; }
+        [field: SerializeField] public bool IsRightclickable { get; private set; } = true;
+        
         [SerializeField] private UnityEvent<PlayerInventory> onInteract;
         
         [SerializeField] private SpriteRenderer spriteRenderer;

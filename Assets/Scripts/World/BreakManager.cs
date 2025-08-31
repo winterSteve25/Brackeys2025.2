@@ -36,7 +36,7 @@ namespace World
             breakProgress.Progress += Time.deltaTime / totalTime;
             breakProgress.Text.text = breakProgress.Progress.ToString("0.00");
             breakProgress.Text.transform.position = MainCamera.Current.WorldToScreenPoint(
-                worldManager.CellToWorld(pos)
+                worldManager.CellToWorld(pos) + new Vector2(0.5f, 0.5f)
             );
 
             if (!(breakProgress.Progress >= 1)) return false;
@@ -50,6 +50,7 @@ namespace World
         public void CompleteBreak(Vector2Int pos, bool dropItems = true)
         {
             if (!worldManager.TryGetTile(pos, out var tile)) return;
+            if (tile.Material.MiningDuration < 0) return;
             
             worldManager.RemoveTile(pos);
             if (!tile.Material.BreakSound.IsNull)

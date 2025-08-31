@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Player;
 using UnityEngine;
 using World;
 
@@ -90,16 +91,15 @@ namespace InventorySystem
             return null;
         }
 
-        public bool AddAnywhere(ItemStack item)
+        public void AddAnywhere(ItemStack item)
         {
-            var sameItem =
-                Items.FirstOrDefault(x => x.itemType == item.itemType && x.amount <= item.itemType.StackSize);
+            var sameItem = Items.FirstOrDefault(x => x.itemType == item.itemType && x.amount <= item.itemType.StackSize);
             if (sameItem != null && sameItem.itemType != null)
             {
                 item.position = sameItem.position;
                 if (AddItemAtPosition(item))
                 {
-                    return true;
+                    return;
                 }
             }
 
@@ -109,11 +109,11 @@ namespace InventorySystem
                 {
                     item.position.x = i;
                     item.position.y = j;
-                    if (AddItemAtPosition(item)) return true;
+                    if (AddItemAtPosition(item)) return;
                 }
             }
 
-            return false;
+            ItemEntityManager.Current.SpawnApproximatelyAt(PlayerMovement.Current.transform.position, heldItem);
         }
 
         public void RemoveAmountFromPosition(Vector2Int position, int amount)
@@ -184,7 +184,7 @@ namespace InventorySystem
             }
         }
 
-        public void ReturnHeldItem(Vector2 position)
+        public void ReturnHeldItem()
         {
             if (heldItem == null || heldItem.itemType == null) return;
             OnHeldItemReleased?.Invoke();
@@ -194,12 +194,7 @@ namespace InventorySystem
                 return;
             }
 
-            if (AddAnywhere(heldItem))
-            {
-                return;
-            }
-
-            ItemEntityManager.Current.SpawnApproximatelyAt(position, heldItem);
+            AddAnywhere(heldItem);
         }
 
         public void ClearHeldItem()

@@ -46,7 +46,7 @@ namespace InventorySystem.UI
         private void InventoryOnOnItemChanged(ItemStack obj)
         {
             if (obj.position.y >= 2) return;
-            _slots[obj].Initialize(obj);
+            _slots[obj].Initialize(obj, _playerInv, -1);
         }
 
         public void InventoryOnOnItemReplaced(ItemStack from, ItemStack to)
@@ -54,7 +54,7 @@ namespace InventorySystem.UI
             var slot = _slots[from];
             _slots.Remove(from);
             _slots.Add(to, slot);
-            slot.Initialize(to);
+            slot.Initialize(to, _playerInv, -1);
         }
 
         public void InventoryOnOnItemRemoved(ItemStack obj)
@@ -64,10 +64,10 @@ namespace InventorySystem.UI
             LayoutRebuilder.ForceRebuildLayoutImmediate(row);
         }
 
-        public void InventoryOnOnItemAdded(ItemStack obj)
+        public void InventoryOnOnItemAdded(ItemStack obj, int i)
         {
             var slot = Instantiate(slotPrefab, row);
-            slot.Initialize(obj);
+            slot.Initialize(obj, _playerInv, i);
             _slots.Add(obj, slot);
             LayoutRebuilder.ForceRebuildLayoutImmediate(row);
         }

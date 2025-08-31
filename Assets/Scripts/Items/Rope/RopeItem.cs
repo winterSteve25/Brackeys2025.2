@@ -1,3 +1,4 @@
+using Audio;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,17 +16,28 @@ namespace Items.Rope
             if (TryGetTileAtMouse(out var tile, out var pos))
             {
                 if (tile is not RopeSegment ropeSegment) return;
-                ropeSegment.Master.TryAddSegment();
+                if (!ropeSegment.Master.TryAddSegment()) return;
+                AudioManager.PlayOnce(FModEvents.Instance.RopePlace, Vector2.zero);
                 inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
                 return;
             }
 
-            if (!WorldManager.Current.HasTile(pos + Vector2Int.up)) return;
-
-            var rope = Instantiate(ropePrefab, WorldManager.Current.CellToWorld(pos) + new Vector2(0.5f, 0.5f), Quaternion.identity, WorldManager.Current.transform);
-            rope.TryAddSegment();
-
-            inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
+            if (WorldManager.Current.TryGetTile(pos + Vector2Int.up, out var upTile))
+            {
+                if (upTile is RopeSegment ropeSegment)
+                {
+                    if (!ropeSegment.Master.TryAddSegment()) return;
+                    AudioManager.PlayOnce(FModEvents.Instance.RopePlace, Vector2.zero);
+                    inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
+                    return;
+                }
+                
+                var rope = Instantiate(ropePrefab, WorldManager.Current.CellToWorld(pos) + new Vector2(0.5f, 0.5f),
+                    Quaternion.identity, WorldManager.Current.transform);
+                rope.TryAddSegment();
+                AudioManager.PlayOnce(FModEvents.Instance.RopePlace, Vector2.zero);
+                inventory.Inventory.RemoveAmountFromPosition(item.position, 1);
+            }
         }
     }
 }
