@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using KBCore.Refs;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Utils;
 
 namespace World
 {
@@ -27,7 +28,8 @@ namespace World
                 for (int j = Tilemap.cellBounds.yMin; j < Tilemap.cellBounds.yMax; j++)
                 {
                     if (Tilemap.GetTile(new Vector3Int(i, j, 0)) == null) continue;
-                    _tiles.Add(new Vector2Int(i, j), TilemapTile.FromTileBase(Tilemap.GetTile(new Vector3Int(i, j, 0))));
+                    _tiles.Add(new Vector2Int(i, j),
+                        TilemapTile.FromTileBase(Tilemap.GetTile(new Vector3Int(i, j, 0))));
                 }
             }
         }
@@ -51,7 +53,7 @@ namespace World
 
         public void RemoveTile(Vector3 position)
         {
-            RemoveTile((Vector2Int) Tilemap.WorldToCell(position));
+            RemoveTile((Vector2Int)Tilemap.WorldToCell(position));
         }
 
         public void RemoveTile(Vector2Int position)

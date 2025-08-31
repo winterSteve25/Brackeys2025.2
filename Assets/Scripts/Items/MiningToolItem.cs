@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
 using World;
-
 namespace Items
 {
     public class MiningToolItem : UpdatableItem
@@ -21,7 +20,7 @@ namespace Items
 
         protected virtual void Awake()
         {
-            raycastFilter = LayerMaskUtils.EverythingMask(false);
+            raycastFilter = LayerMaskUtils.EverythingMask(true);
             _collisions = new RaycastHit2D[1];
         }
 

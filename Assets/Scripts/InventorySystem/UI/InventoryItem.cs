@@ -82,7 +82,7 @@ namespace InventorySystem.UI
             selfCanvas.overrideSorting = true;
             selfCanvas.sortingOrder = 1000;
             AudioManager.PlayOnce(FModEvents.Instance.UIHover, Vector2.zero);
-            ToolTipManager.Instance.Show(ItemStackStored.itemType.Name, "");
+            ToolTipManager.Instance.Show(ItemStackStored.itemType.Name, "", false);
             Tween.Scale(icon.transform, 1.15f, 0.15f, Ease.OutQuad);
         }
 

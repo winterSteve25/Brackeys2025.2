@@ -59,7 +59,7 @@ namespace Player
             }
 
             if (wasShowing == obj) return;
-            ToolTipManager.Instance.Show(obj.InteractableName, "");
+            ToolTipManager.Instance.Show(obj.InteractableName, "", true);
             wasShowing = obj;
         }
     }

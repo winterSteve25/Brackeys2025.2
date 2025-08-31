@@ -14,7 +14,7 @@ namespace Objects
             if (Random.value < Mathf.Clamp01(chance * CarryOverDataManager.Instance.oreSpawnRateMultiplier))
             {
                 WorldManager.Current.SetTile(transform.position,
-                    Instantiate(prefabs[Random.Range(0, prefabs.Length)]));
+                    Instantiate(prefabs[Random.Range(0, prefabs.Length)], WorldManager.Current.transform));
             }
             else
             {

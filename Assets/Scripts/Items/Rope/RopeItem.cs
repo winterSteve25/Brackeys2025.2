@@ -22,7 +22,7 @@ namespace Items.Rope
 
             if (!WorldManager.Current.HasTile(pos + Vector2Int.up)) return;
 
-            var rope = Instantiate(ropePrefab, WorldManager.Current.CellToWorld(pos) + new Vector2(0.5f, 0.5f), Quaternion.identity);
+            var rope = Instantiate(ropePrefab, WorldManager.Current.CellToWorld(pos) + new Vector2(0.5f, 0.5f), Quaternion.identity, WorldManager.Current.transform);
             rope.TryAddSegment();
 
             inventory.Inventory.RemoveAmountFromPosition(item.position, 1);

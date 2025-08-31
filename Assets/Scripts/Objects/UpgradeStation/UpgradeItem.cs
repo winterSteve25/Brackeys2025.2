@@ -52,7 +52,7 @@ namespace Objects.UpgradeStation
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)sellOrBuyTxt.transform.parent);
             AudioManager.PlayOnce(FModEvents.Instance.UIHover, Vector2.zero);
             
-            ToolTipManager.Instance.Show(_upgrade.Name, _upgrade.Description);
+            ToolTipManager.Instance.Show(_upgrade.Name, _upgrade.Description, false);
         }
 
         public void OnPointerExit(PointerEventData eventData)
