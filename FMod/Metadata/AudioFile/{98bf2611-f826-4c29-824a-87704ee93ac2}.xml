@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{98bf2611-f826-4c29-824a-87704ee93ac2}">
+		<property name="assetPath">
+			<value>Items/Dynamite/dynamite explode.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8461458333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{371ce759-9909-459c-af4e-964ae20781e0}</destination>
+		</relationship>
+	</object>
+</objects>

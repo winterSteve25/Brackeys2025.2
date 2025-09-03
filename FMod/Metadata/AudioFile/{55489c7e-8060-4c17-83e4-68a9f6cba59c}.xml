@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{55489c7e-8060-4c17-83e4-68a9f6cba59c}">
+		<property name="assetPath">
+			<value>Tile/teleport.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.6923124999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{371ce759-9909-459c-af4e-964ae20781e0}</destination>
+		</relationship>
+	</object>
+</objects>

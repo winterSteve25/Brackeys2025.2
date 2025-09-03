@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{9ac062d5-25ea-4316-b078-acfbadcf49b9}">
+		<property name="name">
+			<value>Tiles</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{79576701-f6da-4b5c-8a3d-fea0a3412d34}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{9c0404be-1a95-4ea4-a86e-64a1427cf0ea}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{49f6fddc-5cfd-44c3-a806-5dbafbbb72d9}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{79576701-f6da-4b5c-8a3d-fea0a3412d34}">
+		<relationship name="effects">
+			<destination>{d638df46-27ec-43c6-870c-f7accd895a25}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{9c0404be-1a95-4ea4-a86e-64a1427cf0ea}" />
+	<object class="MixerBusFader" id="{d638df46-27ec-43c6-870c-f7accd895a25}" />
+</objects>
